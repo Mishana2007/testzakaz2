@@ -731,6 +731,215 @@
   .resources .title{ font-size:30px }
 }
 
+/* =========================
+   FAQ — "Часто задаваемые вопросы"
+   ========================= */
+.faq{
+  padding:90px 0 100px;
+  background:#FBFAF8;
+  border-top:1px solid rgba(0,0,0,0.05);
+}
+.faq .badge{
+  width:64px; height:64px; margin:0 auto 12px; border-radius:999px;
+  background:#F3EBE2; border:1px solid #E9DACC; display:grid; place-items:center;
+}
+.faq .badge svg{ width:28px; height:28px; stroke:#B28E66 }
+.faq .title{
+  text-align:center; font-size:38px; font-weight:800; margin:0 0 10px;
+  color:#2B2B2B; letter-spacing:.2px;
+}
+.faq .subtitle{
+  text-align:center; font-size:17px; color:#7F847F; margin:0 0 28px;
+}
+
+/* список вопросов */
+.faq-stack{
+  max-width:960px; margin:0 auto; display:grid; gap:14px;
+}
+.faq-acc{
+  background:#F8F5F2;                        /* очень светлый беж, как на скрине */
+  border:1px solid #EFE4D9;
+  border-radius:12px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.05);
+  overflow:hidden;
+}
+.faq-head{
+  padding:18px 20px;
+  display:flex; align-items:center; gap:14px;
+  cursor:pointer; user-select:none;
+}
+.faq-q{ font-size:17px; font-weight:800; color:#2B2B2B }
+.faq-chev{
+  margin-left:auto; width:18px; height:18px; opacity:.7; transition:transform .2s ease;
+}
+.faq-acc[aria-expanded="true"] .faq-chev{ transform:rotate(180deg) }
+
+/* тело ответа */
+.faq-body{
+  max-height:0; overflow:hidden; transition:max-height .28s ease;
+  border-top:1px solid rgba(0,0,0,0.06); background:#F8F5F2;
+}
+.faq-inner{ padding:10px 20px 16px; }
+.faq-a{ color:#958A7E; font-size:14.8px; line-height:1.75 } /* светло‑серая подпись как на фото */
+
+/* адаптив */
+@media (max-width:920px){
+  .faq{ padding:68px 0 78px }
+  .faq .title{ font-size:30px }
+}
+
+/* =========================
+   CONTACTS — "Контакты"
+   ========================= */
+.contacts{
+  padding:90px 0 110px;
+  background: linear-gradient(to bottom, #FFFFFF 0%, #E6F0EA 100%);
+  border-top:1px solid rgba(0,0,0,0.05);
+}
+.contacts .title{
+  text-align:center; font-size:38px; font-weight:800;
+  color:#2B2B2B; letter-spacing:.2px; margin:0 0 32px;
+}
+.contacts-grid{
+  max-width:1040px; margin:0 auto;
+  display:grid; grid-template-columns: 1fr 1fr; gap:34px;
+}
+
+/* Левая колонка */
+.ct-left .h{
+  font-size:22px; font-weight:800; color:#2B2B2B; margin:0 0 16px;
+}
+.ct-cards{
+  display:grid; grid-template-columns: 1fr 1fr; gap:22px;
+}
+.ct-card{
+  background:#fff; border:1px solid #EFE4D9; border-radius:12px;
+  box-shadow:0 10px 22px rgba(0,0,0,0.05);
+  padding:16px 18px; display:flex; align-items:center; gap:12px;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.ct-card:hover{ transform: translateY(-1px); box-shadow:0 14px 26px rgba(0,0,0,0.06) }
+.ct-ico{
+  width:44px; height:44px; border-radius:12px;
+  background:#F3EBE2; border:1px solid #E9DACC; display:grid; place-items:center;
+  flex:0 0 44px;
+}
+.ct-ico .icon{ width:22px; height:22px; stroke:#B28E66 }
+.ct-text .label{ font-size:13px; color:#8F938E; margin:0 }
+.ct-text .val{ font-size:16px; font-weight:800; color:#2B2B2B; margin:2px 0 0 }
+
+/* Правая колонка (форма) */
+.ct-right .h{
+  font-size:22px; font-weight:800; color:#2B2B2B; margin:0 0 8px;
+}
+.ct-right .sub{
+  font-size:15.5px; color:#8A8E8A; margin:0 0 16px;
+}
+.form-row{ display:grid; gap:12px; margin-bottom:10px }
+.input, .textarea{
+  width:100%; border:1px solid #E5E1DC; background:#FFFFFF;
+  height:44px; padding:0 14px; border-radius:10px; font-size:15.5px;
+  outline:none; transition:border-color .15s ease, box-shadow .15s ease;
+}
+.input:focus, .textarea:focus{ border-color:#D9CBBE; box-shadow:0 0 0 3px rgba(210,190,170,0.25) }
+.textarea{ height:130px; padding:12px 14px; resize:vertical }
+
+/* подпись под телефоном */
+.ct-muted{ font-size:12.5px; color:#A0A39F; margin:6px 0 10px }
+
+/* Радио */
+.radio-row{ display:flex; align-items:center; gap:22px; margin:8px 0 12px }
+.radio{
+  display:flex; align-items:center; gap:8px; cursor:pointer;
+  font-size:15.5px; color:#2B2B2B;
+}
+.radio input{ accent-color:#B28E66; width:16px; height:16px }
+
+/* чекбокс */
+.chk{ display:flex; align-items:center; gap:8px; font-size:14.5px; color:#2B2B2B; }
+.chk input{ accent-color:#B28E66; width:16px; height:16px }
+.chk a{ color:#B28E66; text-decoration:underline }
+
+/* кнопка (отключена, без отправки) */
+.btn-send{
+  width:100%; height:48px; border:none; border-radius:12px;
+  background:#D1B596; color:#fff; font-weight:800; letter-spacing:.1px;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  opacity:.7; cursor:not-allowed; margin:8px 0 8px;
+}
+.btn-send svg{ width:18px; height:18px; stroke:#fff }
+
+/* подпись под кнопкой */
+.ct-note{ font-size:13.5px; color:#A0A39F; text-align:left }
+
+/* Адаптив */
+@media (max-width: 980px){
+  .contacts-grid{ grid-template-columns:1fr; gap:26px }
+  .ct-cards{ grid-template-columns:1fr 1fr }
+}
+@media (max-width: 560px){
+  .contacts .title{ font-size:30px; margin-bottom:24px }
+  .ct-cards{ grid-template-columns:1fr; gap:14px }
+}
+
+
+/* =========================
+   FOOTER — "Футер"
+   ========================= */
+.site-footer{
+  background:#8F6D53;                 /* коричневый как на скрине */
+  color:#FFFFFF;
+  padding:54px 0 70px;
+  text-align:center;
+  border-top:1px solid rgba(0,0,0,0.04);
+}
+.footer-title{
+  margin:0 0 14px;
+  font-weight:800;
+  font-size:28px;
+  letter-spacing:.2px;
+  color:#FFFFFF;
+}
+.footer-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin:0 0 16px;
+  color:rgba(255,255,255,0.92);
+  font-size:18px;
+  line-height:1.5;
+}
+.footer-row .pin{
+  width:20px; height:20px; stroke:#fff; opacity:.95;
+}
+.footer-sub{
+  margin:0 0 22px;
+  color:rgba(255,255,255,0.9);
+  font-size:20px;
+  line-height:1.6;
+}
+.footer-links{
+  display:inline-flex; align-items:center; gap:12px;
+  color:#FFFFFF;
+  font-size:18px;
+}
+.footer-links a{
+  color:#FFFFFF;
+  text-decoration:none;
+  opacity:.9;
+}
+.footer-links a:hover{ text-decoration:underline; opacity:1 }
+.footer-dot{ opacity:.7 }
+
+/* адаптив */
+@media (max-width: 560px){
+  .footer-title{ font-size:22px }
+  .footer-row{ font-size:16px }
+  .footer-sub{ font-size:17px }
+  .footer-links{ font-size:16px }
+}
+
 
   </style>
 </head>
@@ -1370,12 +1579,257 @@
 </section>
 
 
-  <!-- ===== ФУТЕР ===== -->
-  <footer class="site-footer">
-    <div class="container">
-      © <span id="y"></span> Евгения Беленко. Все права защищены.
+<!-- ===== ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ ===== -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="badge" aria-hidden="true">
+      <!-- ? -->
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M9.09 9a3 3 0 1 1 5.83 1c0 2-3 2-3 4"></path>
+        <line x1="12" y1="17" x2="12" y2="17"></line>
+      </svg>
     </div>
-  </footer>
+    <h2 class="title">Часто задаваемые вопросы</h2>
+    <p class="subtitle">Ответы на самые популярные вопросы о терапии</p>
+
+    <div class="faq-stack">
+      <!-- 1 -->
+      <article class="faq-acc" aria-expanded="true">
+        <header class="faq-head" role="button">
+          <div class="faq-q">Сколько длится сессия?</div>
+          <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </header>
+        <div class="faq-body">
+          <div class="faq-inner">
+            <div class="faq-a">50 минут (инд.) / 90 минут (парная)</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="faq-acc" aria-expanded="false">
+        <header class="faq-head" role="button">
+          <div class="faq-q">Какова частота встреч?</div>
+          <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </header>
+        <div class="faq-body">
+          <div class="faq-inner">
+            <div class="faq-a">Как правило, 1 раз в неделю. Частота встреч оговаривается индивидуально с клиентом.</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="faq-acc" aria-expanded="false">
+        <header class="faq-head" role="button">
+          <div class="faq-q">Эффективна ли онлайн‑терапия?</div>
+          <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </header>
+        <div class="faq-body">
+          <div class="faq-inner">
+            <div class="faq-a">Да, сопоставима с очной.</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="faq-acc" aria-expanded="false">
+        <header class="faq-head" role="button">
+          <div class="faq-q">Конфиденциально?</div>
+          <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </header>
+        <div class="faq-body">
+          <div class="faq-inner">
+            <div class="faq-a">Вся информация, полученная от клиента, является абсолютно конфиденциальной и не подлежит разглашению.</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="faq-acc" aria-expanded="false">
+        <header class="faq-head" role="button">
+          <div class="faq-q">Как происходит отмена записи?</div>
+          <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </header>
+        <div class="faq-body">
+          <div class="faq-inner">
+            <div class="faq-a">
+              Клиент может отменить или изменить (перенести) время назначенной сессии, лично уведомив терапевта об этом не позднее, чем за 24 часа до назначенного времени сессии.
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="faq-acc" aria-expanded="false">
+        <header class="faq-head" role="button">
+          <div class="faq-q">Какая длительность терапии?</div>
+          <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </header>
+        <div class="faq-body">
+          <div class="faq-inner">
+            <div class="faq-a">
+              Рекомендуется посетить минимум 4–6 консультаций (по практике транзактного анализа это минимально необходимый этап для знакомства и понимания причин трудностей), после чего совместно с терапевтом решается вопрос о долгосрочном терапевтическом контракте для устранения корневых причин психо‑эмоциональных трудностей и психосоматических симптомов. EMDR‑терапия обычно более краткосрочная и сфокусированная.
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== КОНТАКТЫ ===== -->
+<section class="contacts" id="contacts">
+  <div class="container">
+    <h2 class="title">Контакты</h2>
+
+    <div class="contacts-grid">
+
+      <!-- ЛЕВАЯ КОЛОНКА -->
+      <div class="ct-left">
+        <div class="h">Способы связи</div>
+
+        <div class="ct-cards">
+          <!-- Телефон -->
+          <a class="ct-card" href="tel:+79990000000">
+            <div class="ct-ico" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.89.33 1.76.63 2.59a2 2 0 0 1-.45 2.11L8 9a16 16 0 0 0 7 7l.58-1.25a2 2 0 0 1 2.11-.45c.83.3 1.7.51 2.59.63A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
+            <div class="ct-text">
+              <div class="label">Телефон</div>
+              <div class="val">+7 (XXX) XXX‑XX‑XX</div>
+            </div>
+          </a>
+
+          <!-- Email -->
+          <a class="ct-card" href="mailto:hello@ваш_домен">
+            <div class="ct-ico" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16v16H4z" />
+                <path d="M22 6l-10 7L2 6"/>
+              </svg>
+            </div>
+            <div class="ct-text">
+              <div class="label">Email</div>
+              <div class="val">hello@ВАШ_ДОМЕН</div>
+            </div>
+          </a>
+
+          <!-- WhatsApp -->
+          <a class="ct-card" href="https://wa.me/79990000000" target="_blank" rel="noopener">
+            <div class="ct-ico" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M7 17l1-3a7 7 0 1 1 3 3l-3 1z"></path>
+              </svg>
+            </div>
+            <div class="ct-text">
+              <div class="label">WhatsApp</div>
+              <div class="val">Написать в WhatsApp</div>
+            </div>
+          </a>
+
+          <!-- Telegram -->
+          <a class="ct-card" href="https://t.me/your_username" target="_blank" rel="noopener">
+            <div class="ct-ico" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 2L11 13"></path>
+                <path d="M22 2l-6 20-5-9-9-5 20-6z"></path>
+              </svg>
+            </div>
+            <div class="ct-text">
+              <div class="label">Telegram</div>
+              <div class="val">Написать в Telegram</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- ПРАВАЯ КОЛОНКА -->
+      <div class="ct-right">
+        <div class="h">Быстрая связь</div>
+        <div class="sub">Оставьте контакты и удобное время.</div>
+
+        <div class="form-row">
+          <input class="input" type="text" placeholder="Ваше имя" name="name">
+          <input class="input" type="tel" placeholder="Телефон" name="phone">
+          <div class="ct-muted">Мы не звоним без согласия</div>
+
+          <div class="label" style="font-size:15px; color:#2B2B2B; font-weight:700; margin-top:2px;">Способ связи</div>
+          <div class="radio-row">
+            <label class="radio">
+              <input type="radio" name="contact_way" value="telegram" checked> Telegram
+            </label>
+            <label class="radio">
+              <input type="radio" name="contact_way" value="whatsapp"> WhatsApp
+            </label>
+          </div>
+
+          <textarea class="textarea" placeholder="Удобное время для связи и краткое описание запроса"></textarea>
+
+          <label class="chk">
+            <input type="checkbox" name="agree">
+            Согласен(а) с <a href="#privacy">Политикой конфиденциальности</a>
+          </label>
+
+          <!-- Кнопка без отправки (disabled) -->
+          <button class="btn-send" type="button" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 14l11-11"></path>
+              <path d="M21 3l-6 18-4-7-7-4 17-7z"></path>
+            </svg>
+            Отправить заявку
+          </button>
+
+          <div class="ct-note">Отвечаю в течение дня</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ===== ФУТЕР ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <h2 class="footer-title">Евгения Беленко — психолог</h2>
+
+    <div class="footer-row">
+      <svg class="pin" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 10.5C21 16 12 22 12 22S3 16 3 10.5a9 9 0 1 1 18 0Z"/>
+        <circle cx="12" cy="10.5" r="3"/>
+      </svg>
+      <div>СПБ, Б. Конюшенная, 29, БЦ «Эра»</div>
+    </div>
+
+    <div class="footer-sub">Специализации: транзактный анализ, EMDR, семейная терапия</div>
+
+    <div class="footer-links">
+      <a href="#privacy">Политика конфиденциальности</a>
+      <span class="footer-dot">·</span>
+      <a href="#offer">Публичная оферта</a>
+    </div>
+  </div>
+</footer>
+
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
@@ -1446,6 +1900,40 @@
   window.addEventListener('resize', function(){
     document.querySelectorAll('.res-acc[aria-expanded="true"] .res-body')
       .forEach(function(el){ el.style.maxHeight = el.scrollHeight + 'px'; });
+  });
+
+
+  const faqItems = document.querySelectorAll('.faq-acc');
+  faqItems.forEach(acc => {
+    const head = acc.querySelector('.faq-head');
+    const body = acc.querySelector('.faq-body');
+
+    // начальная высота для открытых
+    if (acc.getAttribute('aria-expanded') === 'true') {
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+
+    head.addEventListener('click', () => {
+      const isOpen = acc.getAttribute('aria-expanded') === 'true';
+
+      // закрываем все
+      faqItems.forEach(it => {
+        it.setAttribute('aria-expanded','false');
+        it.querySelector('.faq-body').style.maxHeight = '0px';
+      });
+
+      // открываем текущий, если был закрыт
+      if (!isOpen) {
+        acc.setAttribute('aria-expanded','true');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // пересчёт высот при ресайзе
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.faq-acc[aria-expanded="true"] .faq-body')
+      .forEach(el => el.style.maxHeight = el.scrollHeight + 'px');
   });
   </script>
 </body>
