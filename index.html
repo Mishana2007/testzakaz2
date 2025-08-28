@@ -82,21 +82,24 @@
     }
     img{max-width:100%; display:block}
     a{color:inherit; text-decoration:none}
-    .container{ max-width:var(--container); margin:0 auto; padding:0 var(--gutter) }
+    .container{max-width: var(--container); margin:0 auto; padding:0 var(--gutter) }
 
     /* =========================
        ХЕДЕР
        ========================= */
     .site-header{
-      position:sticky; top:0; z-index:100;
+      width: 100%;
+      position:fixed; top:0; z-index:100;
       backdrop-filter:saturate(160%) blur(8px);
       background:rgba(255,255,255,0.78);
       border-bottom:1px solid rgba(0,0,0,0.06);
+      transition: all 0.3s ease;
     }
     .header-inner{ height:var(--header-h); display:flex; align-items:center; justify-content:space-between }
-    .brand{ font-weight:800; font-size:19px; letter-spacing:0.1px; color:var(--accent-brown) }
+    .brand{ font-weight:800; font-size:19px; letter-spacing:0.1px; color:var(--accent-brown); transition: color 0.2s ease }
     .nav{ display:flex; align-items:center; gap:28px; font-size:15px }
-    .nav a{opacity:.95}
+    .nav a{opacity:.95; transition: opacity 0.2s ease}
+    .nav a:hover { opacity: 1; }
     .header-cta{
       margin-left:8px; padding:10px 18px;
       background:var(--btn-primary); color:#fff;
@@ -104,18 +107,23 @@
       box-shadow:0 1px 0 rgba(0,0,0,0.02) inset;
     }
     .header-cta:hover{ background:var(--btn-primary-hover) }
-
+   .fixed-booking-btn {
+    display: none;
+    height: 0;
+    color: hsla(0, 0%, 100%, 0);
+  }
     /* =========================
        HERO (первый экран)
        ========================= */
-    .hero{ padding:76px 0 56px }
+    .hero{ padding: calc(var(--header-h) + 76px) 0 56px; transition: padding 0.3s ease }
     .hero-grid{
       display:grid;
       grid-template-columns: 1.10fr 0.90fr; /* чуть больше воздуха слева */
       gap:52px; align-items:center;
+      height: 584px;
     }
     /* Смещаем левую колонку как на скрине */
-    @media (min-width: 1060px){ .hero-left{ transform: translateX(-10px); } }
+    @media (min-width: 1060px){ .hero-left{ transform: translateX(-10px); order: 1; max-height: 475px;} }
 
     .hero-title{
       margin:0 0 18px;
@@ -124,12 +132,12 @@
       line-height:1.08;
       letter-spacing:-0.2px;
     }
-    .hero-title .br{display:block}
+    .hero-title .br{display:block; font-size: 3.75rem;}
     .brand-accent{ color:var(--accent-brown) }
 
     .hero-sub{
       margin:0 0 28px;
-      font-size:17px;
+      font-size: 1.25rem;
       line-height:1.58;
       color:var(--txt-muted);
       max-width:720px;
@@ -158,9 +166,20 @@
     .hero-photo{
       background:#fff; border-radius:var(--radius-lg); overflow:hidden;
       border:1px solid rgba(0,0,0,0.05); box-shadow:0 12px 28px rgba(0,0,0,0.06);
+      order: 2;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .hero-photo-frame{ aspect-ratio: 4 / 5; width:100% }
-    .hero-photo img{ width:100%; height:100%; object-fit:cover }
+    .hero-photo:hover { transform: translateY(-5px); box-shadow:0 16px 32px rgba(0,0,0,0.08); }
+    .hero-photo-1{
+      background:#fff; border-radius:var(--radius-lg); overflow:hidden;
+      border:1px solid rgba(0,0,0,0.05); box-shadow:0 12px 28px rgba(0,0,0,0.06);
+      order: 2;
+      width: 0;
+      height: 0;
+    }
+    .hero-photo-frame{ aspect-ratio: 4 / 5; width:100%; max-height:584px }
+    .hero-photo img{ width:100%; height:100%; object-fit:cover; transition: transform 0.3s ease }
+    .hero-photo:hover img { transform: scale(1.02); }
 
     /* =========================
        ABOUT — "Обо мне"
@@ -170,6 +189,7 @@
       background:#FFFFFF;               /* белый фон */
       border-top:1px solid rgba(0,0,0,0.04);
       border-bottom:1px solid rgba(0,0,0,0.04);
+      transition: padding 0.3s ease;
     }
     .about .title{
       font-size:36px; font-weight:800; text-align:center; margin:0 0 28px;
@@ -178,12 +198,14 @@
     .about .avatar{
       width:132px; height:132px; border-radius:50%;
       overflow:hidden; margin:0 auto 22px; border:6px solid #F3F3F3;
+      transition: transform 0.3s ease;
     }
+    .about .avatar:hover { transform: scale(1.05); }
     .about .avatar img{ width:100%; height:100%; object-fit:cover }
 
     .about .lead{
       max-width:780px; margin:0 auto 26px; text-align:center;
-      color:#313131; line-height:1.7; font-size:17px;
+      color:#313131; line-height:1.7; font-size: 1.125rem;
     }
 
     .about .quote{
@@ -191,9 +213,11 @@
       background:var(--accent-quote); border-radius:14px;
       padding:18px 22px;
       color:var(--accent-brown);        /* коричневый текст цитаты */
-      font-size:16px; line-height:1.6; font-style:italic;
+      font-size: 1.125rem; line-height:1.6; font-style:italic;font-weight: 500;
       border:1px solid rgba(0,0,0,0.04);
+      transition: background 0.3s ease;
     }
+    .about .quote:hover { background: #E0E8E3; }
 
     .about .features{
       max-width:980px; margin:0 auto;
@@ -204,10 +228,13 @@
       width:64px; height:64px; border-radius:50%;
       margin:0 auto 14px; display:grid; place-items:center;
       background:#F2F4F1; border:1px solid rgba(0,0,0,0.05);
+      transition: background 0.2s ease;
     }
-    .feature .icon{ width:28px; height:28px; stroke:#8B7059 }
+    .feature:hover .icon-wrap { background: #E9EBE7; }
+    .feature .icon{ width:28px; height:28px; stroke:#8B7059; transition: stroke 0.2s ease }
+    .feature:hover .icon { stroke: var(--accent-brown); }
     .feature .h{
-      font-weight:800; color:#8B7059; font-size:18px; margin:0 0 8px; letter-spacing:.2px;
+      font-weight:800; color:#8B7059;  font-size: 1.25rem; margin:0 0 8px; letter-spacing:.2px;
     }
     .feature .p{
       color:#757A75; font-size:15px; line-height:1.55; max-width:280px; margin:0 auto;
@@ -238,7 +265,9 @@
       border-radius:14px;
       box-shadow: var(--card-shadow);
       padding:26px 26px 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 14px 28px rgba(0,0,0,0.08); }
     .card-header{ display:flex; gap:16px; align-items:flex-start; margin-bottom:12px; }
     .badge{
       width:44px; height:44px; border-radius:10px;
@@ -246,8 +275,11 @@
       background:var(--badge-bg);
       border:1px solid var(--badge-bd);
       flex:0 0 44px;
+      transition: background 0.2s ease;
     }
-    .badge .icon{ width:24px; height:24px; stroke:var(--icon-stroke) }
+    .card:hover .badge { background: #F5E9DE; }
+    .badge .icon{ width:24px; height:24px; stroke:var(--icon-stroke); transition: stroke 0.2s ease }
+    .card:hover .badge .icon { stroke: var(--accent-brown); }
 
     .card h3{
       margin:2px 0 10px;
@@ -263,7 +295,9 @@
       margin-top:8px; font-weight:600; font-size:15px;
       color:var(--link-accent);
       display:inline-flex; align-items:center; gap:6px;
+      transition: color 0.2s ease;
     }
+    .card .cta:hover { color: #C08F5F; }
     .card .cta .arrow{ transition:transform .15s ease }
     .card .cta:hover .arrow{ transform: translateX(2px) }
 
@@ -290,14 +324,20 @@
       background:#fff; border:1px solid var(--step-border);
       border-radius:14px; box-shadow: var(--step-shadow);
       padding:26px 26px 24px; text-align:center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+    .step-card:hover { transform: translateY(-5px); box-shadow: 0 16px 30px rgba(0,0,0,0.08); }
     .step-badge{
       width:56px; height:56px; border-radius:50%; margin:0 auto 12px;
       background:var(--step-badge); display:grid; place-items:center;
+      transition: background 0.2s ease;
     }
-    .step-badge .icon{ width:26px; height:26px; stroke:#9E846E }
+    .step-card:hover .step-badge { background: #E5D9CB; }
+    .step-badge .icon{ width:26px; height:26px; stroke:#9E846E; transition: stroke 0.2s ease }
+    .step-card:hover .step-badge .icon { stroke: var(--accent-brown); }
     .step-title{ margin:8px 0 6px; font-size:20px; font-weight:800; color:#2B2B2B; }
-    .step-sub{ margin:0 0 12px; font-size:13.5px; color:#B08E70; font-weight:700; text-decoration:none; display:inline-block; }
+    .step-sub{ margin:0 0 12px; font-size:13.5px; color:#B08E70; font-weight:700; text-decoration:none; display:inline-block; transition: color 0.2s ease }
+    .step-sub:hover { color: #9B6A44; }
     .step-text{ margin:0; color:#7A7F7A; font-size:15.5px; line-height:1.62; }
     .steps-note{ text-align:center; color:#8A8E8A; font-size:15px; margin-top:10px; }
 
@@ -325,12 +365,17 @@
       background:#fff; border:1px solid var(--price-border);
       border-radius:16px; box-shadow: var(--price-shadow);
       padding:28px 28px 24px; text-align:center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+    .price-card:hover { transform: translateY(-5px); box-shadow: 0 16px 32px rgba(0,0,0,0.08); }
     .price-badge{
       width:64px; height:64px; border-radius:50%; margin:0 auto 10px;
       background:var(--price-badge); display:grid; place-items:center;
+      transition: background 0.2s ease;
     }
-    .price-badge .icon{ width:28px; height:28px; stroke:#B28E66 }
+    .price-card:hover .price-badge { background: #E5D9CC; }
+    .price-badge .icon{ width:28px; height:28px; stroke:#B28E66; transition: stroke 0.2s ease }
+    .price-card:hover .price-badge .icon { stroke: var(--accent-brown); }
     .price-title{ margin:6px 0 6px; font-size:22px; font-weight:800; color:#2B2B2B }
     .price-sub{ margin:0 0 10px; color:#9A9E99; font-size:13.5px }
     .price-value{ margin:6px 0 18px; font-size:34px; font-weight:800; color:#8B7059; letter-spacing:1px }
@@ -351,19 +396,89 @@
     /* =========================
        АДАПТИВ
        ========================= */
+    @media (max-width: 1200px) {
+      :root { --container: 1024px; --gutter: 32px; }
+      .hero-title { font-size: 52px; }
+      .hero-grid { gap: 48px; height: auto; }
+      .hero-photo-frame { max-height: 520px; }
+    }
+
     @media (max-width: 1100px){
       .hero-title{ font-size:50px }
       .hero-grid{ gap:42px }
     }
+
+    @media (max-width: 1024px) {
+      :root { --gutter: 24px; }
+      .about .title { font-size: 32px; }
+      .steps .title, .prices .title, .requests .title { font-size: 34px; }
+      .step-grid, .price-grid, .cards { gap: 24px; }
+      .hero-title { font-size: 48px; }
+      .hero-sub { font-size: 1.1rem; }
+    }
+
     @media (max-width: 920px){
       .nav{ display:none }
       .header-inner{ justify-content:space-between }
-      .hero{ padding:58px 0 40px }
+      .header-cta { display: none; }
+      .fixed-booking-btn {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        color: #fff;
+        text-align: center;
+        font-weight: 800;
+        font-size: 16px;
+        padding: 16px;
+        border-radius: 0;
+        text-decoration: none;
+        z-index: 999;
+      }
+      .fixed-div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        background: #D6B894;
+        height: 56px;
+        padding: 1rem;
+        gap: .5rem;
+        border-radius: 0;
+        transition: background 0.2s ease;
+      }
+      .fixed-div:hover {
+        background: #C9A37B;
+      }
+      .hero-grid {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        gap: 32px;
+      }
+      .hero-title {
+        order: 1; /* текст сверху */
+        font-size: 42px;
+      }
+     .hero-photo {
+        order: 2; /* фото сразу после заголовка */
+        max-width: 100%;
+      }
+      .hero-photo-1 {
+        order: 2; /* фото сразу после заголовка */
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+      }
+      .hero{ padding: calc(var(--header-h) + 58px) 0 40px }
       .hero-grid{ grid-template-columns:1fr; gap:28px }
-      .hero-photo{ order:-1 }
       .hero-title{ font-size:42px; line-height:1.13 }
       .hero-sub{ font-size:15.8px }
       .hero-left{ transform:none }
+      .hero-actions { display: none; } /* Hide on mobile, use fixed */
+      .hero-chips { display: none; } /* Hide on mobile */
 
       .about{ padding:44px 0 56px }
       .about .title{ font-size:30px; margin-bottom:22px }
@@ -381,13 +496,30 @@
       .prices .title{ font-size:30px }
       .price-grid{ grid-template-columns:1fr; gap:20px }
     }
+    @media (max-width: 768px) {
+      :root { --gutter: 20px; }
+      .hero-title { font-size: 38px; }
+      .hero-sub { font-size: 15px; }
+      .about .title { font-size: 28px; }
+      .about .lead { font-size: 1rem; }
+      .about .quote { font-size: 1rem; padding: 16px 20px; }
+      .requests .title { font-size: 28px; }
+      .steps .title { font-size: 28px; }
+      .prices .title { font-size: 28px; }
+      .price-value { font-size: 32px; }
+      .card h3 { font-size: 19px; }
+      .card p { font-size: 15px; }
+      .step-title { font-size: 19px; }
+      .step-text { font-size: 15px; }
+      .price-title { font-size: 20px; }
+    }
     @media (max-width: 560px){
-      :root{ --gutter:20px }
+      :root{ --gutter:16px }
       .brand{ font-size:18px }
       .header-cta{ padding:10px 16px }
       .hero-title{ font-size:34px; letter-spacing:-0.15px; line-height:1.14 }
       .hero-actions a{ width:100%; text-align:center }
-      .chip{ font-size:13.5px; padding:6px 12px }
+      .chip{ font-size:13.5px; padding:6px 12px;  background: none;}
       .hero-photo{ border-radius:20px }
 
       .about .lead{ font-size:15.5px }
@@ -396,6 +528,7 @@
       .card{ padding:22px 20px }
       .card h3{ font-size:18.5px }
       .price-value{ font-size:30px }
+      .fixed-div { font-size: 15px; height: 52px; }
     }
 
 
@@ -421,9 +554,12 @@
   border-radius:16px;
   box-shadow: var(--price-shadow);
   overflow:hidden;
+  transition: transform 0.3s ease;
 }
+.meet-card:hover { transform: translateY(-5px); }
 .meet-media{ width:100%; aspect-ratio: 16 / 9; background:#F4F4F4; }
-.meet-media img{ width:100%; height:100%; object-fit:cover; }
+.meet-media img{ width:100%; height:100%; object-fit:cover; transition: transform 0.3s ease }
+.meet-card:hover .meet-media img { transform: scale(1.05); }
 
 .meet-body{ padding:22px 24px 22px; }
 .meet-head{ display:flex; align-items:center; gap:10px; margin-bottom:12px; }
@@ -431,8 +567,11 @@
   width:28px; height:28px; border-radius:8px;
   background:#F3EBE2; border:1px solid #E9DACC;
   display:grid; place-items:center; flex:0 0 28px;
+  transition: background 0.2s ease;
 }
-.meet-badge .icon{ width:16px; height:16px; stroke:#B28E66 }
+.meet-card:hover .meet-badge { background: #EDE3DA; }
+.meet-badge .icon{ width:16px; height:16px; stroke:#B28E66; transition: stroke 0.2s ease }
+.meet-card:hover .meet-badge .icon { stroke: var(--accent-brown); }
 .meet-title{ font-size:19px; font-weight:800; color:#2B2B2B; }
 
 .meet-text{ color:#6F746F; font-size:15.5px; line-height:1.62; margin:0 0 12px; }
@@ -448,13 +587,17 @@
 .meet-dot{
   width:8px; height:8px; border-radius:50%;
   background:#B28E66; flex:0 0 8px;
+  transition: background 0.2s ease;
 }
+.meet-list li:hover .meet-dot { background: var(--accent-brown); }
 
 .meet-link{
   display:inline-flex; align-items:center; gap:6px;
   margin-top:6px; font-weight:700; font-size:15px;
   color:var(--link-accent);
+  transition: color 0.2s ease;
 }
+.meet-link:hover { color: #C08F5F; }
 .meet-link .arr{ transition: transform .15s ease }
 .meet-link:hover .arr{ transform: translateX(2px) }
 
@@ -488,21 +631,27 @@
   border-radius:14px;
   box-shadow: var(--price-shadow);
   overflow:hidden;
+  transition: box-shadow 0.3s ease;
 }
+.edu-acc:hover { box-shadow: 0 14px 28px rgba(0,0,0,0.08); }
 
 /* Заголовок панели */
 .edu-head{
   display:flex; align-items:center; gap:12px;
   padding:16px 18px;
   cursor:pointer; user-select:none;
+  transition: background 0.2s ease;
 }
 .edu-head:hover{ background:#FBFBFB }
 .edu-ico{
   width:38px; height:38px; border-radius:10px;
   background:#F3EBE2; border:1px solid #E9DACC;
   display:grid; place-items:center; flex:0 0 38px;
+  transition: background 0.2s ease;
 }
-.edu-ico .icon{ width:20px; height:20px; stroke:#B28E66 }
+.edu-head:hover .edu-ico { background: #EDE3DA; }
+.edu-ico .icon{ width:20px; height:20px; stroke:#B28E66; transition: stroke 0.2s ease }
+.edu-head:hover .edu-ico .icon { stroke: var(--accent-brown); }
 .edu-titles{ display:flex; flex-direction:column; gap:2px }
 .edu-h{ font-size:18px; font-weight:800; color:#2B2B2B }
 .edu-sub{ font-size:13.5px; color:#8E938E }
@@ -542,18 +691,24 @@
 .edu-list li{
   position:relative; padding-left:18px;
   font-size:15.5px; color:#2B2B2B; line-height:1.6; margin:6px 0;
+  transition: color 0.2s ease;
 }
+.edu-list li:hover { color: #444; }
 .edu-list li::before{
   content:""; position:absolute; left:0; top:10px;
   width:8px; height:8px; border-radius:50%; background:#B28E66;
+  transition: background 0.2s ease;
 }
+.edu-list li:hover::before { background: var(--accent-brown); }
 
 /* "Показать ещё" внутри второй панели */
 .edu-more-toggle{
   display:inline-flex; align-items:center; gap:6px;
   color:#B28E66; font-weight:700; font-size:14.5px; cursor:pointer;
   margin:8px 0 4px; user-select:none;
+  transition: color 0.2s ease;
 }
+.edu-more-toggle:hover { color: #9B6A44; }
 .edu-more .chev{ width:16px; height:16px; transition:transform .2s ease }
 .edu-more[aria-expanded="true"] .chev{ transform:rotate(180deg) }
 .edu-more-body{
@@ -596,7 +751,9 @@
   box-shadow:0 10px 24px rgba(0,0,0,0.06);     /* мягкая тень как у остальных карт */
   padding:36px 28px 30px;
   text-align:center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+.wf-card:hover { transform: translateY(-5px); box-shadow: 0 14px 28px rgba(0,0,0,0.08); }
 
 /* бейдж с иконкой */
 .wf-badge{
@@ -605,8 +762,11 @@
   background:#F3EBE2;                          /* бежевый круг */
   border:1px solid #E9DACC;
   display:grid; place-items:center;
+  transition: background 0.2s ease;
 }
-.wf-badge .icon{ width:28px; height:28px; stroke:#B28E66 }
+.wf-card:hover .wf-badge { background: #EDE3DA; }
+.wf-badge .icon{ width:28px; height:28px; stroke:#B28E66; transition: stroke 0.2s ease }
+.wf-card:hover .wf-badge .icon { stroke: var(--accent-brown); }
 
 /* заголовок и текст */
 .wf-title{
@@ -651,14 +811,18 @@
   border-radius:12px;
   box-shadow:0 10px 22px rgba(0,0,0,0.05);
   padding:18px 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+.fact:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
 .fact-num{
   width:32px; height:32px; flex:0 0 32px;
   border-radius:50%;
   background:#F3EBE2; border:1px solid #E9DACC;
   display:grid; place-items:center;
   font-weight:700; font-size:14px; color:#B28E66;
+  transition: background 0.2s ease, color 0.2s ease;
 }
+.fact:hover .fact-num { background: #EDE3DA; color: var(--accent-brown); }
 .fact-text{
   font-size:15.8px; line-height:1.65; color:#2B2B2B;
 }
@@ -695,12 +859,16 @@
   border-radius:12px;
   box-shadow:0 10px 22px rgba(0,0,0,0.05);
   overflow:hidden;
+  transition: box-shadow 0.3s ease;
 }
+.res-acc:hover { box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
 .res-head{
   padding:18px 20px;
   display:flex; align-items:center;
   cursor:pointer; user-select:none;
+  transition: background 0.2s ease;
 }
+.res-head:hover { background: #F8F8F8; }
 .res-h{ font-size:18px; font-weight:800; color:#2B2B2B }
 .res-chev{
   margin-left:auto; width:20px; height:20px;
@@ -721,7 +889,9 @@
   width:28px; height:28px; flex:0 0 28px;
   border-radius:50%; background:#F3EBE2; border:1px solid #E9DACC;
   display:grid; place-items:center; font-weight:700; font-size:13.5px; color:#B28E66;
+  transition: background 0.2s ease, color 0.2s ease;
 }
+.res-item:hover .res-num { background: #EDE3DA; color: var(--accent-brown); }
 .res-text{ font-size:15.5px; line-height:1.65; color:#2B2B2B }
 .res-text b{ font-weight:800; color:#2B2B2B }
 
@@ -742,8 +912,11 @@
 .faq .badge{
   width:64px; height:64px; margin:0 auto 12px; border-radius:999px;
   background:#F3EBE2; border:1px solid #E9DACC; display:grid; place-items:center;
+  transition: background 0.2s ease;
 }
-.faq .badge svg{ width:28px; height:28px; stroke:#B28E66 }
+.faq:hover .badge { background: #EDE3DA; }
+.faq .badge svg{ width:28px; height:28px; stroke:#B28E66; transition: stroke 0.2s ease }
+.faq:hover .badge svg { stroke: var(--accent-brown); }
 .faq .title{
   text-align:center; font-size:38px; font-weight:800; margin:0 0 10px;
   color:#2B2B2B; letter-spacing:.2px;
@@ -762,12 +935,16 @@
   border-radius:12px;
   box-shadow:0 10px 20px rgba(0,0,0,0.05);
   overflow:hidden;
+  transition: box-shadow 0.3s ease;
 }
+.faq-acc[aria-expanded="true"] { box-shadow: 0 12px 22px rgba(0,0,0,0.06); }
 .faq-head{
   padding:18px 20px;
   display:flex; align-items:center; gap:14px;
   cursor:pointer; user-select:none;
+  transition: background 0.2s ease;
 }
+.faq-head:hover { background: #F0EDE8; }
 .faq-q{ font-size:17px; font-weight:800; color:#2B2B2B }
 .faq-chev{
   margin-left:auto; width:18px; height:18px; opacity:.7; transition:transform .2s ease;
@@ -823,8 +1000,11 @@
   width:44px; height:44px; border-radius:12px;
   background:#F3EBE2; border:1px solid #E9DACC; display:grid; place-items:center;
   flex:0 0 44px;
+  transition: background 0.2s ease;
 }
-.ct-ico .icon{ width:22px; height:22px; stroke:#B28E66 }
+.ct-card:hover .ct-ico { background: #EDE3DA; }
+.ct-ico .icon{ width:22px; height:22px; stroke:#B28E66; transition: stroke 0.2s ease }
+.ct-card:hover .ct-ico .icon { stroke: var(--accent-brown); }
 .ct-text .label{ font-size:13px; color:#8F938E; margin:0 }
 .ct-text .val{ font-size:16px; font-weight:800; color:#2B2B2B; margin:2px 0 0 }
 
@@ -858,7 +1038,8 @@
 /* чекбокс */
 .chk{ display:flex; align-items:center; gap:8px; font-size:14.5px; color:#2B2B2B; }
 .chk input{ accent-color:#B28E66; width:16px; height:16px }
-.chk a{ color:#B28E66; text-decoration:underline }
+.chk a{ color:#B28E66; text-decoration:underline; transition: color 0.2s ease }
+.chk a:hover { color: #9B6A44; }
 
 /* кнопка (отключена, без отправки) */
 .btn-send{
@@ -866,7 +1047,9 @@
   background:#D1B596; color:#fff; font-weight:800; letter-spacing:.1px;
   display:flex; align-items:center; justify-content:center; gap:10px;
   opacity:.7; cursor:not-allowed; margin:8px 0 8px;
+  transition: background 0.2s ease, opacity 0.2s ease;
 }
+.btn-send:not(:disabled):hover { background: #C4A889; opacity: 1; }
 .btn-send svg{ width:18px; height:18px; stroke:#fff }
 
 /* подпись под кнопкой */
@@ -912,7 +1095,9 @@
 }
 .footer-row .pin{
   width:20px; height:20px; stroke:#fff; opacity:.95;
+  transition: opacity 0.2s ease;
 }
+.footer-row:hover .pin { opacity: 1; }
 .footer-sub{
   margin:0 0 22px;
   color:rgba(255,255,255,0.9);
@@ -928,6 +1113,7 @@
   color:#FFFFFF;
   text-decoration:none;
   opacity:.9;
+  transition: opacity 0.2s ease;
 }
 .footer-links a:hover{ text-decoration:underline; opacity:1 }
 .footer-dot{ opacity:.7 }
@@ -940,7 +1126,120 @@
   .footer-links{ font-size:16px }
 }
 
+/* =========================
+   MOBILE MENU
+   ========================= */
+.burger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+}
 
+.burger svg {
+  width: 24px;
+  height: 24px;
+  stroke: #000;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.2s ease;
+}
+.burger:hover svg { stroke: var(--accent-brown); }
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.mobile-menu.open {
+  transform: translateY(0);
+}
+
+.menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.menu-brand {
+  font-weight: 800;
+  font-size: 19px;
+  color: var(--accent-brown);
+  transition: color 0.2s ease;
+}
+.menu-brand:hover { color: #8A5D3D; }
+
+.menu-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #000;
+  transition: color 0.2s ease;
+}
+.menu-close:hover { color: var(--accent-brown); }
+
+.menu-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-size: 18px;
+  color: #222426;
+}
+
+.menu-nav a {
+  text-decoration: none;
+  opacity: 1;
+  transition: color 0.2s ease;
+}
+.menu-nav a:hover { color: var(--accent-brown); }
+
+.menu-cta {
+  margin-top: auto;
+  padding: 14px 28px;
+  background: var(--btn-primary);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 15.5px;
+  text-align: center;
+  transition: .2s;
+}
+.menu-cta:hover {
+  background: var(--btn-primary-hover);
+}
+
+@media (max-width: 920px) {
+  .burger {
+    display: block;
+  }
+  .header-cta {
+    display: none;
+  }
+  .hero-actions .btn-secondary,
+  .hero-chips {
+    display: none; /* Hide secondary button and chips on mobile to match image */
+  }
+  .hero-actions .btn-primary {
+    display: none; /* Hide main button in hero, use fixed instead */
+  }
+}
   </style>
 </head>
 <body>
@@ -957,8 +1256,31 @@
         <a href="#contacts">Контакты</a>
         <a class="header-cta" href="#booking">Записаться</a>
       </nav>
+      <button class="burger" aria-label="Открыть меню">
+        <svg viewBox="0 0 24 24" fill="none">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
     </div>
   </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <div class="menu-header">
+      <div class="menu-brand">Евгения Беленко</div>
+      <button class="menu-close" aria-label="Закрыть меню">×</button>
+    </div>
+    <nav class="menu-nav">
+      <a href="#home">Главная</a>
+      <a href="#about">Обо мне</a>
+      <a href="#steps">Как проходит терапия</a>
+      <a href="#prices">Услуги и цены</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="menu-cta" href="#booking">Записаться</a>
+  </div>
 
   <!-- ===== HERO (первый экран) ===== -->
   <section id="home" class="hero">
@@ -970,6 +1292,12 @@
           <span class="br">психолог</span>
           <span class="br brand-accent">Евгения Беленко</span>
         </h1>
+
+        <aside class="hero-photo-1" aria-label="Портрет специалиста">
+          <div class="hero-photo-frame">
+            <img src="evgeniya.png" alt="Евгения Беленко">
+          </div>
+        </aside>
 
         <p class="hero-sub">
           В моем пространстве нет шаблонных решений — только Ваш путь, поддержка и пространство для изменений.
@@ -987,12 +1315,19 @@
           <span class="chip">Результат</span>
         </div>
       </div>
-
-      <aside class="hero-photo" aria-label="Портрет специалиста">
-        <div class="hero-photo-frame">
-          <img src="evgeniya.jpg" alt="Евгения Беленко">
-        </div>
-      </aside>
+              <aside class="hero-photo" aria-label="Портрет специалиста">
+          <div class="hero-photo-frame">
+            <img src="evgeniya.jpg" alt="Евгения Беленко">
+          </div>
+        </aside>
+    </div>
+    <div class="fixed-booking-btn">
+      <a href="#booking" class="fixed-div">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.89.33 1.76.63 2.59a2 2 0 0 1-.45 2.11L8 9a16 16 0 0 0 7 7l.58-1.25a2 2 0 0 1 2.11-.45c.83.3 1.7.51 2.59.63A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        Записаться
+      </a>
     </div>
   </section>
 
@@ -1017,7 +1352,7 @@
         опору внутри себя, которые не зависят от внешних обстоятельств.
       </div>
 
-      <div class="about features">
+      <div class="features">
         <div class="feature">
           <div class="icon-wrap">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1237,704 +1572,738 @@
   </section>
 
   <!-- ===== ГДЕ ПРОХОДЯТ ВСТРЕЧИ ===== -->
-<section class="meetings" id="meetings">
-  <div class="container">
-    <h2 class="title">Где проходят встречи</h2>
+  <section class="meetings" id="meetings">
+    <div class="container">
+      <h2 class="title">Где проходят встречи</h2>
 
-    <div class="meet-grid">
-      <!-- Очные встречи -->
-      <article class="meet-card">
-        <div class="meet-media">
-          <!-- замените src на свою картинку кабинета -->
-          <img src="meeting-office.jpg" alt="Уютный кабинет для очных встреч">
-        </div>
-        <div class="meet-body">
-          <div class="meet-head">
-            <div class="meet-badge" aria-hidden="true">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 10.5C21 16 12 22 12 22S3 16 3 10.5a9 9 0 1 1 18 0Z"/>
-                <circle cx="12" cy="10.5" r="3"/>
-              </svg>
-            </div>
-            <div class="meet-title">Очные встречи</div>
+      <div class="meet-grid">
+        <!-- Очные встречи -->
+        <article class="meet-card">
+          <div class="meet-media">
+            <img src="meeting-office.jpg" alt="Уютный кабинет для очных встреч">
           </div>
-
-          <p class="meet-text">Наши встречи будут проходить в уютном кабинете по адресу:</p>
-
-          <div class="meet-addr">
-            <b>Б. Конюшенная ул., 29</b>
-            БЦ «Эра»<br>
-            <span class="muted">Санкт‑Петербург</span>
-          </div>
-
-          <a class="meet-link" href="https://yandex.ru/maps/?text=Б.%20Конюшенная%2029%20Санкт‑Петербург" target="_blank" rel="noopener">
-            Смотреть на карте <span class="arr">→</span>
-          </a>
-        </div>
-      </article>
-
-      <!-- Онлайн‑встречи -->
-      <article class="meet-card">
-        <div class="meet-media">
-          <!-- замените src на свою картинку ноутбука -->
-          <img src="meeting-online.jpg" alt="Онлайн‑встречи">
-        </div>
-        <div class="meet-body">
-          <div class="meet-head">
-            <div class="meet-badge" aria-hidden="true">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="5" width="15" height="14" rx="2" ry="2"/>
-                <path d="M22 7l-5 3v4l5 3V7z"/>
-              </svg>
-            </div>
-            <div class="meet-title">Онлайн‑встречи</div>
-          </div>
-
-          <p class="meet-text">Удобные онлайн‑консультации из любой точки мира через:</p>
-
-          <ul class="meet-list">
-            <li><span class="meet-dot"></span>Google Meet</li>
-            <li><span class="meet-dot"></span>WhatsApp</li>
-            <li><span class="meet-dot"></span>Telegram</li>
-          </ul>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===== ОБРАЗОВАНИЕ ===== -->
-<section class="education" id="education">
-  <div class="container">
-    <h2 class="title">Образование</h2>
-
-    <div class="edu-stack">
-
-      <!-- 1) ВЫСШЕЕ ОБРАЗОВАНИЕ -->
-      <article class="edu-acc" aria-expanded="false">
-        <header class="edu-head" role="button">
-          <div class="edu-ico" aria-hidden="true">
-            <!-- шапочка выпускника -->
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 10L12 5 2 10l10 5 10-5z"/>
-              <path d="M6 12v5a6 6 0 0 0 12 0v-5"/>
-            </svg>
-          </div>
-          <div class="edu-titles">
-            <div class="edu-h">Высшее образование</div>
-            <div class="edu-sub">Медицина и психология</div>
-          </div>
-          <svg class="edu-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </header>
-
-        <div class="edu-body">
-          <div class="edu-inner">
-            <div class="edu-row">
-              <b>СПбГУ, медицинский факультет</b>
-              <div class="edu-note">Базовое медицинское образование</div>
-            </div>
-
-            <div class="edu-sep"></div>
-
-            <div class="edu-row">
-              <b>СПб гос. институт психологии и соц. работы</b>
-              <div class="edu-note">Магистр «Психологическое консультирование»</div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 2) ПОВЫШЕНИЕ КВАЛИФИКАЦИИ -->
-      <article class="edu-acc" aria-expanded="false">
-        <header class="edu-head" role="button">
-          <div class="edu-ico" aria-hidden="true">
-            <!-- медаль/сертификат -->
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="8" r="5"/>
-              <path d="M8 13v8l4-2 4 2v-8"/>
-            </svg>
-          </div>
-          <div class="edu-titles">
-            <div class="edu-h">Повышение квалификации</div>
-            <div class="edu-sub">Ключевые специализации</div>
-          </div>
-          <svg class="edu-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </header>
-
-        <div class="edu-body">
-          <div class="edu-inner">
-            <ul class="edu-list">
-              <li><b>Европейская программа (ТА)</b>
-                <div class="edu-note">Тренер Е. Ю. Лазаренко (CTA‑P‑EATA, PTSTA‑P‑EATA)</div>
-              </li>
-              <li><b>СПб институт EMDR</b>
-                <div class="edu-note">РФ/Европа/EMDR Institute</div>
-              </li>
-              <li><b>Базовый курс КПТ</b>
-                <div class="edu-note">АКПП</div>
-              </li>
-              <li><b>Интегративное консультирование</b></li>
-            </ul>
-
-            <!-- Показать ещё -->
-            <div class="edu-more" aria-expanded="false">
-              <div class="edu-more-toggle">
-                <span>Показать ещё</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="#B28E66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"></polyline>
+          <div class="meet-body">
+            <div class="meet-head">
+              <div class="meet-badge" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10.5C21 16 12 22 12 22S3 16 3 10.5a9 9 0 1 1 18 0Z"/>
+                  <circle cx="12" cy="10.5" r="3"/>
                 </svg>
               </div>
-              <div class="edu-more-body">
-                <div class="edu-more-inner">
-                  <ul class="edu-list">
-                    <li><b>Семинар Р. Эрскина</b>
-                      <div class="edu-note">«Нарциссическая дилемма»</div>
-                    </li>
-                    <li><b>Семинар В. Гусаковского</b>
-                      <div class="edu-note">«Транзактный анализ…»</div>
-                    </li>
-                    <li><b>«Психологическое консультирование пар»</b></li>
-                    <li><b>«Психотерапия денежных запросов»</b></li>
-                  </ul>
-                </div>
+              <div class="meet-title">Очные встречи</div>
+            </div>
+
+            <p class="meet-text">Наши встречи будут проходить в уютном кабинете по адресу:</p>
+
+            <div class="meet-addr">
+              <b>Б. Конюшенная ул., 29</b>
+              БЦ «Эра»<br>
+              <span class="muted">Санкт‑Петербург</span>
+            </div>
+
+            <a class="meet-link" href="https://yandex.ru/maps/?text=Б.%20Конюшенная%2029%20Санкт‑Петербург" target="_blank" rel="noopener">
+              Смотреть на карте <span class="arr">→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Онлайн‑встречи -->
+        <article class="meet-card">
+          <div class="meet-media">
+            <img src="meeting-online.jpg" alt="Онлайн‑встречи">
+          </div>
+          <div class="meet-body">
+            <div class="meet-head">
+              <div class="meet-badge" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="5" width="15" height="14" rx="2" ry="2"/>
+                  <path d="M22 7l-5 3v4l5 3V7z"/>
+                </svg>
+              </div>
+              <div class="meet-title">Онлайн‑встречи</div>
+            </div>
+
+            <p class="meet-text">Удобные онлайн‑консультации из любой точки мира через:</p>
+
+            <ul class="meet-list">
+              <li><span class="meet-dot"></span>Google Meet</li>
+              <li><span class="meet-dot"></span>WhatsApp</li>
+              <li><span class="meet-dot"></span>Telegram</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== ОБРАЗОВАНИЕ ===== -->
+  <section class="education" id="education">
+    <div class="container">
+      <h2 class="title">Образование</h2>
+
+      <div class="edu-stack">
+
+        <!-- 1) ВЫСШЕЕ ОБРАЗОВАНИЕ -->
+        <article class="edu-acc" aria-expanded="false">
+          <header class="edu-head" role="button">
+            <div class="edu-ico" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10L12 5 2 10l10 5 10-5z"/>
+                <path d="M6 12v5a6 6 0 0 0 12 0v-5"/>
+              </svg>
+            </div>
+            <div class="edu-titles">
+              <div class="edu-h">Высшее образование</div>
+              <div class="edu-sub">Медицина и психология</div>
+            </div>
+            <svg class="edu-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </header>
+
+          <div class="edu-body">
+            <div class="edu-inner">
+              <div class="edu-row">
+                <b>СПбГУ, медицинский факультет</b>
+                <div class="edu-note">Базовое медицинское образование</div>
+              </div>
+
+              <div class="edu-sep"></div>
+
+              <div class="edu-row">
+                <b>СПб гос. институт психологии и соц. работы</b>
+                <div class="edu-note">Магистр «Психологическое консультирование»</div>
               </div>
             </div>
-            <!-- /Показать ещё -->
           </div>
-        </div>
-      </article>
+        </article>
 
-    </div>
-  </div>
-</section>
-
-
-<!-- ===== ОСОБЕННОСТИ РАБОТЫ СО МНОЙ ===== -->
-<section class="work-features" id="work-features">
-  <div class="container">
-    <h2 class="title">Особенности работы со мной</h2>
-
-    <div class="wf-grid">
-      <!-- 1 -->
-      <article class="wf-card">
-        <div class="wf-badge" aria-hidden="true">
-          <!-- щит -->
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/>
-            <path d="M12 8v8"/>
-          </svg>
-        </div>
-        <div class="wf-title">Конфиденциальность и безопасность</div>
-        <p class="wf-text">
-          В работе я следую профессиональной этике и опираюсь на уважение к достоинству человека.
-        </p>
-      </article>
-
-      <!-- 2 -->
-      <article class="wf-card">
-        <div class="wf-badge" aria-hidden="true">
-          <!-- сердце-контур -->
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
-        </div>
-        <div class="wf-title">Терапевтические отношения</div>
-        <p class="wf-text">
-          Личность психолога и терапевтические отношения с клиентом — главный критерий успешности терапии.
-        </p>
-      </article>
-
-      <!-- 3 -->
-      <article class="wf-card">
-        <div class="wf-badge" aria-hidden="true">
-          <!-- звезда -->
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 15 8.5 22 9.3 17 13.9 18.4 21 12 17.7 5.6 21 7 13.9 2 9.3 9 8.5 12 2"/>
-          </svg>
-        </div>
-        <div class="wf-title">Личный опыт</div>
-        <p class="wf-text">
-          Знаю что такое кризис и выгорание не только по книжкам. Благодаря своему опыту и непрерывно продолжающемуся образованию смогу вас понять и помочь обеспечить реальную опору.
-        </p>
-      </article>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- ===== ФАКТЫ ОБО МНЕ ===== -->
-<section class="facts" id="facts">
-  <div class="container">
-    <h2 class="title">Факты обо мне</h2>
-
-    <div class="facts-list">
-      <div class="fact">
-        <div class="fact-num">1</div>
-        <div class="fact-text">
-          Краснодарский край → стоматология (10 лет) → психология: работать с человеком целиком.
-        </div>
-      </div>
-
-      <div class="fact">
-        <div class="fact-num">2</div>
-        <div class="fact-text">
-          В людях ценю сочетание силы и уязвимости — слушаю, замечаю, берегу.
-        </div>
-      </div>
-
-      <div class="fact">
-        <div class="fact-num">3</div>
-        <div class="fact-text">
-          Люблю путешествия ради тишины и воды — и идеальный кофе по утрам.
-        </div>
-      </div>
-
-      <div class="fact">
-        <div class="fact-num">4</div>
-        <div class="fact-text">
-          Завтраки — мой способ заботы: просто, вкусно, по-домашнему.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===== РЕСУРСЫ ДЛЯ САМОПОМОЩИ ===== -->
-<section class="resources" id="resources">
-  <div class="container">
-    <h2 class="title">Ресурсы для самопомощи</h2>
-    <p class="subtitle">Полезные материалы для поддержки вашего эмоционального благополучия</p>
-
-    <div class="res-stack">
-      
-      <!-- 1 -->
-      <article class="res-acc" aria-expanded="true">
-        <header class="res-head" role="button">
-          <div class="res-h">5 признаков, что пришло время к психологу</div>
-          <svg class="res-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </header>
-        <div class="res-body">
-          <div class="res-inner">
-            <ul class="res-list">
-              <li class="res-item"><div class="res-num">1</div><div class="res-text"><b>Постоянное чувство тревоги или подавленности</b><br>Эмоции не проходят несколько дней или недель — это сигнал, что нужна поддержка.</div></li>
-              <li class="res-item"><div class="res-num">2</div><div class="res-text"><b>Трудности в отношениях</b><br>Частые конфликты, одиночество или неспособность выстраивать близость — повод обратиться.</div></li>
-              <li class="res-item"><div class="res-num">3</div><div class="res-text"><b>Чувство выгорания или апатии</b><br>Нет сил, мотивации и интереса к жизни — это может быть признаком эмоционального истощения.</div></li>
-              <li class="res-item"><div class="res-num">4</div><div class="res-text"><b>Проблемы со сном или аппетитом</b><br>Нарушения сна, резкие изменения веса связаны с эмоциональным состоянием.</div></li>
-              <li class="res-item"><div class="res-num">5</div><div class="res-text"><b>Повторяющиеся негативные сценарии</b><br>Если вы «застряли» в одних и тех же ситуациях — психолог поможет выйти из цикла.</div></li>
-            </ul>
-          </div>
-        </div>
-      </article>
-
-      <!-- 2 -->
-      <article class="res-acc" aria-expanded="false">
-        <header class="res-head" role="button">
-          <div class="res-h">Как установить здоровые границы в отношениях</div>
-          <svg class="res-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </header>
-        <div class="res-body">
-          <div class="res-inner">
-            <ul class="res-list">
-              <li class="res-item"><div class="res-num">1</div><div class="res-text"><b>О границах</b><br>Границы — это внутренние рамки, которые определяют, что для вас приемлемо, а что нет.</div></li>
-              <li class="res-item"><div class="res-num">2</div><div class="res-text"><b>Почему это важно</b><br>Без границ легко чувствовать себя уставшим, «выжатым», брать на себя слишком много.</div></li>
-              <li class="res-item"><div class="res-num">3</div><div class="res-text"><b>Определите свои ценности и потребности</b><br>Спросите себя: что комфортно, что вызывает усталость?</div></li>
-              <li class="res-item"><div class="res-num">4</div><div class="res-text"><b>Учитесь говорить «нет»</b><br>Достаточно честного, спокойного отказа: «Я не могу это сделать сейчас».</div></li>
-              <li class="res-item"><div class="res-num">5</div><div class="res-text"><b>Выражайте свои чувства</b><br>Говорите без обвинений: «Мне некомфортно, когда…»</div></li>
-              <li class="res-item"><div class="res-num">6</div><div class="res-text"><b>Не бойтесь последствий</b><br>Некоторые могут не понять — это нормально. Сохраняйте спокойствие.</div></li>
-              <li class="res-item"><div class="res-num">7</div><div class="res-text"><b>Практикуйте самоуважение</b><br>Уважение к себе — основа здоровых отношений.</div></li>
-            </ul>
-          </div>
-        </div>
-      </article>
-
-      <!-- 3 -->
-      <article class="res-acc" aria-expanded="false">
-        <header class="res-head" role="button">
-          <div class="res-h">Тип привязанности и как он влияет на ваши отношения</div>
-          <svg class="res-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </header>
-        <div class="res-body">
-          <div class="res-inner">
-            <ul class="res-list">
-              <li class="res-item"><div class="res-num">1</div><div class="res-text"><b>О типах привязанности</b><br>Формируются в детстве и влияют на то, как вы строите близость и доверяете.</div></li>
-              <li class="res-item"><div class="res-num">2</div><div class="res-text"><b>Безопасная привязанность</b><br>Комфорт в близости, умение доверять, отсутствие страха зависимости.</div></li>
-              <li class="res-item"><div class="res-num">3</div><div class="res-text"><b>Тревожная привязанность</b><br>Сильные переживания разлуки, страх быть покинутым.</div></li>
-              <li class="res-item"><div class="res-num">4</div><div class="res-text"><b>Избегающая привязанность</b><br>Предпочтение дистанции, независимости, избегание выражения чувств.</div></li>
-              <li class="res-item"><div class="res-num">5</div><div class="res-text"><b>Тревожно-избегающий тип</b><br>Сочетание стремления к близости и отдаления, внутренний конфликт.</div></li>
-              <li class="res-item"><div class="res-num">6</div><div class="res-text"><b>Как это влияет на отношения</b><br>Определяет реакцию на конфликты и доверие. Осознание типа помогает выйти из паттернов.</div></li>
-            </ul>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ===== ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ ===== -->
-<section class="faq" id="faq">
-  <div class="container">
-    <div class="badge" aria-hidden="true">
-      <!-- ? -->
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"></circle>
-        <path d="M9.09 9a3 3 0 1 1 5.83 1c0 2-3 2-3 4"></path>
-        <line x1="12" y1="17" x2="12" y2="17"></line>
-      </svg>
-    </div>
-    <h2 class="title">Часто задаваемые вопросы</h2>
-    <p class="subtitle">Ответы на самые популярные вопросы о терапии</p>
-
-    <div class="faq-stack">
-      <!-- 1 -->
-      <article class="faq-acc" aria-expanded="true">
-        <header class="faq-head" role="button">
-          <div class="faq-q">Сколько длится сессия?</div>
-          <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </header>
-        <div class="faq-body">
-          <div class="faq-inner">
-            <div class="faq-a">50 минут (инд.) / 90 минут (парная)</div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 2 -->
-      <article class="faq-acc" aria-expanded="false">
-        <header class="faq-head" role="button">
-          <div class="faq-q">Какова частота встреч?</div>
-          <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </header>
-        <div class="faq-body">
-          <div class="faq-inner">
-            <div class="faq-a">Как правило, 1 раз в неделю. Частота встреч оговаривается индивидуально с клиентом.</div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 3 -->
-      <article class="faq-acc" aria-expanded="false">
-        <header class="faq-head" role="button">
-          <div class="faq-q">Эффективна ли онлайн‑терапия?</div>
-          <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </header>
-        <div class="faq-body">
-          <div class="faq-inner">
-            <div class="faq-a">Да, сопоставима с очной.</div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 4 -->
-      <article class="faq-acc" aria-expanded="false">
-        <header class="faq-head" role="button">
-          <div class="faq-q">Конфиденциально?</div>
-          <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </header>
-        <div class="faq-body">
-          <div class="faq-inner">
-            <div class="faq-a">Вся информация, полученная от клиента, является абсолютно конфиденциальной и не подлежит разглашению.</div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 5 -->
-      <article class="faq-acc" aria-expanded="false">
-        <header class="faq-head" role="button">
-          <div class="faq-q">Как происходит отмена записи?</div>
-          <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </header>
-        <div class="faq-body">
-          <div class="faq-inner">
-            <div class="faq-a">
-              Клиент может отменить или изменить (перенести) время назначенной сессии, лично уведомив терапевта об этом не позднее, чем за 24 часа до назначенного времени сессии.
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 6 -->
-      <article class="faq-acc" aria-expanded="false">
-        <header class="faq-head" role="button">
-          <div class="faq-q">Какая длительность терапии?</div>
-          <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </header>
-        <div class="faq-body">
-          <div class="faq-inner">
-            <div class="faq-a">
-              Рекомендуется посетить минимум 4–6 консультаций (по практике транзактного анализа это минимально необходимый этап для знакомства и понимания причин трудностей), после чего совместно с терапевтом решается вопрос о долгосрочном терапевтическом контракте для устранения корневых причин психо‑эмоциональных трудностей и психосоматических симптомов. EMDR‑терапия обычно более краткосрочная и сфокусированная.
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===== КОНТАКТЫ ===== -->
-<section class="contacts" id="contacts">
-  <div class="container">
-    <h2 class="title">Контакты</h2>
-
-    <div class="contacts-grid">
-
-      <!-- ЛЕВАЯ КОЛОНКА -->
-      <div class="ct-left">
-        <div class="h">Способы связи</div>
-
-        <div class="ct-cards">
-          <!-- Телефон -->
-          <a class="ct-card" href="tel:+79990000000">
-            <div class="ct-ico" aria-hidden="true">
+        <!-- 2) ПОВЫШЕНИЕ КВАЛИФИКАЦИИ -->
+        <article class="edu-acc" aria-expanded="false">
+          <header class="edu-head" role="button">
+            <div class="edu-ico" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.89.33 1.76.63 2.59a2 2 0 0 1-.45 2.11L8 9a16 16 0 0 0 7 7l.58-1.25a2 2 0 0 1 2.11-.45c.83.3 1.7.51 2.59.63A2 2 0 0 1 22 16.92z"/>
+                <circle cx="12" cy="8" r="5"/>
+                <path d="M8 13v8l4-2 4 2v-8"/>
               </svg>
             </div>
-            <div class="ct-text">
-              <div class="label">Телефон</div>
-              <div class="val">+7 (XXX) XXX‑XX‑XX</div>
+            <div class="edu-titles">
+              <div class="edu-h">Повышение квалификации</div>
+              <div class="edu-sub">Ключевые специализации</div>
             </div>
-          </a>
-
-          <!-- Email -->
-          <a class="ct-card" href="mailto:hello@ваш_домен">
-            <div class="ct-ico" aria-hidden="true">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 4h16v16H4z" />
-                <path d="M22 6l-10 7L2 6"/>
-              </svg>
-            </div>
-            <div class="ct-text">
-              <div class="label">Email</div>
-              <div class="val">hello@ВАШ_ДОМЕН</div>
-            </div>
-          </a>
-
-          <!-- WhatsApp -->
-          <a class="ct-card" href="https://wa.me/79990000000" target="_blank" rel="noopener">
-            <div class="ct-ico" aria-hidden="true">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M7 17l1-3a7 7 0 1 1 3 3l-3 1z"></path>
-              </svg>
-            </div>
-            <div class="ct-text">
-              <div class="label">WhatsApp</div>
-              <div class="val">Написать в WhatsApp</div>
-            </div>
-          </a>
-
-          <!-- Telegram -->
-          <a class="ct-card" href="https://t.me/your_username" target="_blank" rel="noopener">
-            <div class="ct-ico" aria-hidden="true">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 2L11 13"></path>
-                <path d="M22 2l-6 20-5-9-9-5 20-6z"></path>
-              </svg>
-            </div>
-            <div class="ct-text">
-              <div class="label">Telegram</div>
-              <div class="val">Написать в Telegram</div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <!-- ПРАВАЯ КОЛОНКА -->
-      <div class="ct-right">
-        <div class="h">Быстрая связь</div>
-        <div class="sub">Оставьте контакты и удобное время.</div>
-
-        <div class="form-row">
-          <input class="input" type="text" placeholder="Ваше имя" name="name">
-          <input class="input" type="tel" placeholder="Телефон" name="phone">
-          <div class="ct-muted">Мы не звоним без согласия</div>
-
-          <div class="label" style="font-size:15px; color:#2B2B2B; font-weight:700; margin-top:2px;">Способ связи</div>
-          <div class="radio-row">
-            <label class="radio">
-              <input type="radio" name="contact_way" value="telegram" checked> Telegram
-            </label>
-            <label class="radio">
-              <input type="radio" name="contact_way" value="whatsapp"> WhatsApp
-            </label>
-          </div>
-
-          <textarea class="textarea" placeholder="Удобное время для связи и краткое описание запроса"></textarea>
-
-          <label class="chk">
-            <input type="checkbox" name="agree">
-            Согласен(а) с <a href="#privacy">Политикой конфиденциальности</a>
-          </label>
-
-          <!-- Кнопка без отправки (disabled) -->
-          <button class="btn-send" type="button" disabled>
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M10 14l11-11"></path>
-              <path d="M21 3l-6 18-4-7-7-4 17-7z"></path>
+            <svg class="edu-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
-            Отправить заявку
-          </button>
+          </header>
 
-          <div class="ct-note">Отвечаю в течение дня</div>
+          <div class="edu-body">
+            <div class="edu-inner">
+              <ul class="edu-list">
+                <li><b>Европейская программа (ТА)</b>
+                  <div class="edu-note">Тренер Е. Ю. Лазаренко (CTA‑P‑EATA, PTSTA‑P‑EATA)</div>
+                </li>
+                <li><b>СПб институт EMDR</b>
+                  <div class="edu-note">РФ/Европа/EMDR Institute</div>
+                </li>
+                <li><b>Базовый курс КПТ</b>
+                  <div class="edu-note">АКПП</div>
+                </li>
+                <li><b>Интегративное консультирование</b></li>
+              </ul>
+
+              <!-- Показать ещё -->
+              <div class="edu-more" aria-expanded="false">
+                <div class="edu-more-toggle">
+                  <span>Показать ещё</span>
+                  <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="#B28E66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+                <div class="edu-more-body">
+                  <div class="edu-more-inner">
+                    <ul class="edu-list">
+                      <li><b>Семинар Р. Эрскина</b>
+                        <div class="edu-note">«Нарциссическая дилемма»</div>
+                      </li>
+                      <li><b>Семинар В. Гусаковского</b>
+                        <div class="edu-note">«Транзактный анализ…»</div>
+                      </li>
+                      <li><b>«Психологическое консультирование пар»</b></li>
+                      <li><b>«Психотерапия денежных запросов»</b></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /Показать ещё -->
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== ОСОБЕННОСТИ РАБОТЫ СО МНОЙ ===== -->
+  <section class="work-features" id="work-features">
+    <div class="container">
+      <h2 class="title">Особенности работы со мной</h2>
+
+      <div class="wf-grid">
+        <!-- 1 -->
+        <article class="wf-card">
+          <div class="wf-badge" aria-hidden="true">
+            <!-- щит -->
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/>
+              <path d="M12 8v8"/>
+            </svg>
+          </div>
+          <div class="wf-title">Конфиденциальность и безопасность</div>
+          <p class="wf-text">
+            В работе я следую профессиональной этике и опираюсь на уважение к достоинству человека.
+          </p>
+        </article>
+
+        <!-- 2 -->
+        <article class="wf-card">
+          <div class="wf-badge" aria-hidden="true">
+            <!-- сердце-контур -->
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <div class="wf-title">Терапевтические отношения</div>
+          <p class="wf-text">
+            Личность психолога и терапевтические отношения с клиентом — главный критерий успешности терапии.
+          </p>
+        </article>
+
+        <!-- 3 -->
+        <article class="wf-card">
+          <div class="wf-badge" aria-hidden="true">
+            <!-- звезда -->
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15 8.5 22 9.3 17 13.9 18.4 21 12 17.7 5.6 21 7 13.9 2 9.3 9 8.5 12 2"/>
+            </svg>
+          </div>
+          <div class="wf-title">Личный опыт</div>
+          <p class="wf-text">
+            Знаю что такое кризис и выгорание не только по книжкам. Благодаря своему опыту и непрерывно продолжающемуся образованию смогу вас понять и помочь обеспечить реальную опору.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ===== ФАКТЫ ОБО МНЕ ===== -->
+  <section class="facts" id="facts">
+    <div class="container">
+      <h2 class="title">Факты обо мне</h2>
+
+      <div class="facts-list">
+        <div class="fact">
+          <div class="fact-num">1</div>
+          <div class="fact-text">
+            Краснодарский край → стоматология (10 лет) → психология: работать с человеком целиком.
+          </div>
+        </div>
+
+        <div class="fact">
+          <div class="fact-num">2</div>
+          <div class="fact-text">
+            В людях ценю сочетание силы и уязвимости — слушаю, замечаю, берегу.
+          </div>
+        </div>
+
+        <div class="fact">
+          <div class="fact-num">3</div>
+          <div class="fact-text">
+            Люблю путешествия ради тишины и воды — и идеальный кофе по утрам.
+          </div>
+        </div>
+
+        <div class="fact">
+          <div class="fact-num">4</div>
+          <div class="fact-text">
+            Завтраки — мой способ заботы: просто, вкусно, по-домашнему.
+          </div>
         </div>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
 
+  <!-- ===== РЕСУРСЫ ДЛЯ САМОПОМОЩИ ===== -->
+  <section class="resources" id="resources">
+    <div class="container">
+      <h2 class="title">Ресурсы для самопомощи</h2>
+      <p class="subtitle">Полезные материалы для поддержки вашего эмоционального благополучия</p>
 
-<!-- ===== ФУТЕР ===== -->
-<footer class="site-footer">
-  <div class="container">
-    <h2 class="footer-title">Евгения Беленко — психолог</h2>
+      <div class="res-stack">
+        
+        <!-- 1 -->
+        <article class="res-acc" aria-expanded="true">
+          <header class="res-head" role="button">
+            <div class="res-h">5 признаков, что пришло время к психологу</div>
+            <svg class="res-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </header>
+          <div class="res-body">
+            <div class="res-inner">
+              <ul class="res-list">
+                <li class="res-item"><div class="res-num">1</div><div class="res-text"><b>Постоянное чувство тревоги или подавленности</b><br>Эмоции не проходят несколько дней или недель — это сигнал, что нужна поддержка.</div></li>
+                <li class="res-item"><div class="res-num">2</div><div class="res-text"><b>Трудности в отношениях</b><br>Частые конфликты, одиночество или неспособность выстраивать близость — повод обратиться.</div></li>
+                <li class="res-item"><div class="res-num">3</div><div class="res-text"><b>Чувство выгорания или апатии</b><br>Нет сил, мотивации и интереса к жизни — это может быть признаком эмоционального истощения.</div></li>
+                <li class="res-item"><div class="res-num">4</div><div class="res-text"><b>Проблемы со сном или аппетитом</b><br>Нарушения сна, резкие изменения веса связаны с эмоциональным состоянием.</div></li>
+                <li class="res-item"><div class="res-num">5</div><div class="res-text"><b>Повторяющиеся негативные сценарии</b><br>Если вы «застряли» в одних и тех же ситуациях — психолог поможет выйти из цикла.</div></li>
+              </ul>
+            </div>
+          </div>
+        </article>
 
-    <div class="footer-row">
-      <svg class="pin" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M21 10.5C21 16 12 22 12 22S3 16 3 10.5a9 9 0 1 1 18 0Z"/>
-        <circle cx="12" cy="10.5" r="3"/>
-      </svg>
-      <div>СПБ, Б. Конюшенная, 29, БЦ «Эра»</div>
+        <!-- 2 -->
+        <article class="res-acc" aria-expanded="false">
+          <header class="res-head" role="button">
+            <div class="res-h">Как установить здоровые границы в отношениях</div>
+            <svg class="res-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </header>
+          <div class="res-body">
+            <div class="res-inner">
+              <ul class="res-list">
+                <li class="res-item"><div class="res-num">1</div><div class="res-text"><b>О границах</b><br>Границы — это внутренние рамки, которые определяют, что для вас приемлемо, а что не.</div></li>
+                <li class="res-item"><div class="res-num">2</div><div class="res-text"><b>Почему это важно</b><br>Без границ легко чувствовать себя уставшим, «выжатым», брать на себя слишком много.</div></li>
+                <li class="res-item"><div class="res-num">3</div><div class="res-text"><b>Определите свои ценности и потребности</b><br>Спросите себя: что комфортно, что вызывает усталость?</div></li>
+                <li class="res-item"><div class="res-num">4</div><div class="res-text"><b>Учитесь говорить «нет»</b><br>Достаточно честного, спокойного отказа: «Я не могу это сделать сейчас».</div></li>
+                <li class="res-item"><div class="res-num">5</div><div class="res-text"><b>Выражайте свои чувства</b><br>Говорите без обвинений: «Мне некомфортно, когда…»</div></li>
+                <li class="res-item"><div class="res-num">6</div><div class="res-text"><b>Не бойтесь последствий</b><br>Некоторые могут не понять — это нормально. Сохраняйте спокойствие.</div></li>
+                <li class="res-item"><div class="res-num">7</div><div class="res-text"><b>Практикуйте самоуважение</b><br>Уважение к себе — основа здоровых отношений.</div></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="res-acc" aria-expanded="false">
+          <header class="res-head" role="button">
+            <div class="res-h">Тип привязанности и как он влияет на ваши отношения</div>
+            <svg class="res-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </header>
+          <div class="res-body">
+            <div class="res-inner">
+              <ul class="res-list">
+                <li class="res-item"><div class="res-num">1</div><div class="res-text"><b>О типах привязанности</b><br>Формируются в детстве и влияют на то, как вы строите близость и доверяете.</div></li>
+                <li class="res-item"><div class="res-num">2</div><div class="res-text"><b>Безопасная привязанность</b><br>Комфорт в близости, умение доверять, отсутствие страха зависимости.</div></li>
+                <li class="res-item"><div class="res-num">3</div><div class="res-text"><b>Тревожная привязанность</b><br>Сильные переживания разлуки, страх быть покинутым.</div></li>
+                <li class="res-item"><div class="res-num">4</div><div class="res-text"><b>Избегающая привязанность</b><br>Предпочтение дистанции, независимости, избегание выражения чувств.</div></li>
+                <li class="res-item"><div class="res-num">5</div><div class="res-text"><b>Тревожно-избегающий тип</b><br>Сочетание стремления к близости и отдаления, внутренний конфликт.</div></li>
+                <li class="res-item"><div class="res-num">6</div><div class="res-text"><b>Как это влияет на отношения</b><br>Определяет реакцию на конфликты и доверие. Осознание типа помогает выйти из паттернов.</div></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+      </div>
     </div>
+  </section>
 
-    <div class="footer-sub">Специализации: транзактный анализ, EMDR, семейная терапия</div>
 
-    <div class="footer-links">
-      <a href="#privacy">Политика конфиденциальности</a>
-      <span class="footer-dot">·</span>
-      <a href="#offer">Публичная оферта</a>
+  <!-- ===== ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ ===== -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="badge" aria-hidden="true">
+        <!-- ? -->
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 1 1 5.83 1c0 2-3 2-3 4"></path>
+          <line x1="12" y1="17" x2="12" y2="17"></line>
+        </svg>
+      </div>
+      <h2 class="title">Часто задаваемые вопросы</h2>
+      <p class="subtitle">Ответы на самые популярные вопросы о терапии</p>
+
+      <div class="faq-stack">
+        <!-- 1 -->
+        <article class="faq-acc" aria-expanded="true">
+          <header class="faq-head" role="button">
+            <div class="faq-q">Сколько длится сессия?</div>
+            <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </header>
+          <div class="faq-body">
+            <div class="faq-inner">
+              <div class="faq-a">50 минут (инд.) / 90 минут (парная)</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="faq-acc" aria-expanded="false">
+          <header class="faq-head" role="button">
+            <div class="faq-q">Какова частота встреч?</div>
+            <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </header>
+          <div class="faq-body">
+            <div class="faq-inner">
+              <div class="faq-a">Как правило, 1 раз в неделю. Частота встреч оговаривается индивидуально с клиентом.</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="faq-acc" aria-expanded="false">
+          <header class="faq-head" role="button">
+            <div class="faq-q">Эффективна ли онлайн‑терапия?</div>
+            <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </header>
+          <div class="faq-body">
+            <div class="faq-inner">
+              <div class="faq-a">Да, сопоставима с очной.</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="faq-acc" aria-expanded="false">
+          <header class="faq-head" role="button">
+            <div class="faq-q">Конфиденциально?</div>
+            <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </header>
+          <div class="faq-body">
+            <div class="faq-inner">
+              <div class="faq-a">Вся информация, полученная от клиента, является абсолютно конфиденциальной и не подлежит разглашению.</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5 -->
+        <article class="faq-acc" aria-expanded="false">
+          <header class="faq-head" role="button">
+            <div class="faq-q">Как происходит отмена записи?</div>
+            <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </header>
+          <div class="faq-body">
+            <div class="faq-inner">
+              <div class="faq-a">
+                Клиент может отменить или изменить (перенести) время назначенной сессии, лично уведомив терапевта об этом не позднее, чем за 24 часа до назначенного времени сессии.
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6 -->
+        <article class="faq-acc" aria-expanded="false">
+          <header class="faq-head" role="button">
+            <div class="faq-q">Какая длительность терапии?</div>
+            <svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </header>
+          <div class="faq-body">
+            <div class="faq-inner">
+              <div class="faq-a">
+                Рекомендуется посетить минимум 4–6 консультаций (по практике транзактного анализа это минимально необходимый этап для знакомства и понимания причин трудностей), после чего совместно с терапевтом решается вопрос о долгосрочном терапевтическом контракте для устранения корневых причин психо‑эмоциональных трудностей и психосоматических симптомов. EMDR‑терапия обычно более краткосрочная и сфокусированная.
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
-  </div>
-</footer>
+  </section>
+
+
+  <!-- ===== КОНТАКТЫ ===== -->
+  <section class="contacts" id="contacts">
+    <div class="container">
+      <h2 class="title">Контакты</h2>
+
+      <div class="contacts-grid">
+
+        <!-- ЛЕВАЯ КОЛОНКА -->
+        <div class="ct-left">
+          <div class="h">Способы связи</div>
+
+          <div class="ct-cards">
+            <!-- Телефон -->
+            <a class="ct-card" href="tel:+79990000000">
+              <div class="ct-ico" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.89.33 1.76.63 2.59a2 2 0 0 1-.45 2.11L8 9a16 16 0 0 0 7 7l.58-1.25a2 2 0 0 1 2.11-.45c.83.3 1.7.51 2.59.63A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+              <div class="ct-text">
+                <div class="label">Телефон</div>
+                <div class="val">+7 (XXX) XXX‑XX‑XX</div>
+              </div>
+            </a>
+
+            <!-- Email -->
+            <a class="ct-card" href="mailto:hello@ваш_домен">
+              <div class="ct-ico" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16v16H4z" />
+                  <path d="M22 6l-10 7L2 6"/>
+                </svg>
+              </div>
+              <div class="ct-text">
+                <div class="label">Email</div>
+                <div class="val">hello@ВАШ_ДОМЕН</div>
+              </div>
+            </a>
+
+            <!-- WhatsApp -->
+            <a class="ct-card" href="https://wa.me/79990000000" target="_blank" rel="noopener">
+              <div class="ct-ico" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M7 17l1-3a7 7 0 1 1 3 3l-3 1z"></path>
+                </svg>
+              </div>
+              <div class="ct-text">
+                <div class="label">WhatsApp</div>
+                <div class="val">Написать в WhatsApp</div>
+              </div>
+            </a>
+
+            <!-- Telegram -->
+            <a class="ct-card" href="https://t.me/your_username" target="_blank" rel="noopener">
+              <div class="ct-ico" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 2L11 13"></path>
+                  <path d="M22 2l-6 20-5-9-9-5 20-6z"></path>
+                </svg>
+              </div>
+              <div class="ct-text">
+                <div class="label">Telegram</div>
+                <div class="val">Написать в Telegram</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- ПРАВАЯ КОЛОНКА -->
+        <div class="ct-right">
+          <div class="h">Быстрая связь</div>
+          <div class="sub">Оставьте контакты и удобное время.</div>
+
+          <div class="form-row">
+            <input class="input" type="text" placeholder="Ваше имя" name="name">
+            <input class="input" type="tel" placeholder="Телефон" name="phone">
+            <div class="ct-muted">Мы не звоним без согласия</div>
+
+            <div class="label" style="font-size:15px; color:#2B2B2B; font-weight:700; margin-top:2px;">Способ связи</div>
+            <div class="radio-row">
+              <label class="radio">
+                <input type="radio" name="contact_way" value="telegram" checked> Telegram
+              </label>
+              <label class="radio">
+                <input type="radio" name="contact_way" value="whatsapp"> WhatsApp
+              </label>
+            </div>
+
+            <textarea class="textarea" placeholder="Удобное время для связи и краткое описание запроса"></textarea>
+
+            <label class="chk">
+              <input type="checkbox" name="agree">
+              Согласен(а) с <a href="#privacy">Политикой конфиденциальности</a>
+            </label>
+
+            <!-- Кнопка без отправки (disabled) -->
+            <button class="btn-send" type="button" disabled>
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 14l11-11"></path>
+                <path d="M21 3l-6 18-4-7-7-4 17-7z"></path>
+              </svg>
+              Отправить заявку
+            </button>
+
+            <div class="ct-note">Отвечаю в течение дня</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ===== ФУТЕР ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <h2 class="footer-title">Евгения Беленко — психолог</h2>
+
+      <div class="footer-row">
+        <svg class="pin" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 10.5C21 16 12 22 12 22S3 16 3 10.5a9 9 0 1 1 18 0Z"/>
+          <circle cx="12" cy="10.5" r="3"/>
+        </svg>
+        <div>СПБ, Б. Конюшенная, 29, БЦ «Эра»</div>
+      </div>
+
+      <div class="footer-sub">Специализации: транзактный анализ, EMDR, семейная терапия</div>
+
+      <div class="footer-links">
+        <a href="#privacy">Политика конфиденциальности</a>
+        <span class="footer-dot">·</span>
+        <a href="#offer">Публичная оферта</a>
+      </div>
+    </div>
+  </footer>
 
 
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-
     // Аккордеоны "Образование"
-  document.querySelectorAll('.edu-acc .edu-head').forEach(function(head){
-    head.addEventListener('click', function(){
-      const acc = head.parentElement;
-      const body = acc.querySelector('.edu-body');
-      const isOpen = acc.getAttribute('aria-expanded') === 'true';
+    document.querySelectorAll('.edu-acc .edu-head').forEach(function(head){
+      head.addEventListener('click', function(){
+        const acc = head.parentElement;
+        const body = acc.querySelector('.edu-body');
+        const isOpen = acc.getAttribute('aria-expanded') === 'true';
 
-      // сворачиваем
-      if(isOpen){
-        acc.setAttribute('aria-expanded','false');
-        body.style.maxHeight = '0px';
-      }else{
-        acc.setAttribute('aria-expanded','true');
-        body.style.maxHeight = body.scrollHeight + 'px';
-      }
+        // сворачиваем
+        if(isOpen){
+          acc.setAttribute('aria-expanded','false');
+          body.style.maxHeight = '0px';
+        }else{
+          acc.setAttribute('aria-expanded','true');
+          body.style.maxHeight = body.scrollHeight + 'px';
+        }
+      });
     });
-  });
 
-  // Внутренний "Показать ещё"
-  const more = document.querySelector('.edu-more');
-  if(more){
-    const toggle = more.querySelector('.edu-more-toggle');
-    const body = more.querySelector('.edu-more-body');
-    toggle.addEventListener('click', function(){
-      const open = more.getAttribute('aria-expanded') === 'true';
-      if(open){
-        more.setAttribute('aria-expanded','false');
-        body.style.maxHeight = '0px';
-        toggle.firstElementChild.textContent = 'Показать ещё';
-      }else{
-        more.setAttribute('aria-expanded','true');
-        body.style.maxHeight = body.scrollHeight + 'px';
-        toggle.firstElementChild.textContent = 'Скрыть';
-      }
-    });
-  }
-
-  // Пересчёт высоты при ресайзе (чтобы анимация не ломалась)
-  window.addEventListener('resize', function(){
-    document.querySelectorAll('.edu-acc[aria-expanded="true"] .edu-body')
-      .forEach(function(el){ el.style.maxHeight = el.scrollHeight + 'px'; });
-    const moreOpen = document.querySelector('.edu-more[aria-expanded="true"] .edu-more-body');
-    if(moreOpen){ moreOpen.style.maxHeight = moreOpen.scrollHeight + 'px'; }
-  });
-
-  // Аккордеоны ресурсов
-  document.querySelectorAll('.res-acc .res-head').forEach(function(head){
-    head.addEventListener('click', function(){
-      const acc = head.parentElement;
-      const body = acc.querySelector('.res-body');
-      const open = acc.getAttribute('aria-expanded') === 'true';
-
-      if(open){
-        acc.setAttribute('aria-expanded','false');
-        body.style.maxHeight = '0px';
-      }else{
-        acc.setAttribute('aria-expanded','true');
-        body.style.maxHeight = body.scrollHeight + 'px';
-      }
-    });
-  });
-
-  // пересчёт высот при ресайзе
-  window.addEventListener('resize', function(){
-    document.querySelectorAll('.res-acc[aria-expanded="true"] .res-body')
-      .forEach(function(el){ el.style.maxHeight = el.scrollHeight + 'px'; });
-  });
-
-
-  const faqItems = document.querySelectorAll('.faq-acc');
-  faqItems.forEach(acc => {
-    const head = acc.querySelector('.faq-head');
-    const body = acc.querySelector('.faq-body');
-
-    // начальная высота для открытых
-    if (acc.getAttribute('aria-expanded') === 'true') {
-      body.style.maxHeight = body.scrollHeight + 'px';
+    // Внутренний "Показать ещё"
+    const more = document.querySelector('.edu-more');
+    if(more){
+      const toggle = more.querySelector('.edu-more-toggle');
+      const body = more.querySelector('.edu-more-body');
+      toggle.addEventListener('click', function(){
+        const open = more.getAttribute('aria-expanded') === 'true';
+        if(open){
+          more.setAttribute('aria-expanded','false');
+          body.style.maxHeight = '0px';
+          toggle.firstElementChild.textContent = 'Показать ещё';
+        }else{
+          more.setAttribute('aria-expanded','true');
+          body.style.maxHeight = body.scrollHeight + 'px';
+          toggle.firstElementChild.textContent = 'Скрыть';
+        }
+      });
     }
 
-    head.addEventListener('click', () => {
-      const isOpen = acc.getAttribute('aria-expanded') === 'true';
+    // Пересчёт высоты при ресайзе (чтобы анимация не ломалась)
+    window.addEventListener('resize', function(){
+      document.querySelectorAll('.edu-acc[aria-expanded="true"] .edu-body')
+        .forEach(function(el){ el.style.maxHeight = el.scrollHeight + 'px'; });
+      const moreOpen = document.querySelector('.edu-more[aria-expanded="true"] .edu-more-body');
+      if(moreOpen){ moreOpen.style.maxHeight = moreOpen.scrollHeight + 'px'; }
+    });
 
-      // закрываем все
-      faqItems.forEach(it => {
-        it.setAttribute('aria-expanded','false');
-        it.querySelector('.faq-body').style.maxHeight = '0px';
+    // Аккордеоны ресурсов
+    document.querySelectorAll('.res-acc .res-head').forEach(function(head){
+      head.addEventListener('click', function(){
+        const acc = head.parentElement;
+        const body = acc.querySelector('.res-body');
+        const open = acc.getAttribute('aria-expanded') === 'true';
+
+        if(open){
+          acc.setAttribute('aria-expanded','false');
+          body.style.maxHeight = '0px';
+        }else{
+          acc.setAttribute('aria-expanded','true');
+          body.style.maxHeight = body.scrollHeight + 'px';
+        }
       });
+    });
 
-      // открываем текущий, если был закрыт
-      if (!isOpen) {
-        acc.setAttribute('aria-expanded','true');
+    // пересчёт высот при ресайзе
+    window.addEventListener('resize', function(){
+      document.querySelectorAll('.res-acc[aria-expanded="true"] .res-body')
+        .forEach(function(el){ el.style.maxHeight = el.scrollHeight + 'px'; });
+    });
+
+
+    const faqItems = document.querySelectorAll('.faq-acc');
+    faqItems.forEach(acc => {
+      const head = acc.querySelector('.faq-head');
+      const body = acc.querySelector('.faq-body');
+
+      // начальная высота для открытых
+      if (acc.getAttribute('aria-expanded') === 'true') {
         body.style.maxHeight = body.scrollHeight + 'px';
       }
-    });
-  });
 
-  // пересчёт высот при ресайзе
-  window.addEventListener('resize', () => {
-    document.querySelectorAll('.faq-acc[aria-expanded="true"] .faq-body')
-      .forEach(el => el.style.maxHeight = el.scrollHeight + 'px');
-  });
+      head.addEventListener('click', () => {
+        const isOpen = acc.getAttribute('aria-expanded') === 'true';
+
+        // закрываем все
+        faqItems.forEach(it => {
+          it.setAttribute('aria-expanded','false');
+          it.querySelector('.faq-body').style.maxHeight = '0px';
+        });
+
+        // открываем текущий, если был закрыт
+        if (!isOpen) {
+          acc.setAttribute('aria-expanded','true');
+          body.style.maxHeight = body.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // пересчёт высот при ресайзе
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('.faq-acc[aria-expanded="true"] .faq-body')
+        .forEach(el => el.style.maxHeight = el.scrollHeight + 'px');
+    });
+
+    // Mobile menu script
+    const burger = document.querySelector('.burger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const menuClose = document.querySelector('.menu-close');
+
+    burger.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden'; // Prevent scroll
+    });
+
+    menuClose.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = ''; // Restore scroll
+    });
+
+    // Close on click outside
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Menu links close menu
+    document.querySelectorAll('.menu-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Enable send button if checkbox checked (example, if needed)
+    const chk = document.querySelector('.chk input');
+    const btnSend = document.querySelector('.btn-send');
+    chk.addEventListener('change', () => {
+      btnSend.disabled = !chk.checked;
+      btnSend.style.opacity = chk.checked ? 1 : 0.7;
+      btnSend.style.cursor = chk.checked ? 'pointer' : 'not-allowed';
+    });
   </script>
 </body>
 </html>
