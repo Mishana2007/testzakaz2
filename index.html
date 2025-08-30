@@ -744,29 +744,28 @@ a{color:inherit;text-decoration:none}
 .meet-card:hover { transform: translateY(-5px); }
 
 /* Медиа-блок по умолчанию (одно изображение) */
-.meet-media{
-  width:100%;
-  aspect-ratio: 16 / 9;
-  background:#F4F4F4;
-  overflow:hidden;
-}
-.meet-media img{
-  width:100%; height:100%; object-fit:cover; transition: transform 0.3s ease;
-}
-.meet-card:hover .meet-media img { transform: scale(1.05); }
+/* по умолчанию для одиночного фото — как было */
+.meet-media{ width:100%; aspect-ratio:16/9; background:#F4F4F4; overflow:hidden; }
+.meet-media img{ width:100%; height:100%; object-fit:cover; transition:transform .3s ease; }
 
-/* ВЕРСИЯ С ДВУМЯ ВЕРТИКАЛЬНЫМИ ФОТО */
+/* две вертикальные */
 .meet-media.split{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:8px;                 /* небольшой зазор между фото */
-  aspect-ratio: 16 / 9;    /* сохраняем высоту карточки */
+  display:grid; grid-template-columns:1fr 1fr; gap:8px;
+  /* убираем фиксированное соотношение: высоту даст само содержимое */
+  aspect-ratio: auto;
 }
-.meet-media.split img{
-  width:100%; height:100%; object-fit:cover;
-  transform:none;          /* индивидуально масштабируем при ховере ниже */
+
+/* РЕЖИМ БЕЗ ОБРЕЗКИ */
+.meet-media.split.no-crop img{
+  height:auto;               /* не растягиваем по высоте */
+  object-fit:contain;        /* показываем целиком */
+  background:#F4F4F4;        /* фон, если остаются поля */
+  border-radius:8px;         /* лёгкое скругление, чтобы выглядело аккуратно */
 }
-.meet-card:hover .meet-media.split img{ transform: scale(1.03) }
+
+/* эффект наведения — минимум, без зума, чтобы не срезало края */
+.meet-card:hover .meet-media.split.no-crop img{ transform:none; }
+
 
 /* Текстовая часть */
 .meet-body{ padding:22px 24px 22px; }
@@ -1757,7 +1756,7 @@ a{color:inherit;text-decoration:none}
         <h3 class="m-title">EMDR-терапия</h3>
         <p class="m-text">Работа с травматическим опытом с помощью специальных техник. 
           <br>EMDR-терапия
-EMDR помогает не только перерабатывать прошлые травмы, но и снижать тревогу о будущем.<br>
+ помогает не только перерабатывать прошлые травмы, но и снижать тревогу о будущем.<br>
         </p>
       </article>
 
@@ -1843,10 +1842,11 @@ EMDR помогает не только перерабатывать прошл�
       <!-- Очные встречи -->
       <article class="meet-card">
         <!-- ДВЕ ВЕРТИКАЛЬНЫЕ ФОТО -->
-        <div class="meet-media split">
-          <img src="meeting-office.jpg" alt="Уютный кабинет для очных встреч">
-          <img src="meeting-office-2.jpeg" alt="Ещё один кабинет для очных встреч">
-        </div>
+        <div class="meet-media split no-crop">
+  <img src="meeting-office.jpg" alt="Уютный кабинет для очных встреч">
+  <img src="meeting-office-2.jpeg" alt="Ещё один кабинет для очных встреч">
+</div>
+
 
         <div class="meet-body">
           <div class="meet-head">
