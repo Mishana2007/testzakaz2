@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Евгения Беленко — Дипломированный практикующий психолог</title>
   <meta name="description" content="Дипломированный практикующий психолог. Индивидуальная и парная терапия очно и онлайн. Конфиденциальность, поддержка и результат." />
 
@@ -69,32 +70,38 @@
       --header-h: 68px;
     }
 
-    /* База */
-    *,*::before,*::after{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--txt-main);
-      background: linear-gradient(to bottom, var(--bg-top) 0%, var(--bg-bottom) 100%) fixed;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-    img{max-width:100%; display:block}
-    a{color:inherit; text-decoration:none}
-    .container{max-width: var(--container); margin:0 auto; padding:0 var(--gutter) }
+    /* ========= БАЗА ========= */
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--txt-main);
+  background:linear-gradient(to bottom,var(--bg-top) 0%,var(--bg-bottom) 100%) fixed;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:var(--container);margin:0 auto;padding:0 var(--gutter)}
 
-    /* =========================
-   ХЕДЕР + МОБИЛЬНОЕ МЕНЮ
-   ========================= */
+/* =================================
+   ХЕДЕР + МОБИЛЬНОЕ МЕНЮ (обновлено)
+   ================================= */
 .site-header{
   position:fixed; top:0; left:0; right:0; z-index:120;
   backdrop-filter:saturate(160%) blur(8px);
   background:rgba(255,255,255,0.78);
   border-bottom:1px solid rgba(0,0,0,0.06);
-  transition: all .25s ease;
+  transition:all .25s ease;
 }
-.header-inner{ height:var(--header-h); display:flex; align-items:center; justify-content:space-between; padding: 16px; margin: 0 20px 0 20px; }
+.header-inner{
+  height:var(--header-h);
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px;
+  /* в контейнер, чтобы край в линию с контентом */
+  max-width:var(--container); margin:0 auto; padding:0 var(--gutter);
+}
 .brand{ font-weight:800; font-size:19px; letter-spacing:.1px; color:var(--accent-brown) }
 
 .nav{ display:flex; align-items:center; gap:28px; font-size:15px }
@@ -102,48 +109,72 @@
 .nav a:hover{ opacity:1 }
 .header-cta{
   margin-left:8px; padding:10px 18px; background:var(--btn-primary); color:#fff;
-  border-radius:12px; font-weight:700; transition:.2s ease; box-shadow:0 1px 0 rgba(0,0,0,0.02) inset;
+  border-radius:12px; font-weight:700; transition:.2s ease;
+  box-shadow:0 1px 0 rgba(0,0,0,0.02) inset;
 }
 .header-cta:hover{ background:var(--btn-primary-hover) }
 
-/* Бургер — показываем только на мобиле */
-.burger{ display:none; background:none; border:0; padding:10px; margin-left:8px; cursor:pointer }
-.burger svg{ width:28px; height:28px; }
+/* Бургер */
+.burger{
+  display:none; background:none; border:0; margin:0; padding:10px;
+  cursor:pointer; border-radius:10px;
+}
+.burger svg{ width:28px; height:28px }
 .burger svg line{ stroke:#3B3B3B; stroke-width:2; stroke-linecap:round }
 
-/* Мобильное меню */
+/* Лист мобильного меню (выезжает сверху) */
 .mobile-menu{
   position:fixed; inset:0; z-index:200;
-  background:#fff; transform:translateY(-100%); transition:transform .25s ease;
+  background:#fff;
+  transform:translateY(-100%);
+  transition:transform .28s ease;
   display:flex; flex-direction:column;
 }
 .mobile-menu.open{ transform:translateY(0) }
+
 .menu-header{
-  height:64px; padding:0 20px; display:flex; align-items:center; justify-content:space-between;
+  height:64px; padding:0 20px;
+  display:flex; align-items:center; justify-content:space-between;
   border-bottom:1px solid rgba(0,0,0,0.06);
 }
-.menu-brand{ font-weight:800; color:var(--accent-brown) }
-.menu-close{ background:none; border:0; font-size:30px; line-height:1; cursor:pointer; color:#444 }
-.menu-nav{ display:flex; flex-direction:column; gap:24px; padding:20px; font-size:18px }
+.menu-brand{ font-weight:800; color:var(--accent-brown); font-size:18px }
+.menu-close{
+  background:none; border:0; font-size:30px; line-height:1;
+  cursor:pointer; color:#444; padding:8px 10px; border-radius:10px;
+}
+
+.menu-nav{
+  display:flex; flex-direction:column; gap:24px;
+  padding:20px; font-size:18px;
+}
 .menu-nav a{ color:#222426 }
+
 .menu-cta{
-  margin:16px 20px 20px; background:var(--btn-primary); color:#fff; text-align:center;
+  margin:16px 20px 20px;
+  background:var(--btn-primary); color:#fff; text-align:center;
   font-weight:800; border-radius:12px; padding:14px 18px;
 }
 
 /* =========================
-   HERO (первый экран)
+   HERO (первый экран, обновлено)
    ========================= */
-.hero{ padding: calc(var(--header-h) + 36px) 0 96px }
+.hero{ padding:calc(var(--header-h) + 36px) 0 96px }
 .hero-grid{
-  display:flex;justify-content: space-between; grid-template-columns: 1.1fr 0.9fr; gap:48px; align-items:center; padding: 64px 16px 64px 16px; margin: 0 20px 0 20px;
+  display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;
+  max-width:var(--container); margin:0 auto; padding:64px var(--gutter);
 }
+.hero-left{ min-width:0 }
+
 .hero-title{
   margin:0 0 14px; font-weight:800; font-size:56px; line-height:1.08; letter-spacing:-0.2px; color:#222426;
 }
 .hero-title .br{ display:block }
 .brand-accent{ color:#9B6A44 }
-.hero-sub{ margin:14px 0 22px; font-size:17px; line-height:1.58; color:var(--txt-muted); max-width:720px }
+
+.hero-sub{
+  margin:14px 0 22px; font-size:17px; line-height:1.58;
+  color:var(--txt-muted); max-width:720px;
+}
 
 .hero-actions{ display:flex; gap:16px; flex-wrap:wrap; margin:0 0 18px }
 .btn-primary{
@@ -163,13 +194,12 @@
 .hero-photo{
   background:#fff; border-radius:24px; overflow:hidden;
   border:1px solid rgba(0,0,0,0.05); box-shadow:0 12px 28px rgba(0,0,0,0.06);
-  margin: 0 106px 0 106px
 }
-.hero-photo-frame{ aspect-ratio: 4 / 5; width:100% }
+.hero-photo-frame{ aspect-ratio:4 / 5; width:100% }
 .hero-photo img{ width:100%; height:100%; object-fit:cover }
 
 /* Мобильное фото под заголовком */
-.hero-photo-1{ display:none } /* прячем на десктопе */
+.hero-photo-1{ display:none } /* скрыто на десктопе */
 .hero-photo-1 .hero-photo-frame{ aspect-ratio:4 / 5 }
 
 /* =========================
@@ -186,25 +216,32 @@
   box-shadow:0 12px 28px rgba(0,0,0,0.18);
 }
 
-/* =========================
-   АДАПТИВ
-   ========================= */
-@media (max-width: 1100px){
+/* открытие мобильного меню */
+
+.burger{display:block !important}
+.nav{display:none !important}
+
+
+/* =========== АДАПТИВ =========== */
+@media (max-width:1100px){
   .hero-title{ font-size:50px }
 }
-
-@media (max-width: 920px){
-  .nav{ display:none }
-  .burger{ display:block }
+@media (max-width:920px){
+  .nav{ display:none }            /* прячем десктоп-навигацию */
   .header-cta{ display:none }
+  .burger{ display:block }        /* бургер виден */
 
-  .hero{ padding: calc(var(--header-h) + 18px) 0 110px }
-  .hero-grid{ grid-template-columns:1fr; gap:18px }
+  .hero{ padding:calc(var(--header-h) + 18px) 0 110px }
+  .hero-grid{ grid-template-columns:1fr; gap:18px; padding:32px var(--gutter) }
   .hero-title{ font-size:38px; line-height:1.14; letter-spacing:-0.15px }
   .hero-sub{ font-size:15.8px; margin-top:6px }
 
-  .hero-photo{ display:none }          /* убираем правое фото */
-  .hero-photo-1{ display:block; background:#fff; border-radius:20px; overflow:hidden; border:1px solid rgba(0,0,0,0.05); box-shadow:0 12px 28px rgba(0,0,0,0.06) }
+  .hero-photo{ display:none }     /* фото справа скрываем */
+  .hero-photo-1{
+    display:block; background:#fff; border-radius:20px; overflow:hidden;
+    border:1px solid rgba(0,0,0,0.05); box-shadow:0 12px 28px rgba(0,0,0,0.06);
+    margin:14px 0;
+  }
 
   .hero-actions a{ width:100%; text-align:center }
   .chip{ font-size:13.5px; padding:6px 12px }
@@ -212,13 +249,13 @@
   .fixed-booking-btn{ display:block }
   body.has-fixed-cta{ padding-bottom:88px }
 }
-
 @media (max-width:560px){
   :root{ --gutter:16px }
   .brand{ font-size:18px }
   .hero-title{ font-size:34px }
   .fixed-booking-btn .fixed-div{ height:52px; font-size:15px }
 }
+
 
     /* =========================
        ABOUT — "Обо мне"
@@ -380,6 +417,102 @@
     .step-sub:hover { color: #9B6A44; }
     .step-text{ margin:0; color:#7A7F7A; font-size:15.5px; line-height:1.62; }
     .steps-note{ text-align:center; color:#8A8E8A; font-size:15px; margin-top:10px; }
+
+
+
+  /* =========================
+   METHODS
+   ========================= */
+.methods{
+  padding:72px 0 84px;
+  background:#F5F2EE;                  /* мягкий тёплый фон как на скрине */
+  border-top:1px solid rgba(0,0,0,.04);
+  border-bottom:1px solid rgba(0,0,0,.04);
+}
+
+.methods-title{
+  margin:0 0 10px;
+  text-align:center;
+  font-weight:800;
+  font-size:38px;
+  color:#2F2F2F;
+  letter-spacing:.2px;
+}
+
+.methods-sub{
+  text-align:center;
+  color:#8C8277;
+  font-weight:700;
+  margin:0 0 8px;
+}
+
+.methods-desc{
+  text-align:center;
+  color:#9A9A95;
+  margin:0 0 28px;
+}
+
+/* сетка карточек */
+.methods-grid{
+  max-width:1100px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:28px;
+}
+
+/* карточка */
+.m-card{
+  background:#fff;
+  border:1px solid var(--price-border, #EFE2D6);
+  border-radius:16px;
+  box-shadow: var(--price-shadow, 0 12px 28px rgba(0,0,0,.06));
+  padding:28px 28px 24px;
+  text-align:center;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.m-card:hover{ transform: translateY(-4px); box-shadow:0 16px 32px rgba(0,0,0,.08) }
+
+/* круглая плашка с иконкой */
+.m-badge{
+  width:72px; height:72px; border-radius:50%;
+  margin:0 auto 14px;
+  display:grid; place-items:center;
+  background:#F3E8DC;
+  border:1px solid #E9DACC;
+  transition: background .2s ease;
+}
+.m-card:hover .m-badge{ background:#EFE0D0 }
+.m-badge svg{ width:28px; height:28px; stroke:#B28E66 }
+
+/* заголовок + текст */
+.m-title{
+  margin:8px 0 10px;
+  font-size:20px;
+  font-weight:800;
+  color:#2F2F2F;
+}
+.m-text{
+  margin:0;
+  color:#7B7F79;
+  font-size:15.5px;
+  line-height:1.6;
+}
+
+/* адаптив */
+@media (max-width: 1100px){
+  .methods-grid{ grid-template-columns: repeat(2, 1fr) }
+}
+@media (max-width: 760px){
+  .methods{ padding:56px 0 64px }
+  .methods-title{ font-size:30px }
+  .methods-grid{ grid-template-columns: 1fr; gap:18px }
+  .m-badge{ width:64px; height:64px }
+  .m-badge svg{ width:24px; height:24px }
+}
+
+
+
 
     /* =========================
        PRICES — "Стоимость услуг"
@@ -594,7 +727,7 @@
 }
 .meetings .title{
   text-align:center; font-size:38px; font-weight:800; margin:0 0 26px;
-  color:#2B2B2B; letter-spacing:.2px;
+  color:#8F7156; letter-spacing:.2px;
 }
 .meet-grid{
   display:grid; grid-template-columns: 1fr 1fr; gap:36px;
@@ -609,10 +742,33 @@
   transition: transform 0.3s ease;
 }
 .meet-card:hover { transform: translateY(-5px); }
-.meet-media{ width:100%; aspect-ratio: 16 / 9; background:#F4F4F4; }
-.meet-media img{ width:100%; height:100%; object-fit:cover; transition: transform 0.3s ease }
+
+/* Медиа-блок по умолчанию (одно изображение) */
+.meet-media{
+  width:100%;
+  aspect-ratio: 16 / 9;
+  background:#F4F4F4;
+  overflow:hidden;
+}
+.meet-media img{
+  width:100%; height:100%; object-fit:cover; transition: transform 0.3s ease;
+}
 .meet-card:hover .meet-media img { transform: scale(1.05); }
 
+/* ВЕРСИЯ С ДВУМЯ ВЕРТИКАЛЬНЫМИ ФОТО */
+.meet-media.split{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:8px;                 /* небольшой зазор между фото */
+  aspect-ratio: 16 / 9;    /* сохраняем высоту карточки */
+}
+.meet-media.split img{
+  width:100%; height:100%; object-fit:cover;
+  transform:none;          /* индивидуально масштабируем при ховере ниже */
+}
+.meet-card:hover .meet-media.split img{ transform: scale(1.03) }
+
+/* Текстовая часть */
 .meet-body{ padding:22px 24px 22px; }
 .meet-head{ display:flex; align-items:center; gap:10px; margin-bottom:12px; }
 .meet-badge{
@@ -660,120 +816,128 @@
   .meet-grid{ grid-template-columns:1fr; gap:22px }
 }
 
+
 /* =========================
    EDUCATION — "Образование"
    ========================= */
-.education{
+.education {
   padding:76px 0 90px;
   background: linear-gradient(to bottom, #FFFFFF 0%, #EEF5F0 100%);
   border-top:1px solid rgba(0,0,0,0.05);
 }
-.education .title{
+.education .title {
   text-align:center; font-size:38px; font-weight:800; margin:0 0 28px;
   color:#2B2B2B; letter-spacing:.2px;
 }
 
-/* Обёртка списка аккордеонов */
-.edu-stack{ max-width:980px; margin:0 auto; display:grid; gap:16px; }
+/* Стек аккордеонов */
+.edu-stack { max-width:980px; margin:0 auto; display:grid; gap:16px; }
 
-/* Карта/панель аккордеона */
-.edu-acc{
+/* Карточка-аккордеон */
+.edu-acc {
   background:#fff;
-  border:1px solid var(--price-border);
+  border:1px solid var(--price-border, #EFE2D6);
   border-radius:14px;
-  box-shadow: var(--price-shadow);
+  box-shadow: var(--price-shadow, 0 12px 28px rgba(0,0,0,0.06));
   overflow:hidden;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow .25s ease;
 }
-.edu-acc:hover { box-shadow: 0 14px 28px rgba(0,0,0,0.08); }
+.edu-acc:hover { box-shadow: 0 14px 30px rgba(0,0,0,0.08); }
 
-/* Заголовок панели */
-.edu-head{
+/* Заголовок */
+.edu-head {
   display:flex; align-items:center; gap:12px;
   padding:16px 18px;
   cursor:pointer; user-select:none;
-  transition: background 0.2s ease;
+  transition: background .18s ease;
 }
-.edu-head:hover{ background:#FBFBFB }
-.edu-ico{
+.edu-head:hover { background:#FBFBFB }
+.edu-ico {
   width:38px; height:38px; border-radius:10px;
   background:#F3EBE2; border:1px solid #E9DACC;
   display:grid; place-items:center; flex:0 0 38px;
-  transition: background 0.2s ease;
 }
-.edu-head:hover .edu-ico { background: #EDE3DA; }
-.edu-ico .icon{ width:20px; height:20px; stroke:#B28E66; transition: stroke 0.2s ease }
-.edu-head:hover .edu-ico .icon { stroke: var(--accent-brown); }
-.edu-titles{ display:flex; flex-direction:column; gap:2px }
-.edu-h{ font-size:18px; font-weight:800; color:#2B2B2B }
-.edu-sub{ font-size:13.5px; color:#8E938E }
+.edu-ico .icon { width:20px; height:20px; stroke:#B28E66 }
+.edu-titles { display:flex; flex-direction:column; gap:2px }
+.edu-h { font-size:18px; font-weight:800; color:#2B2B2B }
+.edu-sub { font-size:13.5px; color:#8E938E }
 
 /* Чеврон */
-.edu-chev{
-  margin-left:auto; flex:0 0 auto;
-  width:20px; height:20px;
+.edu-chev {
+  margin-left:auto; width:20px; height:20px; opacity:.7;
   transition: transform .2s ease;
-  opacity:.7;
 }
-.edu-acc[aria-expanded="true"] .edu-chev{ transform:rotate(180deg) }
+.edu-acc[aria-expanded="true"] .edu-chev { transform:rotate(180deg) }
 
-/* Контент (плавное открытие/закрытие) */
-.edu-body{
-  padding:0 18px;
+/* Тело аккордеона */
+.edu-body {
+  padding:0;
   max-height:0;
   overflow:hidden;
-  transition: max-height .28s ease;
+  transition:max-height .28s ease;
   border-top:1px solid rgba(0,0,0,0.06);
 }
-.edu-inner{ padding:16px 2px 18px; }
+.edu-inner { padding:14px 0 16px; }
 
-/* Строки внутри */
-.edu-row{ margin:0 0 12px; }
-.edu-row b{ display:block; font-weight:800; color:#2B2B2B }
-.edu-note{ color:#6F746F; font-size:15.5px; line-height:1.62 }
-
-/* Разделители как на скрине слева (тонкая линия) */
-.edu-sep{
-  height:1px; background:rgba(0,0,0,0.06);
-  margin:12px 0;
+/* ===== Рельса и строки ===== */
+.edu-rail {
+  position:relative;
+  padding-left:46px;
+}
+.edu-rail::before {
+  content:"";
+  position:absolute;
+  left:22px; top:10px; bottom:10px;
+  width:2.5px;
+  background:#E9D7C4; /* бежевый */
+  border-radius:2px;
 }
 
-/* Список маркеров */
-.edu-list{ list-style:none; padding:0; margin:8px 0 0 }
-.edu-list li{
-  position:relative; padding-left:18px;
-  font-size:15.5px; color:#2B2B2B; line-height:1.6; margin:6px 0;
-  transition: color 0.2s ease;
+.edu-item {
+  position:relative;
+  padding:12px 0;
 }
-.edu-list li:hover { color: #444; }
-.edu-list li::before{
-  content:""; position:absolute; left:0; top:10px;
-  width:8px; height:8px; border-radius:50%; background:#B28E66;
-  transition: background 0.2s ease;
+.edu-item:not(:first-child)::after {
+  content:"";
+  position:absolute;
+  left:46px; right:0; top:0;
+  height:1px;
+  background:#F2E6D8; /* разделитель */
 }
-.edu-list li:hover::before { background: var(--accent-brown); }
 
-/* "Показать ещё" внутри второй панели */
-.edu-more-toggle{
+.edu-item .ttl {
+  margin:0 0 4px; font-weight:800;
+  font-size:16.8px; color:#2F2F2F;
+}
+.edu-item .cap {
+  margin:0; font-size:15.2px;
+  line-height:1.62; color:#7A776F;
+}
+
+/* "Показать ещё" */
+.edu-more { margin-top:8px; }
+.edu-more-toggle {
   display:inline-flex; align-items:center; gap:6px;
   color:#B28E66; font-weight:700; font-size:14.5px; cursor:pointer;
-  margin:8px 0 4px; user-select:none;
-  transition: color 0.2s ease;
+  user-select:none;
 }
-.edu-more-toggle:hover { color: #9B6A44; }
-.edu-more .chev{ width:16px; height:16px; transition:transform .2s ease }
-.edu-more[aria-expanded="true"] .chev{ transform:rotate(180deg) }
-.edu-more-body{
-  max-height:0; overflow:hidden; transition:max-height .28s ease;
-  padding-left:0;
+.edu-more .chev { width:16px; height:16px; transition:transform .18s ease }
+.edu-more[aria-expanded="true"] .chev { transform:rotate(180deg) }
+.edu-more-body {
+  max-height:0; overflow:hidden;
+  transition:max-height .28s ease;
 }
-.edu-more-inner{ padding:6px 0 0 }
+.edu-more-inner { padding-top:6px; }
 
 /* Адаптив */
 @media (max-width: 920px){
-  .education{ padding:58px 0 68px }
-  .education .title{ font-size:30px }
+  .education { padding:58px 0 68px }
+  .education .title { font-size:30px }
+  .edu-item .ttl { font-size:16px }
+  .edu-item .cap { font-size:14.5px }
 }
+
+
 
 
 /* =========================
@@ -1202,25 +1366,23 @@
 }
 .burger:hover svg { stroke: var(--accent-brown); }
 
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  z-index: 200;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  overflow-y: auto;
-  transform: translateY(-100%);
-  transition: transform 0.3s ease;
+/* Мобильное меню: только верхняя половина */
+.mobile-menu{
+  position:fixed;
+  top:0; left:0; right:0;
+  height:50vh;               /* половина экрана (можешь поставить 45vh, если хочешь ещё меньше) */
+  z-index:200;
+  background:#fff;
+  transform:translateY(-100%); 
+  transition:transform .25s ease;
+  display:flex; 
+  flex-direction:column;
+  border-bottom-left-radius:16px;   /* для красоты можно скруглить */
+  border-bottom-right-radius:16px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.1);
 }
+.mobile-menu.open{ transform:translateY(0); }
 
-.mobile-menu.open {
-  transform: translateY(0);
-}
 
 .menu-header {
   display: flex;
@@ -1281,92 +1443,100 @@
 </head>
 <body>
 
-  <!-- ===== ХЕДЕР ===== -->
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="brand">Евгения Беленко</div>
-      <nav class="nav">
-        <a href="#home">Главная</a>
-        <a href="#about">Обо мне</a>
-        <a href="#steps">Как проходит терапия</a>
-        <a href="#prices">Услуги и цены</a>
-        <a href="#contacts">Контакты</a>
-        <a class="header-cta" href="#booking">Записаться</a>
-      </nav>
-      <button class="burger" aria-label="Открыть меню">
-        <svg viewBox="0 0 24 24" fill="none">
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
-    </div>
-  </header>
+<!-- ===== ХЕДЕР ===== -->
+<header class="site-header">
+  <div class="header-inner container">
+    <div class="brand">Евгения Беленко</div>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu">
-    <div class="menu-header">
-      <div class="menu-brand">Евгения Беленко</div>
-      <button class="menu-close" aria-label="Закрыть меню">×</button>
-    </div>
-    <nav class="menu-nav">
+    <nav class="nav">
       <a href="#home">Главная</a>
       <a href="#about">Обо мне</a>
       <a href="#steps">Как проходит терапия</a>
       <a href="#prices">Услуги и цены</a>
       <a href="#contacts">Контакты</a>
+      <a class="header-cta" href="#booking">Записаться</a>
     </nav>
-    <a class="menu-cta" href="#booking">Записаться</a>
+
+    <button class="burger" aria-label="Открыть меню" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" width="28" height="28">
+        <line x1="3" y1="6"  x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- Мобильное меню -->
+<div class="mobile-menu" id="mnav">
+  <div class="menu-header">
+    <div class="menu-brand">Евгения Беленко</div>
+    <button class="menu-close" aria-label="Закрыть меню">×</button>
+  </div>
+  <nav class="menu-nav">
+    <a href="#home">Главная</a>
+    <a href="#about">Обо мне</a>
+    <a href="#steps">Как проходит терапия</a>
+    <a href="#prices">Услуги и цены</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+  <a class="menu-cta" href="#booking">Записаться</a>
+</div>
+
+
+<!-- ===== HERO (первый экран) ===== -->
+<section id="home" class="hero">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <h1 class="hero-title">
+        <span class="br">Дипломированный</span>
+        <span class="br">практикующий</span>
+        <span class="br">психолог</span>
+        <span class="br brand-accent">Евгения Беленко</span>
+      </h1>
+
+      <!-- Мобильное фото (видно только ≤ 920px) -->
+      <aside class="hero-photo-1" aria-label="Портрет специалиста">
+        <div class="hero-photo-frame">
+          <img src="evgeniya.png" alt="Евгения Беленко">
+        </div>
+      </aside>
+
+      <p class="hero-sub">
+        В моем пространстве нет шаблонных решений — только Ваш путь, поддержка и пространство для изменений.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#booking" class="btn-primary">Записаться</a>
+        <a href="https://t.me/" target="_blank" rel="noopener" class="btn-secondary">Написать в Telegram</a>
+      </div>
+
+      <div class="hero-chips">
+        <span class="chip">В практике с 2018</span>
+        <span class="chip">Конфиденциально</span>
+        <span class="chip">Очные/онлайн</span>
+        <span class="chip">Результат</span>
+      </div>
+    </div>
+
+    <!-- Десктоп-фото справа -->
+    <aside class="hero-photo" aria-label="Портрет специалиста">
+      <div class="hero-photo-frame">
+        <img src="evgeniya.png" alt="Евгения Беленко">
+      </div>
+    </aside>
   </div>
 
-  <!-- ===== HERO (первый экран) ===== -->
-  <section id="home" class="hero">
-    <div class="hero-grid">
-      <div class="hero-left">
-        <h1 class="hero-title">
-          <span class="br">Дипломированный</span>
-          <span class="br">практикующий</span>
-          <span class="br">психолог</span>
-          <span class="br brand-accent">Евгения Беленко</span>
-        </h1>
-
-        <aside class="hero-photo-1" aria-label="Портрет специалиста">
-          <div class="hero-photo-frame">
-            <img src="evgeniya.png" alt="Евгения Беленко">
-          </div>
-        </aside>
-
-        <p class="hero-sub">
-          В моем пространстве нет шаблонных решений — только Ваш путь, поддержка и пространство для изменений.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#booking" class="btn-primary">Записаться</a>
-          <a href="https://t.me/" target="_blank" rel="noopener" class="btn-secondary">Написать в Telegram</a>
-        </div>
-
-        <div class="hero-chips">
-          <span class="chip">В практике с 2018</span>
-          <span class="chip">Конфиденциально</span>
-          <span class="chip">Очные/онлайн</span>
-          <span class="chip">Результат</span>
-        </div>
-      </div>
-              <aside class="hero-photo" aria-label="Портрет специалиста">
-          <div class="hero-photo-frame">
-            <img src="evgeniya.jpg" alt="Евгения Беленко">
-          </div>
-        </aside>
-    </div>
-    <div class="fixed-booking-btn">
-      <a href="#booking" class="fixed-div">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.89.33 1.76.63 2.59a2 2 0 0 1-.45 2.11L8 9a16 16 0 0 0 7 7l.58-1.25a2 2 0 0 1 2.11-.45c.83.3 1.7.51 2.59.63A2 2 0 0 1 22 16.92z"/>
-        </svg>
-        Записаться
-      </a>
-    </div>
-  </section>
+  <!-- Фиксированная кнопка (показывается только на мобиле через @media) -->
+  <div class="fixed-booking-btn">
+    <a href="#booking" class="fixed-div">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.89.33 1.76.63 2.59a2 2 0 0 1-.45 2.11L8 9a16 16 0 0 0 7 7l.58-1.25a2 2 0 0 1 2.11-.45c.83.3 1.7.51 2.59.63A2 2 0 0 1 22 16.92z"/>
+      </svg>
+      Записаться
+    </a>
+  </div>
+</section>
 
   <!-- ===== ОБО МНЕ ===== -->
   <section id="about" class="about">
@@ -1374,7 +1544,7 @@
       <h2 class="title">Обо мне</h2>
 
       <div class="avatar">
-        <img src="about-avatar.jpg" alt="Евгения — психолог">
+        <img src="about-avatar.png" alt="Евгения — психолог">
       </div>
 
       <p class="lead">
@@ -1565,6 +1735,61 @@
     </div>
   </section>
 
+
+  <!-- ===== МЕТОДЫ РАБОТЫ В ПСИХОТЕРАПИИ ===== -->
+<section class="methods" id="methods">
+  <div class="container">
+    <h2 class="methods-title">Методы работы в психотерапии</h2>
+    <div class="methods-sub">Как проходит моя работа</div>
+    <p class="methods-desc">Вот несколько методов, которыми я работаю</p>
+
+    <div class="methods-grid">
+      <!-- 1 -->
+      <article class="m-card">
+        <div class="m-badge" aria-hidden="true">
+          <!-- глаз -->
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <h3 class="m-title">EMDR-терапия</h3>
+        <p class="m-text">Работа с травматическим опытом с помощью специальных техник. 
+          <br>EMDR-терапия
+EMDR помогает не только перерабатывать прошлые травмы, но и снижать тревогу о будущем.<br>
+        </p>
+      </article>
+
+      <!-- 2 -->
+      <article class="m-card">
+        <div class="m-badge" aria-hidden="true">
+          <!-- три точки/TA -->
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="5" r="1.8"/>
+            <circle cx="12" cy="12" r="1.8"/>
+            <circle cx="12" cy="19" r="1.8"/>
+          </svg>
+        </div>
+        <h3 class="m-title">Транзактный анализ</h3>
+        <p class="m-text">Изучение с помощью анализа взаимодействий в отношениях.</p>
+      </article>
+
+      <!-- 3 -->
+      <article class="m-card">
+        <div class="m-badge" aria-hidden="true">
+          <!-- сердце -->
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <h3 class="m-title">Семейная терапия</h3>
+        <p class="m-text">Работа с семейными отношениями и их динамикой.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
   <!-- ===== СТОИМОСТЬ УСЛУГ ===== -->
   <section id="prices" class="prices">
     <div class="container">
@@ -1609,177 +1834,204 @@
   </section>
 
   <!-- ===== ГДЕ ПРОХОДЯТ ВСТРЕЧИ ===== -->
-  <section class="meetings" id="meetings">
-    <div class="container">
-      <h2 class="title">Где проходят встречи</h2>
+<section class="meetings" id="meetings">
+  <div class="container">
+    <h2 class="title">Где проходят встречи</h2>
 
-      <div class="meet-grid">
-        <!-- Очные встречи -->
-        <article class="meet-card">
-          <div class="meet-media">
-            <img src="meeting-office.jpg" alt="Уютный кабинет для очных встреч">
-          </div>
-          <div class="meet-body">
-            <div class="meet-head">
-              <div class="meet-badge" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 10.5C21 16 12 22 12 22S3 16 3 10.5a9 9 0 1 1 18 0Z"/>
-                  <circle cx="12" cy="10.5" r="3"/>
-                </svg>
-              </div>
-              <div class="meet-title">Очные встречи</div>
+    <div class="meet-grid">
+      <!-- Очные встречи -->
+      <article class="meet-card">
+        <!-- ДВЕ ВЕРТИКАЛЬНЫЕ ФОТО -->
+        <div class="meet-media split">
+          <img src="meeting-office.jpg" alt="Уютный кабинет для очных встреч">
+          <img src="meeting-office-2.jpeg" alt="Ещё один кабинет для очных встреч">
+        </div>
+
+        <div class="meet-body">
+          <div class="meet-head">
+            <div class="meet-badge" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10.5C21 16 12 22 12 22S3 16 3 10.5a9 9 0 1 1 18 0Z"/>
+                <circle cx="12" cy="10.5" r="3"/>
+              </svg>
             </div>
+            <div class="meet-title">Очные встречи</div>
+          </div>
 
-            <p class="meet-text">Наши встречи будут проходить в уютном кабинете по адресу:</p>
+          <p class="meet-text">Наши встречи будут проходить в уютном кабинете по адресу:</p>
 
-            <div class="meet-addr">
-              <b>Б. Конюшенная ул., 29</b>
-              БЦ «Эра»<br>
-              <span class="muted">Санкт‑Петербург</span>
+          <div class="meet-addr">
+            <b>Б. Конюшенная ул., 29</b>
+            БЦ «Эра»<br>
+            <span class="muted">Санкт-Петербург</span>
+          </div>
+
+          <a class="meet-link" href="https://yandex.ru/maps/?text=Б.%20Конюшенная%2029%20Санкт-Петербург" target="_blank" rel="noopener">
+            Смотреть на карте <span class="arr">→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Онлайн-встречи -->
+      <article class="meet-card">
+        <div class="meet-media">
+          <img src="meeting-online.jpg" alt="Онлайн-встречи">
+        </div>
+        <div class="meet-body">
+          <div class="meet-head">
+            <div class="meet-badge" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="5" width="15" height="14" rx="2" ry="2"/>
+                <path d="M22 7l-5 3v4l5 3V7z"/>
+              </svg>
             </div>
-
-            <a class="meet-link" href="https://yandex.ru/maps/?text=Б.%20Конюшенная%2029%20Санкт‑Петербург" target="_blank" rel="noopener">
-              Смотреть на карте <span class="arr">→</span>
-            </a>
+            <div class="meet-title">Онлайн-встречи</div>
           </div>
-        </article>
 
-        <!-- Онлайн‑встречи -->
-        <article class="meet-card">
-          <div class="meet-media">
-            <img src="meeting-online.jpg" alt="Онлайн‑встречи">
-          </div>
-          <div class="meet-body">
-            <div class="meet-head">
-              <div class="meet-badge" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="5" width="15" height="14" rx="2" ry="2"/>
-                  <path d="M22 7l-5 3v4l5 3V7z"/>
-                </svg>
-              </div>
-              <div class="meet-title">Онлайн‑встречи</div>
-            </div>
+          <p class="meet-text">Удобные онлайн-консультации из любой точки мира через:</p>
 
-            <p class="meet-text">Удобные онлайн‑консультации из любой точки мира через:</p>
-
-            <ul class="meet-list">
-              <li><span class="meet-dot"></span>Google Meet</li>
-              <li><span class="meet-dot"></span>WhatsApp</li>
-              <li><span class="meet-dot"></span>Telegram</li>
-            </ul>
-          </div>
-        </article>
-      </div>
+          <ul class="meet-list">
+            <li><span class="meet-dot"></span>Google Meet</li>
+            <li><span class="meet-dot"></span>WhatsApp</li>
+            <li><span class="meet-dot"></span>Telegram</li>
+          </ul>
+        </div>
+      </article>
     </div>
-  </section>
+  </div>
+</section>
+
 
 
   <!-- ===== ОБРАЗОВАНИЕ ===== -->
-  <section class="education" id="education">
-    <div class="container">
-      <h2 class="title">Образование</h2>
+<section class="education" id="education">
+  <div class="container">
+    <h2 class="title">Образование</h2>
 
-      <div class="edu-stack">
+    <div class="edu-stack">
 
-        <!-- 1) ВЫСШЕЕ ОБРАЗОВАНИЕ -->
-        <article class="edu-acc" aria-expanded="false">
-          <header class="edu-head" role="button">
-            <div class="edu-ico" aria-hidden="true">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 10L12 5 2 10l10 5 10-5z"/>
-                <path d="M6 12v5a6 6 0 0 0 12 0v-5"/>
-              </svg>
-            </div>
-            <div class="edu-titles">
-              <div class="edu-h">Высшее образование</div>
-              <div class="edu-sub">Медицина и психология</div>
-            </div>
-            <svg class="edu-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="6 9 12 15 18 9"></polyline>
+      <!-- 1) ВЫСШЕЕ ОБРАЗОВАНИЕ -->
+      <article class="edu-acc" aria-expanded="false">
+        <header class="edu-head" role="button">
+          <div class="edu-ico" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10L12 5 2 10l10 5 10-5z"/>
+              <path d="M6 12v5a6 6 0 0 0 12 0v-5"/>
             </svg>
-          </header>
+          </div>
+          <div class="edu-titles">
+            <div class="edu-h">Высшее образование</div>
+            <div class="edu-sub">Медицина и психология</div>
+          </div>
+          <svg class="edu-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </header>
 
-          <div class="edu-body">
-            <div class="edu-inner">
-              <div class="edu-row">
-                <b>СПбГУ, медицинский факультет</b>
-                <div class="edu-note">Базовое медицинское образование</div>
+        <div class="edu-body">
+          <div class="edu-inner">
+            <div class="edu-rail">
+              <div class="edu-item">
+                <div class="ttl">СПбГУ, медицинский факультет</div>
+                <div class="cap">Базовое медицинское образование</div>
               </div>
-
-              <div class="edu-sep"></div>
-
-              <div class="edu-row">
-                <b>СПб гос. институт психологии и соц. работы</b>
-                <div class="edu-note">Магистр «Психологическое консультирование»</div>
+              <div class="edu-item">
+                <div class="ttl">СПб гос. институт психологии и соц. работы</div>
+                <div class="cap">Магистр «Психологическое консультирование»</div>
               </div>
             </div>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <!-- 2) ПОВЫШЕНИЕ КВАЛИФИКАЦИИ -->
-        <article class="edu-acc" aria-expanded="false">
-          <header class="edu-head" role="button">
-            <div class="edu-ico" aria-hidden="true">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="8" r="5"/>
-                <path d="M8 13v8l4-2 4 2v-8"/>
-              </svg>
-            </div>
-            <div class="edu-titles">
-              <div class="edu-h">Повышение квалификации</div>
-              <div class="edu-sub">Ключевые специализации</div>
-            </div>
-            <svg class="edu-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="6 9 12 15 18 9"></polyline>
+      <!-- 2) ПОВЫШЕНИЕ КВАЛИФИКАЦИИ -->
+      <article class="edu-acc" aria-expanded="false">
+        <header class="edu-head" role="button">
+          <div class="edu-ico" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="5"/>
+              <path d="M8 13v8l4-2 4 2v-8"/>
             </svg>
-          </header>
+          </div>
+          <div class="edu-titles">
+            <div class="edu-h">Повышение квалификации</div>
+            <div class="edu-sub">Ключевые специализации</div>
+          </div>
+          <svg class="edu-chev" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </header>
 
-          <div class="edu-body">
-            <div class="edu-inner">
-              <ul class="edu-list">
-                <li><b>Европейская программа (ТА)</b>
-                  <div class="edu-note">Тренер Е. Ю. Лазаренко (CTA‑P‑EATA, PTSTA‑P‑EATA)</div>
-                </li>
-                <li><b>СПб институт EMDR</b>
-                  <div class="edu-note">РФ/Европа/EMDR Institute</div>
-                </li>
-                <li><b>Базовый курс КПТ</b>
-                  <div class="edu-note">АКПП</div>
-                </li>
-                <li><b>Интегративное консультирование</b></li>
-              </ul>
+        <div class="edu-body">
+          <div class="edu-inner">
+            <div class="edu-rail">
+              <div class="edu-item">
+                <div class="ttl">4 года обучения — Европейская программа ТА</div>
+                <div class="cap">У сертифицированного тренера EATA — Лазаренко Е. Ю. (CTA-P-EATA, PTSTA-P-EATA)</div>
+              </div>
+              <div class="edu-item">
+                <div class="ttl">Санкт-Петербургский институт EMDR</div>
+                <div class="cap">Одобрен Российской и Европейской ассоциациями, а также EMDR Institute</div>
+              </div>
+              <div class="edu-item">
+                <div class="ttl">Базовый курс Когнитивно-Поведенческой Терапии</div>
+                <div class="cap">АКПП</div>
+              </div>
+              <div class="edu-item">
+                <div class="ttl">Повышение квалификации</div>
+                <div class="cap">«Особенности психологического консультирования в интегративном подходе»</div>
+              </div>
+            </div>
 
-              <!-- Показать ещё -->
-              <div class="edu-more" aria-expanded="false">
-                <div class="edu-more-toggle">
-                  <span>Показать ещё</span>
-                  <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="#B28E66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                </div>
-                <div class="edu-more-body">
-                  <div class="edu-more-inner">
-                    <ul class="edu-list">
-                      <li><b>Семинар Р. Эрскина</b>
-                        <div class="edu-note">«Нарциссическая дилемма»</div>
-                      </li>
-                      <li><b>Семинар В. Гусаковского</b>
-                        <div class="edu-note">«Транзактный анализ…»</div>
-                      </li>
-                      <li><b>«Психологическое консультирование пар»</b></li>
-                      <li><b>«Психотерапия денежных запросов»</b></li>
-                    </ul>
+            <!-- Показать ещё -->
+            <div class="edu-more" aria-expanded="false">
+              <div class="edu-more-toggle">
+                <span>Показать ещё</span>
+                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="#B28E66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+              <div class="edu-more-body">
+                <div class="edu-more-inner">
+                  <div class="edu-rail">
+                    <div class="edu-item">
+                      <div class="ttl">Семинар Ричарда Эрскина</div>
+                      <div class="cap">«Нарциссическая дилемма»</div>
+                    </div>
+                    <div class="edu-item">
+                      <div class="ttl">Семинар Владимира Гусаковского</div>
+                      <div class="cap">«Транзактный анализ в психотерапии сексуальных расстройств»</div>
+                    </div>
+                    <div class="edu-item">
+                      <div class="ttl">Институт повышения квалификации</div>
+                      <div class="cap">Программа «Психологическое консультирование пар»</div>
+                    </div>
+                    <div class="edu-item">
+                      <div class="ttl">Курс «Психотерапия денежных запросов»</div>
+                      <div class="cap">2024 г.</div>
+                    </div>
+                    <div class="edu-item">
+                      <div class="ttl">Семинар «Психотерапия Стыда»</div>
+                      <div class="cap">2025 г.</div>
+                    </div>
+                    <div class="edu-item">
+                      <div class="ttl">Супервизии</div>
+                      <div class="cap">Регулярные личные и групповые у членов EATA и EMDR Ассоциации</div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <!-- /Показать ещё -->
             </div>
+            <!-- /Показать ещё -->
           </div>
-        </article>
+        </div>
+      </article>
 
-      </div>
     </div>
-  </section>
+  </div>
+</section>
+
+
 
 
   <!-- ===== ОСОБЕННОСТИ РАБОТЫ СО МНОЙ ===== -->
@@ -1845,28 +2097,31 @@
         <div class="fact">
           <div class="fact-num">1</div>
           <div class="fact-text">
-            Краснодарский край → стоматология (10 лет) → психология: работать с человеком целиком.
+            Я Родом из Краснодарского края.
+10 лет работала стоматологом, пока не поняла: мне ближе внутренний мир человека.
+Переезды в Москву и Петербург научили меня адаптации и гибкости.
+В психологии я работаю с человеком целиком — эмоции, мысли, тело.
           </div>
         </div>
 
         <div class="fact">
           <div class="fact-num">2</div>
           <div class="fact-text">
-            В людях ценю сочетание силы и уязвимости — слушаю, замечаю, берегу.
+            Мне близка уникальность каждого человека. В каждом я вижу сочетание силы и уязвимости — и именно это делает мою работу бесконечно живой. Я слушаю, замечаю и бережно отношусь к этому уникальному сочетанию в каждом.
           </div>
         </div>
 
         <div class="fact">
           <div class="fact-num">3</div>
           <div class="fact-text">
-            Люблю путешествия ради тишины и воды — и идеальный кофе по утрам.
+            Я люблю путешествия не ради галочки, а ради мгновений тишины у воды, когда мысли отпускают. А ещё — за кофе по утрам, вкус которого хранит атмосферу места.
           </div>
         </div>
 
         <div class="fact">
           <div class="fact-num">4</div>
           <div class="fact-text">
-            Завтраки — мой способ заботы: просто, вкусно, по-домашнему.
+            Я обожаю готовить завтраки — это мой способ заботиться и делать день тёплым с самого утра
           </div>
         </div>
       </div>
@@ -2050,8 +2305,11 @@
           <div class="faq-body">
             <div class="faq-inner">
               <div class="faq-a">
-                Рекомендуется посетить минимум 4–6 консультаций (по практике транзактного анализа это минимально необходимый этап для знакомства и понимания причин трудностей), после чего совместно с терапевтом решается вопрос о долгосрочном терапевтическом контракте для устранения корневых причин психо‑эмоциональных трудностей и психосоматических симптомов. EMDR‑терапия обычно более краткосрочная и сфокусированная.
-              </div>
+  Рекомендуется посетить минимум 4–6 консультаций (по практике транзактного анализа это минимально необходимый этап для знакомства и понимания причин трудностей), после чего совместно с терапевтом решается вопрос о долгосрочном терапевтическом контракте для устранения корневых причин психо-эмоциональных трудностей и психосоматических симптомов.
+  <br><br>
+  EMDR-терапия является более краткосрочной и сфокусированной на работе с конкретными травматическими воспоминаниями или острыми эмоциональными реакциями. Обычно для достижения устойчивого результата требуется от 6 до 12 сессий, в зависимости от сложности ситуации и индивидуальных особенностей клиента.
+</div>
+
             </div>
           </div>
         </article>
@@ -2200,168 +2458,217 @@
 
 
   <script>
-    // Аккордеоны "Образование"
-const eduItems = document.querySelectorAll('.edu-acc');
-eduItems.forEach(acc => {
-  const head = acc.querySelector('.edu-head');
-  const body = acc.querySelector('.edu-body');
+/* =========================
+   УТИЛИТЫ
+   ========================= */
+function setMaxHeight(el, open) {
+  if (!el) return;
+  el.style.maxHeight = open ? (el.scrollHeight + 'px') : '0px';
+}
+function recalcOpenHeights(selectorBody, selectorAcc) {
+  document.querySelectorAll(selectorAcc + '[aria-expanded="true"] ' + selectorBody)
+    .forEach(el => { el.style.maxHeight = el.scrollHeight + 'px'; });
+}
 
-  // начальная высота для открытых
-  if (acc.getAttribute('aria-expanded') === 'true') {
-    body.style.maxHeight = body.scrollHeight + 'px';
-  }
+/* =========================
+   ОБРАЗОВАНИЕ — АККОРДЕОНЫ
+   ========================= */
+(function initEducationAccordions(){
+  const eduItems = document.querySelectorAll('.edu-acc');
+  if (!eduItems.length) return;
 
-  head.addEventListener('click', () => {
-    const isOpen = acc.getAttribute('aria-expanded') === 'true';
+  eduItems.forEach(acc => {
+    const head = acc.querySelector('.edu-head');
+    const body = acc.querySelector('.edu-body');
+    if (!head || !body) return;
 
-    // закрываем все
-    eduItems.forEach(it => {
-      it.setAttribute('aria-expanded', 'false');
-      it.querySelector('.edu-body').style.maxHeight = '0px';
-    });
-
-    // открываем текущий, если был закрыт
-    if (!isOpen) {
-      acc.setAttribute('aria-expanded', 'true');
-      body.style.maxHeight = body.scrollHeight + 'px';
+    // начальные открытые
+    if (acc.getAttribute('aria-expanded') === 'true') {
+      setMaxHeight(body, true);
+    } else {
+      setMaxHeight(body, false);
     }
+
+    head.addEventListener('click', () => {
+      const isOpen = acc.getAttribute('aria-expanded') === 'true';
+
+      // сворачиваем все
+      eduItems.forEach(it => {
+        it.setAttribute('aria-expanded', 'false');
+        const b = it.querySelector('.edu-body');
+        if (b) setMaxHeight(b, false);
+      });
+
+      // если был закрыт — открываем текущий
+      if (!isOpen) {
+        acc.setAttribute('aria-expanded', 'true');
+        setMaxHeight(body, true);
+      }
+    });
   });
-});
 
-    // Внутренний "Показать ещё"
-    const more = document.querySelector('.edu-more');
-    if(more){
-      const toggle = more.querySelector('.edu-more-toggle');
-      const body = more.querySelector('.edu-more-body');
-      toggle.addEventListener('click', function(){
-        const open = more.getAttribute('aria-expanded') === 'true';
-        if(open){
-          more.setAttribute('aria-expanded','false');
-          body.style.maxHeight = '0px';
-          toggle.firstElementChild.textContent = 'Показать ещё';
-        }else{
-          more.setAttribute('aria-expanded','true');
-          body.style.maxHeight = body.scrollHeight + 'px';
-          toggle.firstElementChild.textContent = 'Скрыть';
-        }
-      });
+  // "Показать ещё" — может быть несколько блоков
+  document.querySelectorAll('.edu-more').forEach(more => {
+    const toggle = more.querySelector('.edu-more-toggle');
+    const body = more.querySelector('.edu-more-body');
+    if (!toggle || !body) return;
+
+    more.setAttribute('aria-expanded','false');
+    setMaxHeight(body, false);
+
+    toggle.addEventListener('click', () => {
+      const open = more.getAttribute('aria-expanded') === 'true';
+      if (open) {
+        more.setAttribute('aria-expanded','false');
+        setMaxHeight(body, false);
+        // первая нода — <span> с текстом
+        const t = toggle.querySelector('span');
+        if (t) t.textContent = 'Показать ещё';
+      } else {
+        more.setAttribute('aria-expanded','true');
+        setMaxHeight(body, true);
+        const t = toggle.querySelector('span');
+        if (t) t.textContent = 'Скрыть';
+      }
+    });
+  });
+
+  // ресайз — пересчитать высоты
+  window.addEventListener('resize', () => {
+    recalcOpenHeights('.edu-body', '.edu-acc');
+    document.querySelectorAll('.edu-more[aria-expanded="true"] .edu-more-body')
+      .forEach(el => el.style.maxHeight = el.scrollHeight + 'px');
+  });
+})();
+
+/* =========================
+   РЕСУРСЫ — АККОРДЕОНЫ
+   ========================= */
+(function initResourceAccordions(){
+  const resItems = document.querySelectorAll('.res-acc');
+  if (!resItems.length) return;
+
+  resItems.forEach(acc => {
+    const head = acc.querySelector('.res-head');
+    const body = acc.querySelector('.res-body');
+    if (!head || !body) return;
+
+    if (acc.getAttribute('aria-expanded') === 'true') {
+      setMaxHeight(body, true);
+    } else {
+      setMaxHeight(body, false);
     }
 
-    // Пересчёт высоты при ресайзе (чтобы анимация не ломалась)
-    window.addEventListener('resize', function(){
-      document.querySelectorAll('.edu-acc[aria-expanded="true"] .edu-body')
-        .forEach(function(el){ el.style.maxHeight = el.scrollHeight + 'px'; });
-      const moreOpen = document.querySelector('.edu-more[aria-expanded="true"] .edu-more-body');
-      if(moreOpen){ moreOpen.style.maxHeight = moreOpen.scrollHeight + 'px'; }
-    });
+    head.addEventListener('click', () => {
+      const isOpen = acc.getAttribute('aria-expanded') === 'true';
 
-    // Аккордеоны ресурсов
-    const resItems = document.querySelectorAll('.res-acc');
-      resItems.forEach(acc => {
-        const head = acc.querySelector('.res-head');
-        const body = acc.querySelector('.res-body');
-
-        // начальная высота для открытых
-        if (acc.getAttribute('aria-expanded') === 'true') {
-          body.style.maxHeight = body.scrollHeight + 'px';
-        }
-
-        head.addEventListener('click', () => {
-          const isOpen = acc.getAttribute('aria-expanded') === 'true';
-
-          // закрываем все
-          resItems.forEach(it => {
-            it.setAttribute('aria-expanded','false');
-            it.querySelector('.res-body').style.maxHeight = '0px';
-          });
-
-          // открываем текущий, если был закрыт
-          if (!isOpen) {
-            acc.setAttribute('aria-expanded','true');
-            body.style.maxHeight = body.scrollHeight + 'px';
-          }
-        });
+      resItems.forEach(it => {
+        it.setAttribute('aria-expanded','false');
+        const b = it.querySelector('.res-body');
+        if (b) setMaxHeight(b, false);
       });
 
-    // пересчёт высот при ресайзе
-    window.addEventListener('resize', function(){
-      document.querySelectorAll('.res-acc[aria-expanded="true"] .res-body')
-        .forEach(function(el){ el.style.maxHeight = el.scrollHeight + 'px'; });
-    });
-
-
-    const faqItems = document.querySelectorAll('.faq-acc');
-    faqItems.forEach(acc => {
-      const head = acc.querySelector('.faq-head');
-      const body = acc.querySelector('.faq-body');
-
-      // начальная высота для открытых
-      if (acc.getAttribute('aria-expanded') === 'true') {
-        body.style.maxHeight = body.scrollHeight + 'px';
-      }
-
-      head.addEventListener('click', () => {
-        const isOpen = acc.getAttribute('aria-expanded') === 'true';
-
-        // закрываем все
-        faqItems.forEach(it => {
-          it.setAttribute('aria-expanded','false');
-          it.querySelector('.faq-body').style.maxHeight = '0px';
-        });
-
-        // открываем текущий, если был закрыт
-        if (!isOpen) {
-          acc.setAttribute('aria-expanded','true');
-          body.style.maxHeight = body.scrollHeight + 'px';
-        }
-      });
-    });
-
-    // пересчёт высот при ресайзе
-    window.addEventListener('resize', () => {
-      document.querySelectorAll('.faq-acc[aria-expanded="true"] .faq-body')
-        .forEach(el => el.style.maxHeight = el.scrollHeight + 'px');
-    });
-
-    // Mobile menu script
-    const burger = document.querySelector('.burger');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const menuClose = document.querySelector('.menu-close');
-
-    burger.addEventListener('click', () => {
-      mobileMenu.classList.add('open');
-      document.body.style.overflow = 'hidden'; // Prevent scroll
-    });
-
-    menuClose.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      document.body.style.overflow = ''; // Restore scroll
-    });
-
-    // Close on click outside
-    mobileMenu.addEventListener('click', (e) => {
-      if (e.target === mobileMenu) {
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
+      if (!isOpen) {
+        acc.setAttribute('aria-expanded','true');
+        setMaxHeight(body, true);
       }
     });
+  });
 
-    // Menu links close menu
-    document.querySelectorAll('.menu-nav a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
+  window.addEventListener('resize', () => {
+    recalcOpenHeights('.res-body', '.res-acc');
+  });
+})();
+
+/* =========================
+   FAQ — АККОРДЕОНЫ
+   ========================= */
+(function initFaqAccordions(){
+  const faqItems = document.querySelectorAll('.faq-acc');
+  if (!faqItems.length) return;
+
+  faqItems.forEach(acc => {
+    const head = acc.querySelector('.faq-head');
+    const body = acc.querySelector('.faq-body');
+    if (!head || !body) return;
+
+    if (acc.getAttribute('aria-expanded') === 'true') {
+      setMaxHeight(body, true);
+    } else {
+      setMaxHeight(body, false);
+    }
+
+    head.addEventListener('click', () => {
+      const isOpen = acc.getAttribute('aria-expanded') === 'true';
+
+      faqItems.forEach(it => {
+        it.setAttribute('aria-expanded','false');
+        const b = it.querySelector('.faq-body');
+        if (b) setMaxHeight(b, false);
       });
-    });
 
-    // Enable send button if checkbox checked (example, if needed)
-    const chk = document.querySelector('.chk input');
-    const btnSend = document.querySelector('.btn-send');
-    chk.addEventListener('change', () => {
-      btnSend.disabled = !chk.checked;
-      btnSend.style.opacity = chk.checked ? 1 : 0.7;
-      btnSend.style.cursor = chk.checked ? 'pointer' : 'not-allowed';
+      if (!isOpen) {
+        acc.setAttribute('aria-expanded','true');
+        setMaxHeight(body, true);
+      }
     });
-  </script>
+  });
+
+  window.addEventListener('resize', () => {
+    recalcOpenHeights('.faq-body', '.faq-acc');
+  });
+})();
+
+/* =========================
+   МОБИЛЬНОЕ МЕНЮ (бургер)
+   ========================= */
+(function initMobileMenu(){
+  const burger     = document.querySelector('.burger');
+  const mobileMenu = document.querySelector('.mobile-menu'); // #mnav тоже ок
+  const menuClose  = document.querySelector('.menu-close');
+  const menuLinks  = document.querySelectorAll('.menu-nav a, .menu-cta');
+
+  if (!burger || !mobileMenu || !menuClose) return;
+
+  let scrollY = 0;
+
+  const openMenu = () => {
+    if (mobileMenu.classList.contains('open')) return;
+    scrollY = window.scrollY || window.pageYOffset || 0;
+    mobileMenu.classList.add('open');
+    burger.setAttribute('aria-expanded','true');
+
+    // блокируем прокрутку (мягко)
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeMenu = () => {
+    if (!mobileMenu.classList.contains('open')) return;
+    mobileMenu.classList.remove('open');
+    burger.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+    // возвращать scrollY не обязательно, так как лист прячется поверх
+    // но если нужно — раскомментируй:
+    // window.scrollTo(0, scrollY);
+  };
+
+  burger.addEventListener('click', openMenu);
+  menuClose.addEventListener('click', closeMenu);
+
+  // закрывать по клику на пункт меню/кнопку
+  menuLinks.forEach(a => a.addEventListener('click', closeMenu));
+
+  // закрытие по Esc
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // если ушли на десктоп — закрыть и вернуть прокрутку
+  const MQ = window.matchMedia('(min-width: 921px)');
+  const mqHandler = () => { if (MQ.matches) closeMenu(); };
+  MQ.addEventListener ? MQ.addEventListener('change', mqHandler) : MQ.addListener(mqHandler);
+})();
+</script>
+
 </body>
 </html>
