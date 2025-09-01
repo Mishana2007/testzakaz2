@@ -187,8 +187,16 @@ a{color:inherit;text-decoration:none}
   color:#2B2B2B; padding:14px 28px; border-radius:var(--radius-sm); font-weight:700; font-size:15.5px;
 }
 
+/* ЧИПЫ — настольная версия */
 .hero-chips{ display:flex; gap:10px; flex-wrap:wrap }
-.chip{ background:var(--chip-bg); color:#37322F; padding:7px 14px; border-radius:999px; font-size:14px; font-weight:600 }
+.chip{
+  background:var(--chip-bg);
+  color:#37322F;
+  padding:7px 14px;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:600;
+}
 
 /* Фото справа (десктоп) */
 .hero-photo{
@@ -201,6 +209,56 @@ a{color:inherit;text-decoration:none}
 /* Мобильное фото под заголовком */
 .hero-photo-1{ display:none } /* скрыто на десктопе */
 .hero-photo-1 .hero-photo-frame{ aspect-ratio:4 / 5 }
+
+/* ===== Мобильная адаптация (как на твоём скрине) ===== */
+@media (max-width: 920px){
+  .hero{ padding:calc(var(--header-h) + 18px) 0 110px }
+  .hero-grid{ grid-template-columns:1fr; gap:18px }
+  .hero-title{ font-size:38px; line-height:1.14; letter-spacing:-0.15px }
+  .hero-sub{ font-size:15.8px; margin-top:6px }
+
+  .hero-photo{ display:none } /* убираем правое фото */
+  .hero-photo-1{
+    display:block;
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid rgba(0,0,0,0.05);
+    box-shadow:0 12px 28px rgba(0,0,0,0.06);
+  }
+
+  /* кнопки — на всю ширину */
+  .hero-actions a{ width:100%; text-align:center }
+
+  /* ЧИПЫ — вертикальные, но ширина только по тексту */
+.hero-chips{
+  display:flex;
+  flex-direction:column;     /* один под другим */
+  align-items:flex-start;    /* выравниваем слева и не растягиваем */
+  gap:10px;
+  margin-top:12px;
+}
+
+.chip{
+  display:inline-flex;       /* ширина по содержимому */
+  align-items:center;
+  width:auto;                /* <-- главное: НЕ 100% */
+  max-width:100%;
+  padding:10px 14px;
+  border-radius:12px;
+  font-weight:700;
+  font-size:15px;
+  color:#2B2B2B;
+
+  /* стиль плашки */
+  background: rgba(143,113,86,0.10);
+  border:1px solid rgba(143,113,86,0.18);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.6) inset,
+    0 4px 10px rgba(0,0,0,0.06);
+  backdrop-filter: blur(2px);
+}
+}
 
 /* =========================
    ФИКС-КНОПКА "ЗАПИСАТЬСЯ"
@@ -258,63 +316,70 @@ a{color:inherit;text-decoration:none}
 
 
     /* =========================
-       ABOUT — "Обо мне"
-       ========================= */
-    .about{
-      padding:62px 0 76px;
-      background:#FFFFFF;               /* белый фон */
-      border-top:1px solid rgba(0,0,0,0.04);
-      border-bottom:1px solid rgba(0,0,0,0.04);
-      transition: padding 0.3s ease;
-    }
-    .about .title{
-      font-size:36px; font-weight:800; text-align:center; margin:0 0 28px;
-      letter-spacing:.2px; color:var(--accent-brown);
-    }
-    .about .avatar{
-      width:132px; height:132px; border-radius:50%;
-      overflow:hidden; margin:0 auto 22px; border:6px solid #F3F3F3;
-      transition: transform 0.3s ease;
-    }
-    .about .avatar:hover { transform: scale(1.05); }
-    .about .avatar img{ width:100%; height:100%; object-fit:cover }
+   ABOUT — "Обо мне"
+   ========================= */
+.about{
+  padding:62px 0 76px;
+  background:#FFFFFF;
+  border-top:1px solid rgba(0,0,0,0.04);
+  border-bottom:1px solid rgba(0,0,0,0.04);
+  transition: padding 0.3s ease;
+}
+.about .title{
+  font-size:36px; font-weight:800; text-align:center; margin:0 0 28px;
+  letter-spacing:.2px; color:var(--accent-brown);
+}
+.about .avatar{
+  width:180px;               /* увеличил фото (было 132px) */
+  height:180px;
+  border-radius:50%;
+  overflow:hidden;
+  margin:0 auto 26px;
+  border:none;               /* убрал серый ободок */
+  transition: transform 0.3s ease;
+}
+.about .avatar:hover { transform: scale(1.05); }
+.about .avatar img{
+  width:100%; height:100%; object-fit:cover;
+}
 
-    .about .lead{
-      max-width:780px; margin:0 auto 26px; text-align:center;
-      color:#313131; line-height:1.7; font-size: 1.125rem;
-    }
+.about .lead{
+  max-width:780px; margin:0 auto 26px; text-align:center;
+  color:#313131; line-height:1.7; font-size:1.125rem;
+}
 
-    .about .quote{
-      max-width:820px; margin:0 auto 34px; text-align:center;
-      background:var(--accent-quote); border-radius:14px;
-      padding:18px 22px;
-      color: #66503D;        /* коричневый текст цитаты */
-      font-size: 1.125rem; line-height:1.6; font-style:italic;font-weight: 500;
-      border:1px solid rgba(0,0,0,0.04);
-      transition: background 0.3s ease;
-    }
-    .about .quote:hover { background: #E0E8E3; }
+.about .quote{
+  max-width:820px; margin:0 auto 34px; text-align:center;
+  background:var(--accent-quote); border-radius:14px;
+  padding:18px 22px;
+  color:#66503D;
+  font-size:1.125rem; line-height:1.6; font-style:italic; font-weight:500;
+  border:1px solid rgba(0,0,0,0.04);
+  transition: background 0.3s ease;
+}
+.about .quote:hover { background:#E0E8E3; }
 
-    .about .features{
-      max-width:980px; margin:0 auto;
-      display:grid; grid-template-columns: repeat(3, 1fr); gap:34px;
-      text-align:center;
-    }
-    .feature .icon-wrap{
-      width:64px; height:64px; border-radius:50%;
-      margin:0 auto 14px; display:grid; place-items:center;
-      background:#F2F4F1; border:1px solid rgba(0,0,0,0.05);
-      transition: background 0.2s ease;
-    }
-    .feature:hover .icon-wrap { background: #E9EBE7; }
-    .feature .icon{ width:28px; height:28px; stroke:#8B7059; transition: stroke 0.2s ease }
-    .feature:hover .icon { stroke: var(--accent-brown); }
-    .feature .h{
-      font-weight:800; color:#8B7059;  font-size: 1.25rem; margin:0 0 8px; letter-spacing:.2px;
-    }
-    .feature .p{
-      color:#757A75; font-size:15px; line-height:1.55; max-width:280px; margin:0 auto;
-    }
+.about .features{
+  max-width:980px; margin:0 auto;
+  display:grid; grid-template-columns: repeat(3, 1fr); gap:34px;
+  text-align:center;
+}
+.feature .icon-wrap{
+  width:64px; height:64px; border-radius:50%;
+  margin:0 auto 14px; display:grid; place-items:center;
+  background:#F2F4F1; border:1px solid rgba(0,0,0,0.05);
+  transition: background 0.2s ease;
+}
+.feature:hover .icon-wrap { background:#E9EBE7; }
+.feature .icon{ width:28px; height:28px; stroke:#8B7059; transition: stroke 0.2s ease }
+.feature:hover .icon { stroke: var(--accent-brown); }
+.feature .h{
+  font-weight:800; color:#8B7059; font-size:1.25rem; margin:0 0 8px; letter-spacing:.2px;
+}
+.feature .p{
+  color:#757A75; font-size:15px; line-height:1.55; max-width:280px; margin:0 auto;
+}
+
 
     /* =========================
        REQUESTS — "С какими запросами я работаю"
@@ -1513,9 +1578,9 @@ a{color:inherit;text-decoration:none}
 
       <div class="hero-chips">
         <span class="chip">В практике с 2018</span>
-        <span class="chip">Конфиденциально</span>
-        <span class="chip">Очные/онлайн</span>
-        <span class="chip">Результат</span>
+        <span class="chip"> Полная конфиденциальность</span>
+        <span class="chip">Очные и онлайн-работы</span>
+        <span class="chip"> Поэтапный результат</span>
       </div>
     </div>
 
@@ -1539,61 +1604,62 @@ a{color:inherit;text-decoration:none}
 </section>
 
   <!-- ===== ОБО МНЕ ===== -->
-  <section id="about" class="about">
-    <div class="container">
-      <h2 class="title">Обо мне</h2>
+<section id="about" class="about">
+  <div class="container">
+    <h2 class="title">Обо мне</h2>
 
-      <div class="avatar">
-        <img src="about-avatar.png" alt="Евгения — психолог">
+    <div class="avatar">
+      <img src="about-avatar.png" alt="Евгения — психолог">
+    </div>
+
+    <p class="lead">
+      Я — Евгения, практикующий психолог. Бережно соединяю транзактный анализ, EMDR
+      и семейный подход. В терапии мы шаг за шагом исследуем ваш внутренний мир,
+      находим ответы на важные вопросы и закрепляем изменения так, чтобы они стали
+      частью вашей жизни.
+    </p>
+
+    <div class="quote">
+      Лучшее, что я могу для Вас сделать, — помочь вам обрести устойчивость и
+      опору внутри себя, которые не зависят от внешних обстоятельств.
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <div class="icon-wrap">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <div class="h">Спокойно и безопасно</div>
+        <div class="p">Создаю безопасное пространство для открытого разговора</div>
       </div>
 
-      <p class="lead">
-        Я — Евгения, практикующий психолог. Бережно соединяю транзактный анализ, EMDR
-        и семейный подход. В терапии мы шаг за шагом исследуем ваш внутренний мир,
-        находим ответы на важные вопросы и закрепляем изменения так, чтобы они стали
-        частью вашей жизни.
-      </p>
-
-      <div class="quote">
-        Лучшее, что я могу для Вас сделать, — помочь вам обрести устойчивость и
-        опору внутри себя, которые не зависят от внешних обстоятельств.
+      <div class="feature">
+        <div class="icon-wrap">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 7v5l3 3"></path>
+          </svg>
+        </div>
+        <div class="h">Понятный план</div>
+        <div class="p">Структурированный подход с ясными целями и этапами</div>
       </div>
 
-      <div class="features">
-        <div class="feature">
-          <div class="icon-wrap">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-          </div>
-          <div class="h">Спокойно и безопасно</div>
-          <div class="p">Создаю безопасное пространство для открытого разговора</div>
+      <div class="feature">
+        <div class="icon-wrap">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21a8 8 0 0 0-16 0"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
         </div>
-
-        <div class="feature">
-          <div class="icon-wrap">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="9"></circle>
-              <path d="M12 7v5l3 3"></path>
-            </svg>
-          </div>
-          <div class="h">Понятный план</div>
-          <div class="p">Структурированный подход с ясными целями и этапами</div>
-        </div>
-
-        <div class="feature">
-          <div class="icon-wrap">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M20 21a8 8 0 0 0-16 0"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-          </div>
-          <div class="h">Уважение к границам</div>
-          <div class="p">Работаем в комфортном для вас теме и формате</div>
-        </div>
+        <div class="h">Уважение к границам</div>
+        <div class="p">Работаем в комфортном для вас теме и формате</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- ===== ЗАПРОСЫ ===== -->
   <section class="requests" id="requests">
