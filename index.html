@@ -276,12 +276,14 @@ a{color:inherit;text-decoration:none}
 
 /* открытие мобильного меню */
 
-.burger{display:block !important}
-.nav{display:none !important}
+/* .burger{display:block !important}
+.nav{display:none !important} */
 
 
 /* =========== АДАПТИВ =========== */
 @media (max-width:1100px){
+  .burger{display:block !important}
+.nav{display:none !important}
   .hero-title{ font-size:50px }
 }
 @media (max-width:920px){
@@ -580,206 +582,219 @@ a{color:inherit;text-decoration:none}
 
 
     /* =========================
-       PRICES — "Стоимость услуг"
-       ========================= */
-    .prices{
-      padding:70px 0 88px;
-      background: linear-gradient(to bottom, #F7FBF8 0%, #DEEDE6 100%);
-      border-top: 1px solid rgba(0,0,0,0.05);
-    }
-    .prices .title{
-      text-align:center; color: #66503D;
-      font-weight:800; font-size:38px; margin:0 0 12px;
-      letter-spacing:.2px;
-    }
-    .prices .subtitle{
-      text-align:center; color:#8A8E8A; font-size: 1.125rem;
-    line-height: 1.75rem; margin:0 0 30px;
-    }
-    .price-grid{
-      max-width:980px; margin:0 auto 22px;
-      display:grid; grid-template-columns: 1fr 1fr; gap:32px;
-    }
-    .price-card{
-      background:#fff; border:1px solid var(--price-border);
-      border-radius:16px; box-shadow: var(--price-shadow);
-      padding:28px 28px 24px; text-align:center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .price-card:hover { transform: translateY(-5px); box-shadow: 0 16px 32px rgba(0,0,0,0.08); }
-    .price-badge{
-      width:64px; height:64px; border-radius:50%; margin:0 auto 10px;
-      background:var(--price-badge); display:grid; place-items:center;
-      transition: background 0.2s ease;
-    }
-    .price-card:hover .price-badge { background: #E5D9CC; }
-    .price-badge .icon{ width:28px; height:28px; stroke:#B28E66; transition: stroke 0.2s ease }
-    .price-card:hover .price-badge .icon { stroke: var(--accent-brown); }
-    .price-title{ margin:6px 0 6px; font-size:22px; font-weight:800; color:#2B2B2B }
-    .price-sub{ margin:0 0 10px; color:#9A9E99; font-size:13.5px }
-    .price-value{ margin:6px 0 18px; font-size:34px; font-weight:800; color:#8B7059; letter-spacing:1px }
-    .price-btn{
-      display:block; width:100%;
-      background:var(--price-btn); color:#fff;
-      height:44px; line-height:44px; text-align:center;
-      border-radius:10px; font-weight:800; letter-spacing:.1px;
-      transition:.2s;
-    }
-    .price-btn:hover{ background:var(--price-btn-hover) }
-    .prices-note{ text-align:center; color:#9AA09A; font-size: .875rem;
-    line-height: 1.25rem; margin-top:18px }
+   PRICES — "Стоимость услуг"
+   ========================= */
+.prices{
+  padding:70px 0 88px;
+  background: linear-gradient(to bottom, #F7FBF8 0%, #DEEDE6 100%);
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+.prices .title{
+  text-align:center; color: #66503D;
+  font-weight:800; font-size:38px; margin:0 0 12px;
+  letter-spacing:.2px;
+}
+.prices .subtitle{
+  text-align:center; color:#8A8E8A; font-size: 1.125rem;
+  line-height: 1.75rem; margin:0 0 30px;
+}
 
-    /* Заглушки / футер */
-    section.placeholder{ padding:64px 0; border-top:1px dashed rgba(0,0,0,0.06) }
-    .site-footer{ padding:40px 0 56px; color:#6B6B6B; font-size:14px }
+.price-grid{
+  max-width:980px; margin:0 auto 22px;
+  display:grid; grid-template-columns: 1fr 1fr; gap:32px;
+}
+.price-card{
+  background:#fff; border:1px solid var(--price-border);
+  border-radius:16px; box-shadow: var(--price-shadow);
+  padding:28px 28px 24px; text-align:center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.price-card:hover { transform: translateY(-5px); box-shadow: 0 16px 32px rgba(0,0,0,0.08); }
 
-    /* =========================
-       АДАПТИВ
-       ========================= */
-    @media (max-width: 1200px) {
-      :root { --container: 1024px; --gutter: 32px; }
-      .hero-title { font-size: 52px; }
-      .hero-grid { gap: 48px; height: auto; margin: 0;}
-      .hero-photo-frame { max-height: 520px; }
-      .ct-note {text-align: center;}
-    }
+/* ===== Бэйдж (как на скрине: большой, бежевый круг) ===== */
+.price-badge{
+  width:136px;
+  height:136px;
+  border-radius:50%;
+  margin:0 auto 14px;
+  display:grid; place-items:center;
+  background:#F2EAE1;                  /* бледно-бежевый круг */
+  box-shadow:0 1px 0 rgba(0,0,0,0.02) inset;
+  transition: background 0.2s ease;
+}
+.price-card:hover .price-badge { background:#E8DCCD; }
+.price-badge .icon{
+  width:64px; height:64px;              /* крупная иконка */
+  stroke:#B28E66;                       /* тёплый коричневый контур */
+  /* stroke-width, linecap/linejoin заданы в SVG (2, round, round) */
+}
 
-    @media (max-width: 1100px){
-      .hero-title{ font-size:50px }
-      .hero-grid{ gap:42px }
-      .hero-title .br {
-        font-weight: 700;
-        font-size: 1.875rem;
-        line-height: 1.25;
-      }
-      .hero-sub {
-        font-size: 1.25rem;
-        margin-top:20px;
-      }
-    }
+.price-title{ margin:10px 0 6px; font-size:22px; font-weight:800; color:#2B2B2B }
+.price-sub{   margin:0 0 12px; color:#9A9E99; font-size:14px }
+.price-value{ margin:8px 0 18px; font-size:34px; font-weight:800; color:#8B7059; letter-spacing:1px }
 
-    @media (max-width: 1024px) {
-      :root { --gutter: 24px; }
-      .about .title { font-size: 32px; }
-      .steps .title, .prices .title, .requests .title { font-size: 34px; }
-      .step-grid, .price-grid, .cards { gap: 24px; }
-      .hero-title { font-size: 48px; }
-      .hero-sub { font-size: 1.1rem; }
-    }
+.price-btn{
+  display:block; width:100%;
+  background:var(--price-btn); color:#fff;
+  height:48px; line-height:48px; text-align:center;
+  border-radius:10px; font-weight:800; letter-spacing:.1px;
+  transition:.2s;
+}
+.price-btn:hover{ background:var(--price-btn-hover) }
 
-    @media (max-width: 920px){
-      .nav{ display:none }
-      .header-inner{ justify-content:space-between; margin: 0; padding: 20px;}
-      .header-cta { display: none; }
-      .fixed-booking-btn {
-        display: block;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: #fff;
-        color: #fff;
-        text-align: center;
-        font-weight: 800;
-        font-size: 16px;
-        padding: 16px;
-        border-radius: 0;
-        text-decoration: none;
-        z-index: 999;
-      }
-      .fixed-div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        background: #D6B894;
-        height: 56px;
-        padding: 1rem;
-        gap: .5rem;
-        border-radius: 0;
-        transition: background 0.2s ease;
-      }
-      .fixed-div:hover {
-        background: #C9A37B;
-      }
-      .hero-grid {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        gap: 32px;
-      }
-      .hero-title {
-        order: 1; /* текст сверху */
-        font-size: 42px;
-      }
-     .hero-photo {
-        order: 2; /* фото сразу после заголовка */
-        max-width: 0;
-      }
-      .hero-photo-1 {
-        order: 2; /* фото сразу после заголовка */
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-      }
-      .hero-grid{ grid-template-columns:1fr; gap:28px }
-      .hero-title{ font-size:42px; line-height:1.13 }
-      .hero-sub{ font-size:15.8px }
-      .hero-left{ transform:none }
+.prices-note{
+  text-align:center; color:#9AA09A; font-size: .875rem;
+  line-height: 1.25rem; margin-top:18px
+}
 
-      .about{ padding:44px 0 56px }
-      .about .title{ font-size:30px; margin-bottom:22px }
-      .about .features{ grid-template-columns:1fr; gap:26px }
+/* =========================
+   АДАПТИВ (оставил твои блоки и добавил размеры бейджа)
+   ========================= */
+@media (max-width: 1200px) {
+  :root { --container: 1024px; --gutter: 32px; }
+  .hero-title { font-size: 52px; }
+  .hero-grid { gap: 48px; height: auto; margin: 0;}
+  .hero-photo-frame { max-height: 520px; }
+  .ct-note {text-align: center;}
+}
 
-      .requests{ padding:50px 0 64px }
-      .requests .title{ font-size:30px }
-      .cards{ grid-template-columns:1fr; gap:22px }
+@media (max-width: 1100px){
+  .hero-title{ font-size:50px }
+  .hero-grid{ gap:42px }
+  .hero-title .br {
+    font-weight: 700;
+    font-size: 1.875rem;
+    line-height: 1.25;
+  }
+  .hero-sub {
+    font-size: 1.25rem;
+    margin-top:20px;
+  }
+}
 
-      .steps{ padding:52px 0 68px }
-      .steps .title{ font-size:30px }
-      .step-grid{ grid-template-columns:1fr; gap:22px; margin-bottom:18px }
+@media (max-width: 1024px) {
+  :root { --gutter: 24px; }
+  .about .title { font-size: 32px; }
+  .steps .title, .prices .title, .requests .title { font-size: 34px; }
+  .step-grid, .price-grid, .cards { gap: 24px; }
+  .hero-title { font-size: 48px; }
+  .hero-sub { font-size: 1.1rem; }
+}
 
-      .prices{ padding:54px 0 64px }
-      .prices .title{ font-size:30px }
-      .price-grid{ grid-template-columns:1fr; gap:20px }
-    }
-    @media (max-width: 768px) {
-      :root { --gutter: 20px; }
-      .hero-title { font-size: 38px; }
-      .hero-sub { font-size: 15px; }
-      .about .title { font-size: 28px; }
-      .about .lead { font-size: 1.125rem;}
-      .about .quote { font-size: 1rem; padding: 16px 20px; }
-      .requests .title { font-size: 28px; }
-      .steps .title { font-size: 28px; }
-      .prices .title { font-size: 28px; }
-      .price-value { font-size: 32px; }
-      .card h3 { font-size: 19px; }
-      .card p { font-size: 15px; }
-      .step-title { font-size: 19px; }
-      .step-text { font-size: 15px; }
-      .price-title { font-size: 20px; }
-      .hero-sub {
-        font-size: 1.25rem;
-      }
-    }
-    @media (max-width: 560px){
-      :root{ --gutter:16px }
-      .brand{ font-size:18px }
-      .header-cta{ padding:10px 16px }
-      .hero-title{ font-size:34px; letter-spacing:-0.15px; line-height:1.14 }
-      .hero-actions a{ width:100%; text-align:center }
-      .chip{ font-size:13.5px; padding:6px 12px;  background: none;}
-      .hero-photo{ border-radius:20px }
+/* Главное: на мобилках — одиночная колонка и крупный круг */
+@media (max-width: 920px){
+  .nav{ display:none }
+  .header-inner{ justify-content:space-between; margin: 0; padding: 20px;}
+  .header-cta { display: none; }
 
-      .about .lead{ font-size: 1.125rem; }
-      .about .quote{ font-size: 1.125rem; padding:16px 18px }
+  .fixed-booking-btn {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    color: #fff;
+    text-align: center;
+    font-weight: 800;
+    font-size: 16px;
+    padding: 16px;
+    border-radius: 0;
+    text-decoration: none;
+    z-index: 999;
+  }
+  .fixed-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: #D6B894;
+    height: 56px;
+    padding: 1rem;
+    gap: .5rem;
+    border-radius: 0;
+    transition: background 0.2s ease;
+  }
+  .fixed-div:hover { background: #C9A37B; }
 
-      .card{ padding:22px 20px; }
-      .card h3{ font-size:18.5px }
-      .price-value{ font-size:30px }
-      .fixed-div { font-size: 15px; height: 52px; }
-    }
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    gap: 32px;
+  }
+  .hero-title {
+    order: 1;
+    font-size: 42px;
+  }
+  .hero-photo { order: 2; max-width: 0; }
+  .hero-photo-1 { order: 2; width: 100%; max-width: 100%; height: auto; }
+
+  .hero-grid{ grid-template-columns:1fr; gap:28px }
+  .hero-title{ font-size:42px; line-height:1.13 }
+  .hero-sub{ font-size:15.8px }
+  .hero-left{ transform:none }
+
+  .about{ padding:44px 0 56px }
+  .about .title{ font-size:30px; margin-bottom:22px }
+  .about .features{ grid-template-columns:1fr; gap:26px }
+
+  .requests{ padding:50px 0 64px }
+  .requests .title{ font-size:30px }
+  .cards{ grid-template-columns:1fr; gap:22px }
+
+  .steps{ padding:52px 0 68px }
+  .steps .title{ font-size:30px }
+  .step-grid{ grid-template-columns:1fr; gap:22px; margin-bottom:18px }
+
+  .prices{ padding:54px 0 64px }
+  .prices .title{ font-size:30px }
+  .price-grid{ grid-template-columns:1fr; gap:20px }
+
+  /* Размер круга на мобилках почти как на скрине */
+  .price-badge{ width:132px; height:132px; }
+}
+
+@media (max-width: 768px) {
+  :root { --gutter: 20px; }
+  .hero-title { font-size: 38px; }
+  .hero-sub { font-size: 15px; }
+  .about .title { font-size: 28px; }
+  .about .lead { font-size: 1.125rem;}
+  .about .quote { font-size: 1rem; padding: 16px 20px; }
+  .requests .title { font-size: 28px; }
+  .steps .title { font-size: 28px; }
+  .prices .title { font-size: 28px; }
+  .price-value { font-size: 32px; }
+  .card h3 { font-size: 19px; }
+  .card p { font-size: 15px; }
+  .step-title { font-size: 19px; }
+  .step-text { font-size: 15px; }
+  .price-title { font-size: 20px; }
+  .hero-sub { font-size: 1.25rem; }
+}
+
+@media (max-width: 560px){
+  :root{ --gutter:16px }
+  .brand{ font-size:18px }
+  .header-cta{ padding:10px 16px }
+  .hero-title{ font-size:34px; letter-spacing:-0.15px; line-height:1.14 }
+  .hero-actions a{ width:100%; text-align:center }
+  .chip{ font-size:13.5px; padding:6px 12px;  background: none;}
+  .hero-photo{ border-radius:20px }
+
+  .about .lead{ font-size: 1.125rem; }
+  .about .quote{ font-size: 1.125rem; padding:16px 18px }
+
+  .card{ padding:22px 20px; }
+  .card h3{ font-size:18.5px }
+
+  .price-value{ font-size:30px }
+  .fixed-div { font-size: 15px; height: 52px; }
+
+  /* ещё чуть уменьшаем круг на самых маленьких */
+  .price-badge{ width:128px; height:128px; }
+}
 
 
     /* =========================
