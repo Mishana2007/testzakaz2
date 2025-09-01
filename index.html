@@ -269,11 +269,7 @@ a{color:inherit;text-decoration:none}
   .hero-title{ font-size:50px }
   .burger{display:block !important}
   .nav{display:none !important}
-  /*.btn-primary {
-    width: 93px;
-    height: 56px;
-    padding:0 40px 0 40px ;
-  }*/
+  body .wf-text {max-width: 700px;}
 }
 @media (max-width:920px){
   .nav{ display:none }            /* прячем десктоп-навигацию */
@@ -336,15 +332,15 @@ a{color:inherit;text-decoration:none}
 
 .about .lead{
   max-width:780px; margin:0 auto 26px; text-align:center;
-  color:#313131; line-height:1.7; font-size:1.125rem;
+  color:#37322F; line-height:1.7; font-size:1.125rem; font-weight: 500;
 }
 
 .about .quote{
   max-width:820px; margin:0 auto 34px; text-align:center;
   background:var(--accent-quote); border-radius:14px;
   padding:18px 22px;
-  color:#66503D;
-  font-size:1.125rem; line-height:1.6; font-style:italic; font-weight:500;
+  color:#8F7156;
+  font-size: 1.125rem; line-height:1.6; font-style:italic; font-weight:600;
   border:1px solid rgba(0,0,0,0.04);
   transition: background 0.3s ease;
 }
@@ -381,7 +377,7 @@ a{color:inherit;text-decoration:none}
     }
     .requests .title{
       font-size:38px; font-weight:800; text-align:center; margin:0 0 10px;
-      letter-spacing:.2px; color: #66503D;
+      letter-spacing:.2px; color: #8f7156;
     }
     .requests .subtitle{
       text-align:center; color:#8A8E8A; font-size: 1.125rem;
@@ -497,8 +493,9 @@ a{color:inherit;text-decoration:none}
 
 .methods-sub{
   text-align:center;
-  color:#8C8277;
-  font-weight:700;
+  color:#37322F;
+  font-size: 1.150rem;
+  font-weight:500;
   margin:0 0 8px;
 }
 
@@ -558,6 +555,7 @@ a{color:inherit;text-decoration:none}
 /* адаптив */
 @media (max-width: 1100px){
   .methods-grid{ grid-template-columns: repeat(2, 1fr) }
+  .feature .p{ max-width: 600px;}
 }
 @media (max-width: 760px){
   .methods{ padding:56px 0 64px }
@@ -579,7 +577,7 @@ a{color:inherit;text-decoration:none}
   border-top: 1px solid rgba(0,0,0,0.05);
 }
 .prices .title{
-  text-align:center; color: #66503D;
+  text-align:center; color: #8f7156;
   font-weight:800; font-size:38px; margin:0 0 12px;
   letter-spacing:.2px;
 }
@@ -625,7 +623,7 @@ a{color:inherit;text-decoration:none}
 
 .price-title{ margin:10px 0 6px; font-size:22px; font-weight:800; color:#2B2B2B }
 .price-sub{   margin:0 0 12px; color:#9A9E99; font-size:14px }
-.price-value{ margin:8px 0 18px; font-size:34px; font-weight:800; color:#8B7059; letter-spacing:1px }
+.price-value{ margin:8px 0 18px; font-size:34px; font-weight:800; color:#C5A887; letter-spacing:1px }
 
 .price-btn{
   display:block; width:100%;
@@ -755,7 +753,7 @@ a{color:inherit;text-decoration:none}
   .hero-sub { font-size: 15px; }
   .about .title { font-size: 28px; }
   .about .lead { font-size: 1.125rem;}
-  .about .quote { font-size: 1rem; padding: 16px 20px; }
+  .about .quote { font-size: 1.125rem; padding: 16px 20px; }
   .requests .title { font-size: 28px; }
   .steps .title { font-size: 28px; }
   .prices .title { font-size: 28px; }
@@ -855,9 +853,9 @@ a{color:inherit;text-decoration:none}
 .meet-card:hover .meet-badge .icon { stroke: var(--accent-brown); }
 .meet-title{ font-size:19px; font-weight:800; color:#2B2B2B; }
 
-.meet-text{ color:#6F746F; font-size:15.5px; line-height:1.62; margin:0 0 12px; }
-.meet-addr{ margin:10px 0 12px; color:#2B2B2B; font-size:15.5px; line-height:1.6; }
-.meet-addr b{ display:block; font-weight:800; color:#2B2B2B; }
+.meet-text{ color:#37322F; font-size:15.5px; line-height:1.62; margin:0 0 12px; font-weight: 500;}
+.meet-addr{ margin:10px 0 12px; color:#37322F; font-size:15.5px; line-height:1.6; font-weight: 600;}
+.meet-addr b{ display:block; font-weight: 600; color:#37322F; }
 .meet-addr .muted{ color:#777; }
 
 .meet-list{ margin:6px 0 4px; padding:0; list-style:none; }
@@ -1069,6 +1067,7 @@ a{color:inherit;text-decoration:none}
 /* адаптив */
 @media (max-width: 1100px){
   .work-features{ padding:70px 0 84px }
+  .card p {max-width: 700px;}
 }
 @media (max-width: 920px){
   .work-features .title{ font-size:30px; margin-bottom:24px }
@@ -1234,7 +1233,7 @@ a{color:inherit;text-decoration:none}
   transition: background 0.2s ease;
 }
 .faq-head:hover { background: #F0EDE8; }
-.faq-q{ font-size:17px; font-weight:800; color:#2B2B2B }
+.faq-q{ font-size:17px; font-weight:600; color:#2B2B2B }
 .faq-chev{
   margin-left:auto; width:18px; height:18px; opacity:.7; transition:transform .2s ease;
 }
@@ -1246,7 +1245,7 @@ a{color:inherit;text-decoration:none}
   border-top:1px solid rgba(0,0,0,0.06); background:#F8F5F2;
 }
 .faq-inner{ padding:10px 20px 16px; }
-.faq-a{ color:#958A7E; font-size:14.8px; line-height:1.75 } /* светло‑серая подпись как на фото */
+.faq-a{ color:#958A7E; font-size: .875rem; line-height:1.75 } /* светло‑серая подпись как на фото */
 
 /* адаптив */
 @media (max-width:920px){
@@ -1691,7 +1690,8 @@ a{color:inherit;text-decoration:none}
   <section class="requests" id="requests">
     <div class="container">
       <h2 class="title">С какими запросами я работаю</h2>
-      <p class="subtitle">Вот некоторые запросы, с которыми я работаю</p>
+      <!-- <p class="subtitle">Вот некоторые запросы, с которыми я работаю</p> -->
+       <p class="subtitle"></p>
 
       <div class="cards">
         <!-- 1 -->
@@ -1733,9 +1733,9 @@ a{color:inherit;text-decoration:none}
                 <path d="M12 6v12"></path>
               </svg>
             </div>
-            <h3>Психосоматика и травмы</h3>
+            <h3>Травматический опыт и психосоматика</h3>
           </div>
-          <p>Травматический опыт, реакции тела, техники саморегуляции.</p>
+          <p>Сложный детский опыт, потеря близких, насилие, аварии и другие события могут «застрять» и проявляться в теле через напряжение, тревогу, боль.</p>
           <a href="#booking" class="cta">Записаться по этому запросу <span class="arrow">→</span></a>
         </article>
 
@@ -1750,7 +1750,7 @@ a{color:inherit;text-decoration:none}
             </div>
             <h3>Личностный кризис и выгорание</h3>
           </div>
-          <p>Апатия, тревога, хронический стресс, самооценка, самореализация.</p>
+          <p>Апатия, тревога, хронический стресс, самооценка, самореализация. Стремление быть принятым и при этом сохранять свою уникальность.</p>
           <a href="#booking" class="cta">Записаться по этому запросу <span class="arrow">→</span></a>
         </article>
 
@@ -1806,7 +1806,7 @@ a{color:inherit;text-decoration:none}
           </div>
           <div class="step-title">План</div>
           <a class="step-sub" href="#booking">Цели и методы</a>
-          <p class="step-text">Цели, частота (обычно 1 раз в неделю), подходы (ТА/EMDR/семейный).</p>
+          <p class="step-text">Цели, частота (обычно 1 раз в неделю), подходы (ТА/EMDR/Семейная терапия).</p>
         </article>
 
         <article class="step-card">
@@ -1886,14 +1886,14 @@ a{color:inherit;text-decoration:none}
   <section id="prices" class="prices">
     <div class="container">
       <h2 class="title">Стоимость услуг</h2>
-      <p class="subtitle">В психологии с 2018 года. Веду частные консультации в Санкт‑Петербурге и онлайн — весь мир.</p>
+      <p class="subtitle">Веду частные консультации в Санкт-Петербурге и онлайн - весь мир.</p>
 
       <div class="price-grid">
         <!-- Индивидуальная -->
         <article class="price-card">
           <div class="price-badge">
             <!-- один человек -->
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20 21a8 8 0 0 0-16 0"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
@@ -1952,7 +1952,7 @@ a{color:inherit;text-decoration:none}
           <div class="meet-addr">
             <b>Б. Конюшенная ул., 29</b>
             БЦ «Эра»<br>
-            <span class="muted">Санкт-Петербург</span>
+            <span>Санкт-Петербург</span>
           </div>
 
           <a class="meet-link" href="https://yandex.ru/maps/?text=Б.%20Конюшенная%2029%20Санкт-Петербург" target="_blank" rel="noopener">
@@ -2055,20 +2055,19 @@ a{color:inherit;text-decoration:none}
           <div class="edu-inner">
             <div class="edu-rail">
               <div class="edu-item">
-                <div class="ttl">4 года обучения — Европейская программа ТА</div>
-                <div class="cap">У сертифицированного тренера EATA — Лазаренко Е. Ю. (CTA-P-EATA, PTSTA-P-EATA)</div>
+                <div class="ttl">Европейская программа (ТА)</div>
+                <div class="cap">Тренер Е. Ю. Лазаренко (CTA-P-EATA, PTSTA-P-EATA)</div>
               </div>
               <div class="edu-item">
-                <div class="ttl">Санкт-Петербургский институт EMDR</div>
-                <div class="cap">Одобрен Российской и Европейской ассоциациями, а также EMDR Institute</div>
+                <div class="ttl">СПб институт EMDR</div>
+                <div class="cap">РФ/Европа/EMDR Institute</div>
               </div>
               <div class="edu-item">
-                <div class="ttl">Базовый курс Когнитивно-Поведенческой Терапии</div>
+                <div class="ttl">Базовый курс КПТ</div>
                 <div class="cap">АКПП</div>
               </div>
               <div class="edu-item">
-                <div class="ttl">Повышение квалификации</div>
-                <div class="cap">«Особенности психологического консультирования в интегративном подходе»</div>
+                <div class="ttl">Интегративное консультирование</div>
               </div>
             </div>
 
@@ -2186,31 +2185,28 @@ a{color:inherit;text-decoration:none}
         <div class="fact">
           <div class="fact-num">1</div>
           <div class="fact-text">
-            Я Родом из Краснодарского края.
-10 лет работала стоматологом, пока не поняла: мне ближе внутренний мир человека.
-Переезды в Москву и Петербург научили меня адаптации и гибкости.
-В психологии я работаю с человеком целиком — эмоции, мысли, тело.
+            Краснодарский край → стоматология (10 лет) → психология: работать с человеком целиком.
           </div>
         </div>
 
         <div class="fact">
           <div class="fact-num">2</div>
           <div class="fact-text">
-            Мне близка уникальность каждого человека. В каждом я вижу сочетание силы и уязвимости — и именно это делает мою работу бесконечно живой. Я слушаю, замечаю и бережно отношусь к этому уникальному сочетанию в каждом.
+            В людях ценю сочетание силы и уязвимости — слушаю, замечаю, берегу.
           </div>
         </div>
 
         <div class="fact">
           <div class="fact-num">3</div>
           <div class="fact-text">
-            Я люблю путешествия не ради галочки, а ради мгновений тишины у воды, когда мысли отпускают. А ещё — за кофе по утрам, вкус которого хранит атмосферу места.
+            Люблю путешествия ради тишины и воды — и идеальный кофе по утрам.
           </div>
         </div>
 
         <div class="fact">
           <div class="fact-num">4</div>
           <div class="fact-text">
-            Я обожаю готовить завтраки — это мой способ заботиться и делать день тёплым с самого утра
+            Завтраки — мой способ заботы: просто, вкусно, по-домашнему.
           </div>
         </div>
       </div>
