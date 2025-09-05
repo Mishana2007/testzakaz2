@@ -108,6 +108,10 @@ a{color:inherit;text-decoration:none}
 }
 .header-cta:hover{ background:var(--btn-primary-hover) }
 
+.edu-more-toggle { cursor: pointer; display:flex; align-items:center; gap:.5rem; }
+.edu-more-body { overflow: hidden; max-height: 0; transition: max-height .3s ease; }
+.edu-more[aria-expanded="true"] .chev { transform: rotate(180deg); transition: transform .2s ease; }
+
 /* Бургер */
 .burger{
   display:none; background:none; border:0; margin:0; padding:10px;
@@ -941,13 +945,27 @@ a{color:inherit;text-decoration:none}
 .edu-acc[aria-expanded="true"] .edu-chev { transform:rotate(180deg) }
 
 /* Тело аккордеона */
-.edu-body {
+/*.edu-body {
   padding:0;
   max-height:0;
   overflow:hidden;
   transition:max-height .28s ease;
   border-top:1px solid rgba(0,0,0,0.06);
+}*/
+
+      .edu-body,
+    .edu-more-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+  .edu-acc[aria-expanded="true"] .edu-body,
+.edu-more[aria-expanded="true"] .edu-more-body {
+  max-height: 9999px; /* запас по высоте */
 }
+
+
 .edu-inner { padding:14px 0 16px; }
 
 /* ===== Рельса и строки ===== */
@@ -966,7 +984,7 @@ a{color:inherit;text-decoration:none}
 
 .edu-item {
   position:relative;
-  padding:12px 0;
+  padding:5px 0;
 }
 .edu-item:not(:first-child)::after {
   content:"";
@@ -977,11 +995,32 @@ a{color:inherit;text-decoration:none}
 }
 
 .edu-item .ttl {
-  margin:0 0 4px; font-weight:800;
-  font-size:16.8px; color:#2F2F2F;
+  margin:0 0 0px; font-weight:800;
+  font-size: .875rem;line-height: 1.25rem; color:#2F2F2F;
 }
 .edu-item .cap {
-  margin:0; font-size:15.2px;
+  margin:0; font-size: .875rem;
+  line-height:1.62; color:#7A776F;
+}
+
+.toggle-item {
+  position:relative;
+  padding:2px 0;
+}
+.toggle-item:not(:first-child)::after {
+  content:"";
+  position:absolute;
+  left:46px; right:0; top:0;
+  height:1px;
+  background:#F2E6D8; /* разделитель */
+}
+
+.toggle-item .toggle-title {
+  margin:0 0 0px; font-weight:800;
+  font-size: .875rem; line-height: 1.25rem; color:#2F2F2F;
+}
+.toggle-item .toggle-caption {
+  margin:0; font-size: .875rem;
   line-height:1.62; color:#7A776F;
 }
 
@@ -1353,6 +1392,45 @@ a{color:inherit;text-decoration:none}
   .ct-cards{ grid-template-columns:1fr; gap:14px }
 }
 
+.toggle-box {
+      max-width: 500px;
+      padding-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .toggle-btn {
+      cursor: pointer;
+      color: #B28E66;
+      font-weight: bold;
+      margin-bottom: .5rem;
+      padding-left: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .toggle-content {
+      display: none; /* скрыто по умолчанию */
+      margin-top: .5rem;
+    }
+
+    /* показываем содержимое, если открыт */
+    .toggle-box[aria-expanded="true"] .toggle-content {
+      display: block;
+    }
+
+    .toggle-item {
+      margin: .5rem 0;
+    }
+
+    .toggle-title {
+      font-weight: bold;
+    }
+
+    .toggle-caption {
+      font-size: 0.9rem;
+      color: #555;
+    }
 
 /* =========================
    FOOTER — "Футер"
@@ -1427,6 +1505,10 @@ a{color:inherit;text-decoration:none}
   height: 24px;
 }
 
+.badge img {
+  width: 70%;
+}
+
 .burger svg {
   width: 24px;
   height: 24px;
@@ -1455,7 +1537,10 @@ a{color:inherit;text-decoration:none}
 }
 .mobile-menu.open{ transform:translateY(0); }
 
-
+.lol {
+  display: flex;
+  justify-content: space-between;
+}
 
 .menu-header {
   display: flex;
@@ -1712,10 +1797,7 @@ a{color:inherit;text-decoration:none}
         <article class="card">
           <div class="card-header">
             <div class="badge">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3 11l9-7 9 7"></path>
-                <path d="M9 22V12h6v10"></path>
-              </svg>
+              <img src="house.png" alt="">
             </div>
             <h3>Детско‑родительские отношения</h3>
           </div>
@@ -1727,11 +1809,7 @@ a{color:inherit;text-decoration:none}
         <article class="card">
           <div class="card-header">
             <div class="badge">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M8 6a3 3 0 0 0-3 3v2a3 3 0 0 0 3 3"></path>
-                <path d="M16 6a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3"></path>
-                <path d="M12 6v12"></path>
-              </svg>
+              <img src="brain.png" alt="">
             </div>
             <h3>Травматический опыт и психосоматика</h3>
           </div>
@@ -1977,12 +2055,18 @@ a{color:inherit;text-decoration:none}
           </div>
 
           <p class="meet-text">Удобные онлайн-консультации из любой точки мира через:</p>
-
-          <ul class="meet-list">
-            <li><span class="meet-dot"></span>Google Meet</li>
-            <li><span class="meet-dot"></span>WhatsApp</li>
-            <li><span class="meet-dot"></span>Telegram</li>
-          </ul>
+          <div class="lol">
+            <ul class="meet-list">
+              <li><span class="meet-dot"></span>Яндекс телемост</li>
+              <li><span class="meet-dot"></span>Google Meet</li>
+              <li><span class="meet-dot"></span>Zoom</li>
+            </ul>
+            <ul class="meet-list">
+              <li><span class="meet-dot"></span>Telegram</li>
+              <li><span class="meet-dot"></span>Whatsapp</li>
+              <li><span class="meet-dot"></span>Max</li>
+            </ul>
+          </div>
         </div>
       </article>
     </div>
@@ -2069,47 +2153,29 @@ a{color:inherit;text-decoration:none}
                 <div class="ttl">Интегративное консультирование</div>
               </div>
             </div>
-
-            <!-- Показать ещё -->
-            <div class="edu-more" aria-expanded="false">
-              <div class="edu-more-toggle">
-                <span>Показать ещё</span>
-                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="#B28E66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </div>
-              <div class="edu-more-body">
-                <div class="edu-more-inner">
-                  <div class="edu-rail">
-                    <div class="edu-item">
-                      <div class="ttl">Семинар Ричарда Эрскина</div>
-                      <div class="cap">«Нарциссическая дилемма»</div>
-                    </div>
-                    <div class="edu-item">
-                      <div class="ttl">Семинар Владимира Гусаковского</div>
-                      <div class="cap">«Транзактный анализ в психотерапии сексуальных расстройств»</div>
-                    </div>
-                    <div class="edu-item">
-                      <div class="ttl">Институт повышения квалификации</div>
-                      <div class="cap">Программа «Психологическое консультирование пар»</div>
-                    </div>
-                    <div class="edu-item">
-                      <div class="ttl">Курс «Психотерапия денежных запросов»</div>
-                      <div class="cap">2024 г.</div>
-                    </div>
-                    <div class="edu-item">
-                      <div class="ttl">Семинар «Психотерапия Стыда»</div>
-                      <div class="cap">2025 г.</div>
-                    </div>
-                    <div class="edu-item">
-                      <div class="ttl">Супервизии</div>
-                      <div class="cap">Регулярные личные и групповые у членов EATA и EMDR Ассоциации</div>
-                    </div>
+             <div class="toggle-box" aria-expanded="true">
+              <div class="toggle-btn"><span>Скрыть</span></div>
+              <div class="toggle-content">
+                <div class="edu-rail">
+                  <div class="toggle-item">
+                    <div class="toggle-title">Семинар Ричарда Эрскина</div>
+                    <div class="toggle-caption">«Нарциссическая дилемма»</div>
+                  </div>
+                  <div class="toggle-item">
+                    <div class="toggle-title">Семинар Владимира Гусаковского</div>
+                    <div class="toggle-caption">«Транзактный анализ в психотерапии сексуальных расстройств»</div>
+                  </div>
+                  <div class="toggle-item">
+                    <div class="toggle-title">Курс «Психотерапия денежных запросов»</div>
+                    <div class="toggle-caption">2024 г.</div>
+                  </div>
+                  <div class="toggle-item">
+                    <div class="toggle-title">Семинар «Психотерапия Стыда»</div>
+                    <div class="toggle-caption">2025 г.</div>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- /Показать ещё -->
           </div>
         </div>
       </article>
@@ -2551,85 +2617,82 @@ a{color:inherit;text-decoration:none}
 /* =========================
    УТИЛИТЫ
    ========================= */
-function setMaxHeight(el, open) {
-  if (!el) return;
-  el.style.maxHeight = open ? (el.scrollHeight + 'px') : '0px';
-}
-function recalcOpenHeights(selectorBody, selectorAcc) {
-  document.querySelectorAll(selectorAcc + '[aria-expanded="true"] ' + selectorBody)
-    .forEach(el => { el.style.maxHeight = el.scrollHeight + 'px'; });
+
+document.querySelectorAll('.toggle-box').forEach(box => {
+    const btn = box.querySelector('.toggle-btn');
+    const label = btn.querySelector('span');
+
+    btn.addEventListener('click', () => {
+      const isOpen = box.getAttribute('aria-expanded') === 'true';
+      box.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      if (label) label.textContent = isOpen ? 'Показать ещё' : 'Скрыть';
+    });
+  });
+
+
+ function setMaxHeight(el, expanded) {
+      if (!el) return;
+      if (expanded) {
+        el.style.maxHeight = el.scrollHeight + 'px';
+      } else {
+        el.style.maxHeight = 0;
+      }
+    }
+
+    // Аккордеон
+    const eduItems = document.querySelectorAll('.edu-acc');
+    eduItems.forEach(acc => {
+      const head = acc.querySelector('.edu-head');
+      const body = acc.querySelector('.edu-body');
+
+      setMaxHeight(body, acc.getAttribute('aria-expanded') === 'true');
+
+      head.addEventListener('click', () => {
+        const isOpen = acc.getAttribute('aria-expanded') === 'true';
+        eduItems.forEach(it => {
+          it.setAttribute('aria-expanded','false');
+          setMaxHeight(it.querySelector('.edu-body'), false);
+        });
+        if (!isOpen) {
+          acc.setAttribute('aria-expanded','true');
+          setMaxHeight(body, true);
+        }
+      });
+    });
+
+    // "Показать ещё"
+    document.querySelectorAll('.edu-more').forEach(more => {
+      const toggle = more.querySelector('.edu-more-toggle');
+      const body = more.querySelector('.edu-more-body');
+      const label = toggle.querySelector('span');
+
+      setMaxHeight(body, false);
+
+      toggle.addEventListener('click', () => {
+        const isOpen = more.getAttribute('aria-expanded') === 'true';
+        more.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+        setMaxHeight(body, !isOpen);
+        if (label) label.textContent = isOpen ? 'Показать ещё' : 'Скрыть';
+      });
+    });
+
+    // Пересчёт при ресайзе
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('.edu-acc[aria-expanded="true"] .edu-body')
+        .forEach(el => el.style.maxHeight = el.scrollHeight + 'px');
+      document.querySelectorAll('.edu-more[aria-expanded="true"] .edu-more-body')
+        .forEach(el => el.style.maxHeight = el.scrollHeight + 'px');
+    });
+
+function recalcOpenHeights(bodySelector, accSelector) {
+  document.querySelectorAll(accSelector + '[aria-expanded="true"] ' + bodySelector)
+    .forEach(el => el.style.maxHeight = el.scrollHeight + 'px');
 }
 
 /* =========================
    ОБРАЗОВАНИЕ — АККОРДЕОНЫ
    ========================= */
-(function initEducationAccordions(){
-  const eduItems = document.querySelectorAll('.edu-acc');
-  if (!eduItems.length) return;
-
-  eduItems.forEach(acc => {
-    const head = acc.querySelector('.edu-head');
-    const body = acc.querySelector('.edu-body');
-    if (!head || !body) return;
-
-    // начальные открытые
-    if (acc.getAttribute('aria-expanded') === 'true') {
-      setMaxHeight(body, true);
-    } else {
-      setMaxHeight(body, false);
-    }
-
-    head.addEventListener('click', () => {
-      const isOpen = acc.getAttribute('aria-expanded') === 'true';
-
-      // сворачиваем все
-      eduItems.forEach(it => {
-        it.setAttribute('aria-expanded', 'false');
-        const b = it.querySelector('.edu-body');
-        if (b) setMaxHeight(b, false);
-      });
-
-      // если был закрыт — открываем текущий
-      if (!isOpen) {
-        acc.setAttribute('aria-expanded', 'true');
-        setMaxHeight(body, true);
-      }
-    });
-  });
-
-  // "Показать ещё" — может быть несколько блоков
-  document.querySelectorAll('.edu-more').forEach(more => {
-    const toggle = more.querySelector('.edu-more-toggle');
-    const body = more.querySelector('.edu-more-body');
-    if (!toggle || !body) return;
-
-    more.setAttribute('aria-expanded','false');
-    setMaxHeight(body, false);
-
-    toggle.addEventListener('click', () => {
-      const open = more.getAttribute('aria-expanded') === 'true';
-      if (open) {
-        more.setAttribute('aria-expanded','false');
-        setMaxHeight(body, false);
-        // первая нода — <span> с текстом
-        const t = toggle.querySelector('span');
-        if (t) t.textContent = 'Показать ещё';
-      } else {
-        more.setAttribute('aria-expanded','true');
-        setMaxHeight(body, true);
-        const t = toggle.querySelector('span');
-        if (t) t.textContent = 'Скрыть';
-      }
-    });
-  });
-
-  // ресайз — пересчитать высоты
-  window.addEventListener('resize', () => {
-    recalcOpenHeights('.edu-body', '.edu-acc');
-    document.querySelectorAll('.edu-more[aria-expanded="true"] .edu-more-body')
-      .forEach(el => el.style.maxHeight = el.scrollHeight + 'px');
-  });
-})();
+  
 
 /* =========================
    РЕСУРСЫ — АККОРДЕОНЫ
